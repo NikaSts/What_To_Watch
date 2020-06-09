@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Veronika Stasyuk](https://up.htmlacademy.ru/react/4/user/501771).
-* Наставник: `Неизвестно`.
+* Наставник: [Игорь Антонов](https://htmlacademy.ru/profile/antonov).
 
 ---
 
