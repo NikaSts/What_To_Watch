@@ -16,7 +16,7 @@ App.propTypes = {
     releaseDate: PropTypes.number.isRequired,
   }).isRequired,
   filmTitles: PropTypes.arrayOf(
-      PropTypes.string.isRequired
+      PropTypes.string
   ).isRequired,
 };
 
