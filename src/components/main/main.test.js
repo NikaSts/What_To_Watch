@@ -8,14 +8,55 @@ const movie = {
   'releaseDate': 2014,
 };
 
-const movieTitles = [`Fantastic Beasts: The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`, `Aviator`, `We need to talk about Kevin`, `What We Do in the Shadows`, `Revenant`, `Johnny English`, `Shutter Island`, `Pulp Fiction`, `No Country for Old Men`, `Snatch`, `Moonrise Kingdom`, `Seven Years in Tibet`, `Midnight Special`, `War of the Worlds`, `Dardjeeling Limited`, `Orlando`, `Mindhunter`];
+const movies = [
+  {
+    'id': `1`,
+    'title': `Fantastic Beasts: The Crimes of Grindelwald`,
+    'url': `fantastic-beasts-the-crimes-of-grindelwald`,
+  },
+  {
+    'id': `2`,
+    'title': `Bohemian Rhapsody`,
+    'url': `bohemian-rhapsody`,
+  },
+  {
+    'id': `3`,
+    'title': `Macbeth`,
+    'url': `macbeth`,
+  },
+  {
+    'id': `4`,
+    'title': `Aviator`,
+    'url': `aviator`,
+  },
+  {
+    'id': `5`,
+    'title': `We need to talk about Kevin`,
+    'url': `we-need-to-talk-about-kevin`,
+  },
+  {
+    'id': `6`,
+    'title': `What We Do in the Shadows`,
+    'url': `what-we-do-in-the-shadows`,
+  },
+  {
+    'id': `7`,
+    'title': `Revenant`,
+    'url': `revenant`,
+  },
+  {
+    'id': `8`,
+    'title': `Johnny English`,
+    'url': `johnny-english`,
+  },
+];
 
 describe(`MainComponent`, () => {
   it(`Main should render correctly`, () => {
     const tree = renderer
       .create(<Main
         movie={movie}
-        movieTitles={movieTitles}
+        movies={movies}
         onMovieTitleClick={() => {}}
       />)
       .toJSON();

@@ -1,66 +1,50 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import App from './app.jsx';
+import {nanoid} from 'nanoid';
 
-
-const movie = {
+export const movie = {
   'title': `The Grand Budapest Hotel`,
   'genre': `Drama`,
   'releaseDate': 2014,
 };
 
-const movies = [
+export const movies = [
   {
-    'id': `1`,
+    'id': nanoid(10),
     'title': `Fantastic Beasts: The Crimes of Grindelwald`,
     'url': `fantastic-beasts-the-crimes-of-grindelwald`,
   },
   {
-    'id': `2`,
+    'id': nanoid(10),
     'title': `Bohemian Rhapsody`,
     'url': `bohemian-rhapsody`,
   },
   {
-    'id': `3`,
+    'id': nanoid(10),
     'title': `Macbeth`,
     'url': `macbeth`,
   },
   {
-    'id': `4`,
+    'id': nanoid(10),
     'title': `Aviator`,
     'url': `aviator`,
   },
   {
-    'id': `5`,
+    'id': nanoid(10),
     'title': `We need to talk about Kevin`,
     'url': `we-need-to-talk-about-kevin`,
   },
   {
-    'id': `6`,
+    'id': nanoid(10),
     'title': `What We Do in the Shadows`,
     'url': `what-we-do-in-the-shadows`,
   },
   {
-    'id': `7`,
+    'id': nanoid(10),
     'title': `Revenant`,
     'url': `revenant`,
   },
   {
-    'id': `8`,
+    'id': nanoid(10),
     'title': `Johnny English`,
     'url': `johnny-english`,
   },
 ];
-
-describe(`AppComponent`, () => {
-  it(`App should render correctly`, () => {
-    const tree = renderer
-      .create(<App
-        movie={movie}
-        movies={movies}
-      />)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-});

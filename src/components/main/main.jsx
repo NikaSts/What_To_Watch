@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import MoviesList from '../movies-list/movies-list.jsx';
 
 
 const Main = (props) => {
-  const {movie: {title, genre, releaseDate}, movieTitles, onMovieTitleClick} = props;
+  const {movie: {title, genre, releaseDate}, movies, onMovieTitleClick} = props;
 
   return (
     <React.Fragment>
@@ -99,28 +100,10 @@ const Main = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {movieTitles.map((movieTitle) => {
-              return (
-                <article
-                  className="small-movie-card catalog__movies-card"
-                  key={movieTitle}>
-                  <div className="small-movie-card__image">
-                    <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                  </div>
-                  <h3
-                    className="small-movie-card__title">
-                    <a
-                      className="small-movie-card__link"
-                      href="movie-page.html"
-                      onClick={onMovieTitleClick}
-                    >
-                      {movieTitle}</a>
-                  </h3>
-                </article>
-              );
-            })}
-          </div>
+          <MoviesList
+            movies={movies}
+            onMovieTitleClick={onMovieTitleClick}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -151,9 +134,12 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
   }).isRequired,
-  movieTitles: PropTypes.arrayOf(
-      PropTypes.string
-  ).isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      })).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 

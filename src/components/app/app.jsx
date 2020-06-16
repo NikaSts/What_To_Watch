@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 
 const movieTitleHandler = () => { };
 
-const App = ({movie, movieTitles}) => {
+const App = ({movie, movies}) => {
   return (
     <Main
       movie={movie}
-      movieTitles={movieTitles}
+      movies={movies}
       onMovieTitleClick={movieTitleHandler}
     />
   );
@@ -21,9 +21,12 @@ App.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
   }).isRequired,
-  movieTitles: PropTypes.arrayOf(
-      PropTypes.string
-  ).isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      })).isRequired,
 };
 
 export default App;
