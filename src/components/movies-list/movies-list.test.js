@@ -1,13 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from './app.jsx';
-
-
-const movie = {
-  'title': `The Grand Budapest Hotel`,
-  'genre': `Drama`,
-  'releaseDate': 2014,
-};
+import MoviesList from './movies-list.jsx';
 
 const movies = [
   {
@@ -52,15 +45,13 @@ const movies = [
   },
 ];
 
-describe(`AppComponent`, () => {
-  it(`App should render correctly`, () => {
-    const tree = renderer
-      .create(<App
-        movie={movie}
+it(`MoviesList should render correctly`, () => {
+  const tree = renderer
+      .create(<MoviesList
         movies={movies}
+        onMovieTitleClick={() => {}}
       />)
       .toJSON();
 
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });
