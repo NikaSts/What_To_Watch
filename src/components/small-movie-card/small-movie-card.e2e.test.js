@@ -14,15 +14,15 @@ Enzyme.configure({
 });
 
 it(`SmallMovieCard title should be pressed`, () => {
-  const onMovieTitleClick = jest.fn();
+  const onMovieTitleHover = jest.fn();
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
-        onMovieTitleClick={onMovieTitleClick}
+        onMovieTitleHover={onMovieTitleHover}
       />
   );
 
   const movieTitle = smallMovieCard.find(`a.small-movie-card__link`);
-  movieTitle.simulate(`click`);
-  expect(onMovieTitleClick).toHaveBeenCalledTimes(1);
+  movieTitle.simulate(`mouseOver`);
+  expect(onMovieTitleHover).toHaveBeenCalledTimes(1);
 });

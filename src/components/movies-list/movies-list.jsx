@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 
 
+const onMovieTitleHover = () => {};
+
 const MoviesList = ({movies, onMovieTitleClick}) => {
   const movieCards = movies
     .map((movie) => {
@@ -11,6 +13,7 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
           key={movie.id}
           movie={movie}
           onMovieTitleClick={onMovieTitleClick}
+          onMovieTitleHover={onMovieTitleHover}
         />
       );
     });
@@ -31,6 +34,7 @@ MoviesList.propTypes = {
         url: PropTypes.string.isRequired,
       })).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieTitleHover: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

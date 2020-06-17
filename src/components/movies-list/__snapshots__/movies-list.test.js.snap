@@ -24,6 +24,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -49,6 +50,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         Bohemian Rhapsody
       </a>
@@ -74,6 +76,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         Macbeth
       </a>
@@ -99,6 +102,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         Aviator
       </a>
@@ -124,6 +128,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         We need to talk about Kevin
       </a>
@@ -149,6 +154,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         What We Do in the Shadows
       </a>
@@ -174,6 +180,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         Revenant
       </a>
@@ -199,6 +206,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
+        onMouseOver={[Function]}
       >
         Johnny English
       </a>
