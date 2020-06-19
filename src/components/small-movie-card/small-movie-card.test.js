@@ -12,6 +12,7 @@ it(`SmallMovieCard should render correctly`, () => {
       .create(<SmallMovieCard
         movie={movie}
         onMovieTitleClick={() => {}}
+        onSmallMovieCardHover={() => {}}
       />)
       .toJSON();
 

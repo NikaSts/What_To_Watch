@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 
-
-const onMovieTitleHover = () => {};
+const handleSmallMovieCardHover = () => {};
 
 const MoviesList = ({movies, onMovieTitleClick}) => {
   const movieCards = movies
@@ -13,7 +12,7 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
           key={movie.id}
           movie={movie}
           onMovieTitleClick={onMovieTitleClick}
-          onMovieTitleHover={onMovieTitleHover}
+          onSmallMovieCardHover={handleSmallMovieCardHover}
         />
       );
     });
@@ -23,7 +22,6 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
       {movieCards}
     </div>
   );
-
 };
 
 MoviesList.propTypes = {
@@ -34,7 +32,6 @@ MoviesList.propTypes = {
         url: PropTypes.string.isRequired,
       })).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
-  onMovieTitleHover: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

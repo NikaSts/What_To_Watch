@@ -13,16 +13,22 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`SmallMovieCard title should be pressed`, () => {
-  const onMovieTitleHover = jest.fn();
+it(`SmallMovieCard title hover should return the movie`, () => {
+  const onMovieTitleClick = jest.fn();
+  const onSmallMovieCardHover = jest.fn((evt) => {
+    const target = evt.target;
+    return target;
+  });
+
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
-        onMovieTitleHover={onMovieTitleHover}
+        onMovieTitleClick={onMovieTitleClick}
+        onSmallMovieCardHover={onSmallMovieCardHover}
       />
   );
 
-  const movieTitle = smallMovieCard.find(`a.small-movie-card__link`);
-  movieTitle.simulate(`mouseOver`);
-  expect(onMovieTitleHover).toHaveBeenCalledTimes(1);
+  const cardTitle = smallMovieCard.find(`a.small-movie-card__link`);
+  cardTitle.simulate(`mouseEnter`, {target: {movie}});
+  expect(onSmallMovieCardHover).toHaveReturnedWith({movie});
 });

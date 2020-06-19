@@ -24,7 +24,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -50,7 +50,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         Bohemian Rhapsody
       </a>
@@ -76,7 +76,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         Macbeth
       </a>
@@ -102,7 +102,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         Aviator
       </a>
@@ -128,7 +128,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         We need to talk about Kevin
       </a>
@@ -154,7 +154,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         What We Do in the Shadows
       </a>
@@ -180,7 +180,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         Revenant
       </a>
@@ -206,7 +206,7 @@ exports[`MoviesList should render correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
         onClick={[Function]}
-        onMouseOver={[Function]}
+        onMouseEnter={[Function]}
       >
         Johnny English
       </a>

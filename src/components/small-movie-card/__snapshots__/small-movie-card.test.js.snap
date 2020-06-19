@@ -21,6 +21,7 @@ exports[`SmallMovieCard should render correctly 1`] = `
       className="small-movie-card__link"
       href="movie-page.html"
       onClick={[Function]}
+      onMouseEnter={[Function]}
     >
       Harry Potter
     </a>
