@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const SmallMovieCard = ({movie: {title, url}, onMovieTitleClick, onSmallMovieCardHover}) => {
+const SmallMovieCard = ({movie: {title, image}, onMovieTitleClick, onSmallMovieCardHover}) => {
   return (
     <article className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image">
-        <img src={`img/${url}.jpg`} alt={title} width="280" height="175" />
+        <img src={`img/${image}.jpg`} alt={title} width="280" height="175" />
       </div>
       <h3
         className="small-movie-card__title">
@@ -25,7 +25,7 @@ const SmallMovieCard = ({movie: {title, url}, onMovieTitleClick, onSmallMovieCar
 SmallMovieCard.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
   }).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onSmallMovieCardHover: PropTypes.func.isRequired,

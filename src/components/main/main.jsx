@@ -4,13 +4,13 @@ import MoviesList from '../movies-list/movies-list.jsx';
 
 
 const Main = (props) => {
-  const {movie: {title, genre, releaseDate}, movies, onMovieTitleClick} = props;
+  const {promoMovie: {image, title, genre, releaseDate}, movies, onMovieTitleClick} = props;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={`img/bg-${image}.jpg`} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -34,7 +34,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={`img/${image}-poster.jpg`} alt={title} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -129,17 +129,14 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movie: PropTypes.shape({
+  promoMovie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
   }).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-      })).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 

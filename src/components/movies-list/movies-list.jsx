@@ -25,12 +25,7 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
 };
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-      })).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 
