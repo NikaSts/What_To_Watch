@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
+import MovieCard from '../movie-card/movie-card.jsx';
 
-const handleSmallMovieCardHover = () => {};
+const handleMovieCardHover = () => {};
 
 const MoviesList = ({movies, onMovieTitleClick}) => {
   const movieCards = movies
     .map((movie) => {
       return (
-        <SmallMovieCard
+        <MovieCard
           key={movie.id}
           movie={movie}
           onMovieTitleClick={onMovieTitleClick}
-          onSmallMovieCardHover={handleSmallMovieCardHover}
+          onMovieCardHover={handleMovieCardHover}
         />
       );
     });
