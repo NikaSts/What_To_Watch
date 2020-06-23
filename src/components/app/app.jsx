@@ -11,7 +11,7 @@ export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeMovie: 4,
+      activeMovie: null,
     };
   }
 

@@ -6,7 +6,7 @@ import MovieCard from './movie-card.jsx';
 
 const movie = {
   title: `Harry Potter`,
-  url: `harry-potter`
+  image: `harry-potter`
 };
 
 Enzyme.configure({
