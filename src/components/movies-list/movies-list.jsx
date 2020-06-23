@@ -4,9 +4,9 @@ import MovieCard from '../movie-card/movie-card.jsx';
 
 const handleMovieCardMouseEnter = () => {};
 
-const MoviesList = ({movies, onMovieTitleClick}) => {
-  const movieCards = movies
-    .map((movie) => {
+const MoviesList = ({movies, onMovieTitleClick}) => (
+  <div className="catalog__movies-list">
+    {movies.map((movie) => {
       return (
         <MovieCard
           key={movie.id}
@@ -15,14 +15,9 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
           onMovieCardMouseEnter={handleMovieCardMouseEnter}
         />
       );
-    });
-
-  return (
-    <div className="catalog__movies-list">
-      {movieCards}
-    </div>
-  );
-};
+    })}
+  </div>
+);
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
