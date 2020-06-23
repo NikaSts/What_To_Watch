@@ -1,19 +1,20 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SmallMovieCard from './movie-card.jsx';
+import MovieCard from './movie-card.jsx';
 
 const movie = {
   title: `Harry Potter`,
-  url: `harry-potter`
+  image: `harry-potter`
 };
 
-it(`SmallMovieCard should render correctly`, () => {
+it(`MovieCard should render correctly`, () => {
   const tree = renderer
-      .create(<SmallMovieCard
-        movie={movie}
-        onMovieTitleClick={() => {}}
-        onSmallMovieCardHover={() => {}}
-      />)
+    .create(
+        <MovieCard
+          movie={movie}
+          onMovieTitleClick={() => {}}
+          onMovieCardMouseEnter={() => {}}
+        />)
       .toJSON();
 
   expect(tree).toMatchSnapshot();

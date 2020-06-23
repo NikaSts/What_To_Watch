@@ -136,7 +136,12 @@ Main.propTypes = {
     releaseDate: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+      }).isRequired
+  ).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 

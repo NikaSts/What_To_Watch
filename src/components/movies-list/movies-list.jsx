@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 
-const handleMovieCardHover = () => {};
+const handleMovieCardMouseEnter = () => {};
 
 const MoviesList = ({movies, onMovieTitleClick}) => {
   const movieCards = movies
@@ -12,7 +12,7 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
           key={movie.id}
           movie={movie}
           onMovieTitleClick={onMovieTitleClick}
-          onMovieCardHover={handleMovieCardHover}
+          onMovieCardMouseEnter={handleMovieCardMouseEnter}
         />
       );
     });
@@ -25,7 +25,12 @@ const MoviesList = ({movies, onMovieTitleClick}) => {
 };
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+      }).isRequired
+  ).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 
