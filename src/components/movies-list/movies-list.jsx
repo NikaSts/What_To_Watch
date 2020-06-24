@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 
-const handleMovieCardMouseEnter = () => {};
 
-const MoviesList = ({movies, onMovieTitleClick}) => (
+const MoviesList = ({movies, onMovieTitleClick, onMovieCardMouseEnter}) => (
   <div className="catalog__movies-list">
     {movies.map((movie) => {
       return (
         <MovieCard
           key={movie.id}
           movie={movie}
-          onMovieTitleClick={onMovieTitleClick}
-          onMovieCardMouseEnter={handleMovieCardMouseEnter}
+          onMovieTitleClick={() => onMovieTitleClick(movie.id)}
+          onMovieCardMouseEnter={() => onMovieCardMouseEnter(movie.id)}
         />
       );
     })}
@@ -27,6 +26,7 @@ MoviesList.propTypes = {
       }).isRequired
   ).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieCardMouseEnter: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

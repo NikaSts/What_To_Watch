@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
 
 
-const MoviePage = ({movieId, movies, onMovieTitleClick}) => {
-  const activeMovie = movies[movieId];
+const MoviePage = ({movieId, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
+  const activeMovie = movies.find((movie) => movie.id === movieId);
   const {id, title, genre, releaseDate, image, ratingScore, ratingLevel, ratingCount, text, director, starring} = activeMovie;
   const similarMovies = movies.filter((movie) => movie.genre === activeMovie.genre);
   const shownActors = starring.slice(0, 4).join(`, `);
@@ -109,6 +109,7 @@ const MoviePage = ({movieId, movies, onMovieTitleClick}) => {
           <MoviesList
             movies={similarMovies}
             onMovieTitleClick={onMovieTitleClick}
+            onMovieCardMouseEnter={onMovieCardMouseEnter}
           />
         </section>
 
@@ -149,4 +150,5 @@ MoviePage.propTypes = {
         starring: PropTypes.arrayOf(PropTypes.string).isRequired,
       })).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieCardMouseEnter: PropTypes.func.isRequired,
 };

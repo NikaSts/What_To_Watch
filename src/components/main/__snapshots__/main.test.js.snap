@@ -259,6 +259,8 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -277,7 +279,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -285,6 +286,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -303,7 +306,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -311,6 +313,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -329,7 +333,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               Macbeth
             </a>
@@ -337,6 +340,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -355,7 +360,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               Aviator
             </a>
@@ -363,6 +367,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -381,7 +387,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               We need to talk about Kevin
             </a>
@@ -389,6 +394,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -407,7 +414,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               What We Do in the Shadows
             </a>
@@ -415,6 +421,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -433,7 +441,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               Revenant
             </a>
@@ -441,6 +448,8 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -459,7 +468,6 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-              onMouseEnter={[Function]}
             >
               Johnny English
             </a>

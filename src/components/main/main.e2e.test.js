@@ -60,7 +60,7 @@ Enzyme.configure({
 });
 
 describe(`MainComponent`, () => {
-  it(`Movie title should be pressed`, () => {
+  it(`Movie card should be pressed`, () => {
     const onMovieTitleClick = jest.fn();
 
     const main = mount(
@@ -71,8 +71,8 @@ describe(`MainComponent`, () => {
         />
     );
 
-    const movieTitle = main.find(`a.small-movie-card__link`);
-    movieTitle.forEach((title) => title.simulate(`click`));
+    const movieCard = main.find(`.small-movie-card`);
+    movieCard.forEach((card) => card.simulate(`click`));
 
     expect(onMovieTitleClick).toHaveBeenCalledTimes(movies.length);
   });

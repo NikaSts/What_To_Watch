@@ -5,26 +5,28 @@ import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
 
 
-const handleMovieTitleClick = () => { };
-
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeMovie: null,
+      activeMovie: ``,
+      hoveredCard: ``,
     };
+
+    this.handleMovieTitleClick = this.handleMovieTitleClick.bind(this);
+    this.handleMovieCardMouseEnter = this.handleMovieCardMouseEnter.bind(this);
   }
 
   _renderApp() {
     const {promoMovie, movies} = this.props;
-
     const {activeMovie: id} = this.state;
-    if (id === null) {
+    if (id === ``) {
       return (
         <Main
           promoMovie={promoMovie}
           movies={movies}
-          onMovieTitleClick={handleMovieTitleClick}
+          onMovieTitleClick={this.handleMovieTitleClick}
+          onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
         />
       );
     }
@@ -37,13 +39,23 @@ export default class App extends PureComponent {
       <MoviePage
         movieId={id}
         movies={movies}
-        onMovieTitleClick={handleMovieTitleClick}
+        onMovieTitleClick={this.handleMovieTitleClick}
+        onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
       />
     );
   }
 
+  handleMovieTitleClick(activeMovie) {
+    this.setState({activeMovie});
+  }
+
+  handleMovieCardMouseEnter(hoveredCard) {
+    this.setState({hoveredCard});
+  }
+
   render() {
     const {activeMovie: id} = this.state;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -60,7 +72,6 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-  movieId: PropTypes.string.isRequired,
   promoMovie: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

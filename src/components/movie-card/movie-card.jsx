@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 
 const MovieCard = ({movie: {title, image}, onMovieTitleClick, onMovieCardMouseEnter}) => (
-  <article className="small-movie-card catalog__movies-card">
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={onMovieTitleClick}
+    onMouseEnter={onMovieCardMouseEnter}
+  >
     <div className="small-movie-card__image">
       <img src={`img/${image}.jpg`} alt={title} width="280" height="175" />
     </div>
@@ -12,8 +16,10 @@ const MovieCard = ({movie: {title, image}, onMovieTitleClick, onMovieCardMouseEn
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={onMovieTitleClick}
-        onMouseEnter={onMovieCardMouseEnter}
+        onClick={(evt) => {
+          evt.preventDefault();
+          onMovieTitleClick();
+        }}
       >
         {title}</a>
     </h3>

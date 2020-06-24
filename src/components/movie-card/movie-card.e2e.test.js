@@ -5,6 +5,7 @@ import MovieCard from './movie-card.jsx';
 
 
 const movie = {
+  id: `one`,
   title: `Harry Potter`,
   image: `harry-potter`
 };
@@ -13,22 +14,35 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`MovieCard title hover should return the movie`, () => {
-  const onMovieTitleClick = jest.fn();
-  const onMovieCardMouseEnter = jest.fn((evt) => {
-    const target = evt.target;
-    return target;
-  });
-
+it(`MovieCard hover should return the movie`, () => {
+  const onMovieCardMouseEnter = jest.fn((id) => id);
   const movieCard = shallow(
       <MovieCard
         movie={movie}
-        onMovieTitleClick={onMovieTitleClick}
         onMovieCardMouseEnter={onMovieCardMouseEnter}
       />
   );
 
-  const cardTitle = movieCard.find(`a.small-movie-card__link`);
-  cardTitle.simulate(`mouseEnter`, {target: {movie}});
-  expect(onMovieCardMouseEnter).toHaveReturnedWith({movie});
+  movieCard.simulate(`mouseEnter`, movie.id);
+  expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.id);
+});
+
+it(`Movie title should be pressed and new page won't open`, () => {
+  const onMovieTitleClick = jest.fn();
+  const movieCard = shallow(
+      <MovieCard
+        movie={movie}
+        onMovieTitleClick={onMovieTitleClick}
+      />
+  );
+
+  const movieTitle = movieCard.find(`a.small-movie-card__link`);
+  const newPageOpenPrevention = jest.fn();
+
+  movieTitle.forEach((title) => title.simulate(`click`, {
+    preventDefault: newPageOpenPrevention,
+  }));
+
+  expect(onMovieTitleClick).toHaveBeenCalledTimes(1);
+  expect(newPageOpenPrevention).toHaveBeenCalledTimes(1);
 });

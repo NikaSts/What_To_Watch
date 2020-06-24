@@ -50,6 +50,7 @@ it(`MoviesList should render correctly`, () => {
       .create(<MoviesList
         movies={movies}
         onMovieTitleClick={() => {}}
+        onMovieCardMouseEnter={() => {}}
       />)
       .toJSON();
 

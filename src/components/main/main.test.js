@@ -60,6 +60,7 @@ describe(`MainComponent`, () => {
         promoMovie={promoMovie}
         movies={movies}
         onMovieTitleClick={() => {}}
+        onMovieCardMouseEnter={() => {}}
       />)
       .toJSON();
 
