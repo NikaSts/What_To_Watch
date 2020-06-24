@@ -20,17 +20,17 @@ export default class App extends PureComponent {
   _renderApp() {
     const {promoMovie, movies} = this.props;
     const {activeMovie: id} = this.state;
-    if (id === ``) {
-      return (
-        <Main
-          promoMovie={promoMovie}
-          movies={movies}
-          onMovieTitleClick={this.handleMovieTitleClick}
-          onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
-        />
-      );
+    if (id !== ``) {
+      return this._renderMoviePage(id);
     }
-    return this._renderMoviePage(id);
+    return (
+      <Main
+        promoMovie={promoMovie}
+        movies={movies}
+        onMovieTitleClick={this.handleMovieTitleClick}
+        onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
+      />
+    );
   }
 
   _renderMoviePage(id) {
