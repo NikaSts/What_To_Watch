@@ -1,36 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
+import MovieCard from '../movie-card/movie-card.jsx';
 
 
-const MoviesList = ({movies, onMovieTitleClick}) => {
-  const movieCards = movies
-    .map((movie) => {
+const MoviesList = ({movies, onMovieTitleClick, onMovieCardMouseEnter}) => (
+  <div className="catalog__movies-list">
+    {movies.map((movie) => {
       return (
-        <SmallMovieCard
+        <MovieCard
           key={movie.id}
           movie={movie}
-          onMovieTitleClick={onMovieTitleClick}
+          onMovieTitleClick={() => onMovieTitleClick(movie.id)}
+          onMovieCardMouseEnter={() => onMovieCardMouseEnter(movie.id)}
         />
       );
-    });
-
-  return (
-    <div className="catalog__movies-list">
-      {movieCards}
-    </div>
-  );
-
-};
+    })}
+  </div>
+);
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-      })).isRequired,
+        image: PropTypes.string.isRequired,
+      }).isRequired
+  ).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieCardMouseEnter: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

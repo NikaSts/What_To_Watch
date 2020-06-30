@@ -3,60 +3,63 @@ import renderer from "react-test-renderer";
 import App from './app.jsx';
 
 
-const movie = {
-  'title': `The Grand Budapest Hotel`,
-  'genre': `Drama`,
-  'releaseDate': 2014,
+const promoMovie = {
+  id: `one`,
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  releaseDate: 2014,
+  image: `the-grand-budapest-hotel`,
 };
 
 const movies = [
   {
-    'id': `1`,
-    'title': `Fantastic Beasts: The Crimes of Grindelwald`,
-    'url': `fantastic-beasts-the-crimes-of-grindelwald`,
+    id: `1`,
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    image: `fantastic-beasts-the-crimes-of-grindelwald`,
   },
   {
-    'id': `2`,
-    'title': `Bohemian Rhapsody`,
-    'url': `bohemian-rhapsody`,
+    id: `2`,
+    title: `Bohemian Rhapsody`,
+    image: `bohemian-rhapsody`,
   },
   {
-    'id': `3`,
-    'title': `Macbeth`,
-    'url': `macbeth`,
+    id: `3`,
+    title: `Macbeth`,
+    image: `macbeth`,
   },
   {
-    'id': `4`,
-    'title': `Aviator`,
-    'url': `aviator`,
+    id: `4`,
+    title: `Aviator`,
+    image: `aviator`,
   },
   {
-    'id': `5`,
-    'title': `We need to talk about Kevin`,
-    'url': `we-need-to-talk-about-kevin`,
+    id: `5`,
+    title: `We need to talk about Kevin`,
+    image: `we-need-to-talk-about-kevin`,
   },
   {
-    'id': `6`,
-    'title': `What We Do in the Shadows`,
-    'url': `what-we-do-in-the-shadows`,
+    id: `6`,
+    title: `What We Do in the Shadows`,
+    image: `what-we-do-in-the-shadows`,
   },
   {
-    'id': `7`,
-    'title': `Revenant`,
-    'url': `revenant`,
+    id: `7`,
+    title: `Revenant`,
+    image: `revenant`,
   },
   {
-    'id': `8`,
-    'title': `Johnny English`,
-    'url': `johnny-english`,
+    id: `8`,
+    title: `Johnny English`,
+    image: `johnny-english`,
   },
 ];
+
 
 describe(`AppComponent`, () => {
   it(`App should render correctly`, () => {
     const tree = renderer
       .create(<App
-        movie={movie}
+        promoMovie={promoMovie}
         movies={movies}
       />)
       .toJSON();
