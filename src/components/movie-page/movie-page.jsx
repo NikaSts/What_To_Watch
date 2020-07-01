@@ -2,6 +2,8 @@ import React, {Fragment} from 'react';
 import {func, arrayOf} from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
 import {movieType, cardMovieType} from '../../types';
+import AppHeader from '../app-header/app-header.jsx';
+import UserMenu from '../user-menu/user-menu.jsx';
 
 
 const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
@@ -17,23 +19,10 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
+          <AppHeader />
 
           <div className="movie-card__wrap">
+
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
@@ -41,22 +30,11 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
                 <span className="movie-card__year">{releaseDate}</span>
               </p>
 
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
+              <UserMenu
+                isLogged={true}
+              />
             </div>
+
           </div>
         </div>
 
