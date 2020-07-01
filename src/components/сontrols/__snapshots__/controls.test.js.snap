@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserMenu should render correctly if user is logged in 1`] = `
+exports[`Controls should render correctly if user is logged in 1`] = `
 <div
   className="movie-card__buttons"
 >
@@ -47,7 +47,7 @@ exports[`UserMenu should render correctly if user is logged in 1`] = `
 </div>
 `;
 
-exports[`UserMenu should render correctly if user is not logged in 1`] = `
+exports[`Controls should render correctly if user is not logged in 1`] = `
 <div
   className="movie-card__buttons"
 >

@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieCardSmall from './movie-card-small.jsx';
+import MovieListItem from './movie-list-item.jsx';
 
 const movie = {
   title: `Harry Potter`,
@@ -10,7 +10,7 @@ const movie = {
 it(`MovieCard should render correctly`, () => {
   const tree = renderer
     .create(
-        <MovieCardSmall
+        <MovieListItem
           movie={movie}
           onMovieTitleClick={() => {}}
           onMovieCardMouseEnter={() => {}}

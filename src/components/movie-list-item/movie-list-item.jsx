@@ -3,7 +3,7 @@ import {func} from 'prop-types';
 import {cardMovieType} from '../../types.js';
 
 
-const MovieCardSmall = ({movie: {title, image}, onMovieTitleClick, onMovieCardMouseEnter}) => (
+const MovieListItem = ({movie: {title, image}, onMovieTitleClick, onMovieCardMouseEnter}) => (
   <article
     className="small-movie-card catalog__movies-card"
     onClick={onMovieTitleClick}
@@ -27,11 +27,11 @@ const MovieCardSmall = ({movie: {title, image}, onMovieTitleClick, onMovieCardMo
   </article>
 );
 
-MovieCardSmall.propTypes = {
+MovieListItem.propTypes = {
   movie: cardMovieType.isRequired,
   onMovieTitleClick: func.isRequired,
   onMovieCardMouseEnter: func.isRequired,
 };
 
 
-export default MovieCardSmall;
+export default MovieListItem;

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCardBig from './movie-card-big.jsx';
+import MovieCard from './movie-card.jsx';
 
 const promoMovie = {
   id: `one`,
@@ -16,9 +16,9 @@ const promoMovie = {
 };
 
 
-it(`MovieCardBig should render correctly`, () => {
+it(`MovieCard should render correctly`, () => {
   const tree = renderer
-      .create(<MovieCardBig
+      .create(<MovieCard
         movie={promoMovie}
       />)
       .toJSON();

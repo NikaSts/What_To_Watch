@@ -1,7 +1,7 @@
 import React from 'react';
 import {bool} from 'prop-types';
 
-const UserMenu = (props) => {
+const Controls = (props) => {
   const {isLogged} = props;
   const reviewLink = isLogged ? <a href="add-review.html" className="btn movie-card__button">Add review</a> : null;
 
@@ -24,8 +24,8 @@ const UserMenu = (props) => {
   );
 };
 
-UserMenu.propTypes = {
+Controls.propTypes = {
   isLogged: bool.isRequired,
 };
 
-export default UserMenu;
+export default Controls;

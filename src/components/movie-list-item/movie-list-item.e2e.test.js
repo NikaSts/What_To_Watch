@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MovieCardSmall from './movie-card-small.jsx';
+import MovieListItem from './movie-list-item.jsx';
 
 
 const movie = {
@@ -14,10 +14,10 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`MovieCard hover should return the movie`, () => {
+it(`MovieListItem hover should return the movie`, () => {
   const onMovieCardMouseEnter = jest.fn((id) => id);
   const movieCard = shallow(
-      <MovieCardSmall
+      <MovieListItem
         movie={movie}
         onMovieCardMouseEnter={onMovieCardMouseEnter}
       />
@@ -30,7 +30,7 @@ it(`MovieCard hover should return the movie`, () => {
 it(`Movie title should be pressed and new page won't open`, () => {
   const onMovieTitleClick = jest.fn();
   const movieCard = shallow(
-      <MovieCardSmall
+      <MovieListItem
         movie={movie}
         onMovieTitleClick={onMovieTitleClick}
       />
