@@ -1,14 +1,15 @@
 import React from 'react';
-import {movieType} from '../../types';
+import {string} from 'prop-types';
 
-const MoviePoster = ({movie: {image, title}}) => (
+const MoviePoster = ({image, title}) => (
   <div className="movie-card__poster">
     <img src={`img/${image}-poster.jpg`} alt={title} width="218" height="327" />
   </div>
 );
 
 MoviePoster.propTypes = {
-  movie: movieType.isRequired,
+  title: string.isRequired,
+  image: string.isRequired,
 };
 
 export default MoviePoster;

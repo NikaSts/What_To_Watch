@@ -1,11 +1,9 @@
 import React from 'react';
-import {bool} from 'prop-types';
+import {bool, string, number} from 'prop-types';
 import Controls from '../сontrols/controls.jsx';
-import {movieType} from '../../types';
 
 
-const MovieInfo = ({movie, isLogged}) => {
-  const {title, genre, releaseDate} = movie;
+const MovieInfo = ({title, genre, releaseDate, isLogged}) => {
   return (
     <div className="movie-card__desc">
       <h2 className="movie-card__title">{title}</h2>
@@ -22,7 +20,9 @@ const MovieInfo = ({movie, isLogged}) => {
 };
 
 MovieInfo.propTypes = {
-  movie: movieType.isRequired,
+  title: string.isRequired,
+  genre: string.isRequired,
+  releaseDate: number.isRequired,
   isLogged: bool.isRequired,
 };
 

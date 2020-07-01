@@ -7,7 +7,7 @@ import {promoMovieType} from '../../types';
 
 
 const MovieCard = ({movie, isLogged}) => {
-  const {title, image} = movie;
+  const {title, genre, releaseDate, image} = movie;
 
   return (
     <section className="movie-card">
@@ -20,10 +20,13 @@ const MovieCard = ({movie, isLogged}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <MoviePoster
-            movie={movie}
+            title={title}
+            image={image}
           />
           <MovieInfo
-            movie={movie}
+            title={title}
+            genre={genre}
+            releaseDate={releaseDate}
             isLogged={isLogged}
           />
         </div>

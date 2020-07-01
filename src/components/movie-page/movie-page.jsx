@@ -11,7 +11,7 @@ import {movieType, cardMovieType} from '../../types';
 
 
 const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
-  const {id, title, image} = activeMovie;
+  const {id, title, genre, releaseDate, image} = activeMovie;
 
   return (
     <Fragment>
@@ -25,7 +25,9 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
 
           <div className="movie-card__wrap">
             <MovieInfo
-              movie={activeMovie}
+              title={title}
+              genre={genre}
+              releaseDate={releaseDate}
               isLogged={true}
             />
           </div>
