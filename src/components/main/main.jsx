@@ -4,16 +4,25 @@ import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
 import PromoMovie from '../promo-movie/promo-movie.jsx';
+import AppHeader from '../app-header/app-header.jsx';
 
 
 const Main = (props) => {
   const {promoMovie, movies, genres, onMovieTitleClick, onMovieCardMouseEnter} = props;
-
+  const {image, title} = promoMovie;
   return (
     <React.Fragment>
-      <PromoMovie
-        promoMovie={promoMovie}
-      />
+      <section className="movie-card">
+        <div className="movie-card__bg">
+          <img src={`img/bg-${image}.jpg`} alt={title} />
+        </div>
+        <h1 className="visually-hidden">WTW</h1>
+        <AppHeader />
+        <PromoMovie
+          promoMovie={promoMovie}
+        />
+      </section>
+
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
