@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviePage shoul render correctly 1`] = `
+exports[`MoviePage should render correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -29,7 +29,6 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
           >
             <span
               className="logo__letter logo__letter--1"

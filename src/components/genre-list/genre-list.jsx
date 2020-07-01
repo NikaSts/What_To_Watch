@@ -23,7 +23,7 @@ export default class GenreList extends Component {
       <ul className="catalog__genres-list">
         {genres.map((genre) => {
           const {active} = this.state;
-          const activeClass = genre !== active || `catalog__genres-item--active`;
+          const activeClass = genre === active ? `catalog__genres-item--active` : ``;
           return (
             <li
               key={genre}

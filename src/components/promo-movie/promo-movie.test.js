@@ -16,7 +16,7 @@ const promoMovie = {
 };
 
 
-it(`MoviesList should render correctly`, () => {
+it(`PromoMovie should render correctly`, () => {
   const tree = renderer
       .create(<PromoMovie
         promoMovie={promoMovie}

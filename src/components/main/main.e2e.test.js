@@ -55,6 +55,8 @@ const movies = [
   },
 ];
 
+const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+
 Enzyme.configure({
   adapter: new Adapter(),
 });
@@ -67,6 +69,7 @@ describe(`MainComponent`, () => {
         <Main
           promoMovie={promoMovie}
           movies={movies}
+          genres={genres}
           onMovieTitleClick={onMovieTitleClick}
         />
     );
