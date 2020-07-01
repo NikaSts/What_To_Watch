@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoviesList from './movies-list.jsx';
+import MovieList from './movie-list.jsx';
 
 const movies = [
   {
@@ -47,7 +47,7 @@ const movies = [
 
 it(`MoviesList should render correctly`, () => {
   const tree = renderer
-      .create(<MoviesList
+      .create(<MovieList
         movies={movies}
         onMovieTitleClick={() => {}}
         onMovieCardMouseEnter={() => {}}
