@@ -1,7 +1,7 @@
 import React from 'react';
 import {promoMovieType} from '../../types';
-import UserMenu from '../user-menu/user-menu';
-import AppHeader from '../app-header/app-header.jsx';
+import UserMenu from '../user-menu/user-menu.jsx';
+import PageHeader from '../page-header/page-header.jsx';
 
 
 const MovieCardBig = (props) => {
@@ -13,7 +13,7 @@ const MovieCardBig = (props) => {
         <img src={`img/bg-${image}.jpg`} alt={title} />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <AppHeader />
+      <PageHeader />
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">

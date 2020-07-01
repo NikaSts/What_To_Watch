@@ -2,8 +2,10 @@ import React, {Fragment} from 'react';
 import {func, arrayOf} from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
 import {movieType, cardMovieType} from '../../types';
-import AppHeader from '../app-header/app-header.jsx';
+import PageHeader from '../page-header/page-header.jsx';
 import UserMenu from '../user-menu/user-menu.jsx';
+import PageContent from '../page-content/page-content.jsx';
+import PageFooter from '../page-footer/page-footer.jsx';
 
 
 const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
@@ -19,7 +21,7 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <AppHeader />
+          <PageHeader />
 
           <div className="movie-card__wrap">
 
@@ -79,7 +81,7 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
         </div>
       </section>
 
-      <div className="page-content">
+      <PageContent>
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
@@ -90,20 +92,9 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
           />
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+        <PageFooter />
 
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
-      </div>
+      </PageContent>
     </Fragment>
   );
 };
