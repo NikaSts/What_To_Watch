@@ -1,6 +1,6 @@
 import React from 'react';
 import {arrayOf, func} from 'prop-types';
-import MovieCard from '../movie-card/movie-card.jsx';
+import MovieCardSmall from '../movie-card-small/movie-card-small.jsx';
 import {cardMovieType} from '../../types.js';
 
 
@@ -8,7 +8,7 @@ const MovieList = ({movies, onMovieTitleClick, onMovieCardMouseEnter}) => (
   <div className="catalog__movies-list">
     {movies.map((movie) => {
       return (
-        <MovieCard
+        <MovieCardSmall
           key={movie.id}
           movie={movie}
           onMovieTitleClick={() => onMovieTitleClick(movie)}
