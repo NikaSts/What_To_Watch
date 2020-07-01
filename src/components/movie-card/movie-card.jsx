@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {func} from 'prop-types';
+import {cardMovieType} from '../../types.js';
 
 
 const MovieCard = ({movie: {title, image}, onMovieTitleClick, onMovieCardMouseEnter}) => (
@@ -27,12 +28,9 @@ const MovieCard = ({movie: {title, image}, onMovieTitleClick, onMovieCardMouseEn
 );
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
-  onMovieCardMouseEnter: PropTypes.func.isRequired,
+  movie: cardMovieType.isRequired,
+  onMovieTitleClick: func.isRequired,
+  onMovieCardMouseEnter: func.isRequired,
 };
 
 

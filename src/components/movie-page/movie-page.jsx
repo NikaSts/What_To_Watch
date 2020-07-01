@@ -1,12 +1,11 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
-import MoviesList from '../movies-list/movies-list.jsx';
+import {func, arrayOf} from 'prop-types';
+import MovieList from '../movie-list/movie-list.jsx';
+import {movieType, cardMovieType} from '../../types';
 
 
-const MoviePage = ({movieId, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
-  const activeMovie = movies.find((movie) => movie.id === movieId);
+const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
   const {id, title, genre, releaseDate, image, ratingScore, ratingLevel, ratingCount, text, director, starring} = activeMovie;
-  const similarMovies = movies.filter((movie) => movie.genre === activeMovie.genre);
   const shownActors = starring.slice(0, 4).join(`, `);
   return (
     <Fragment>
@@ -106,8 +105,8 @@ const MoviePage = ({movieId, movies, onMovieTitleClick, onMovieCardMouseEnter}) 
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList
-            movies={similarMovies}
+          <MovieList
+            movies={movies}
             onMovieTitleClick={onMovieTitleClick}
             onMovieCardMouseEnter={onMovieCardMouseEnter}
           />
@@ -134,21 +133,8 @@ const MoviePage = ({movieId, movies, onMovieTitleClick, onMovieCardMouseEnter}) 
 export default MoviePage;
 
 MoviePage.propTypes = {
-  movieId: PropTypes.string.isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        ratingScore: PropTypes.string.isRequired,
-        ratingLevel: PropTypes.string.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        text: PropTypes.arrayOf(PropTypes.string).isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-      })).isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
-  onMovieCardMouseEnter: PropTypes.func.isRequired,
+  activeMovie: movieType.isRequired,
+  movies: arrayOf(cardMovieType.isRequired).isRequired,
+  onMovieTitleClick: func.isRequired,
+  onMovieCardMouseEnter: func.isRequired,
 };

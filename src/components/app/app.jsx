@@ -1,60 +1,65 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import PropTypes from "prop-types";
+import {arrayOf, string} from "prop-types";
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
+import {movieType, promoMovieType} from '../../types';
 
 
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeMovie: ``,
+      activeMovie: null,
       hoveredCard: ``,
     };
 
-    this.handleMovieTitleClick = this.handleMovieTitleClick.bind(this);
-    this.handleMovieCardMouseEnter = this.handleMovieCardMouseEnter.bind(this);
+    this._handleMovieTitleClick = this._handleMovieTitleClick.bind(this);
+    this._handleMovieCardMouseEnter = this._handleMovieCardMouseEnter.bind(this);
   }
 
   _renderApp() {
-    const {promoMovie, movies} = this.props;
-    const {activeMovie: id} = this.state;
-    if (id !== ``) {
-      return this._renderMoviePage(id);
+    const {promoMovie, movies, genres} = this.props;
+    const {activeMovie} = this.state;
+    if (activeMovie) {
+      return this._renderMoviePage(activeMovie, movies);
     }
+    return this._renderMainPage(promoMovie, movies, genres);
+  }
+
+  _renderMainPage(promoMovie, movies, genres) {
     return (
       <Main
         promoMovie={promoMovie}
         movies={movies}
-        onMovieTitleClick={this.handleMovieTitleClick}
-        onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
+        genres={genres}
+        onMovieTitleClick={this._handleMovieTitleClick}
+        onMovieCardMouseEnter={this._handleMovieCardMouseEnter}
       />
     );
   }
 
-  _renderMoviePage(id) {
-    const {movies} = this.props;
+  _renderMoviePage(activeMovie, movies) {
     return (
       <MoviePage
-        movieId={id}
+        activeMovie={activeMovie}
         movies={movies}
-        onMovieTitleClick={this.handleMovieTitleClick}
-        onMovieCardMouseEnter={this.handleMovieCardMouseEnter}
+        onMovieTitleClick={this._handleMovieTitleClick}
+        onMovieCardMouseEnter={this._handleMovieCardMouseEnter}
       />
     );
   }
 
-  handleMovieTitleClick(activeMovie) {
+  _handleMovieTitleClick(activeMovie) {
     this.setState({activeMovie});
   }
 
-  handleMovieCardMouseEnter(hoveredCard) {
+  _handleMovieCardMouseEnter(hoveredCard) {
     this.setState({hoveredCard});
   }
 
   render() {
-    const {activeMovie: id} = this.state;
+    const {activeMovie} = this.state;
 
     return (
       <BrowserRouter>
@@ -63,7 +68,7 @@ export default class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/movie">
-            {this._renderMoviePage(id)}
+            {this._renderMoviePage(activeMovie)}
           </Route>
         </Switch>
       </BrowserRouter>
@@ -72,25 +77,7 @@ export default class App extends PureComponent {
 }
 
 App.propTypes = {
-  promoMovie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-  }).isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        releaseDate: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        ratingScore: PropTypes.string.isRequired,
-        ratingLevel: PropTypes.string.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        text: PropTypes.arrayOf(PropTypes.string).isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string).isRequired,
-      })).isRequired,
+  promoMovie: promoMovieType.isRequired,
+  movies: arrayOf(movieType.isRequired).isRequired,
+  genres: arrayOf(string.isRequired).isRequired,
 };
