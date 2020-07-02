@@ -54,7 +54,8 @@ const movies = [
   },
 ];
 
-const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`,
+  `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
 
 
 it(`App should render correctly`, () => {

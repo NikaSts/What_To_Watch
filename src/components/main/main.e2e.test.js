@@ -55,7 +55,8 @@ const movies = [
   },
 ];
 
-const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`,
+  `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
 
 Enzyme.configure({
   adapter: new Adapter(),

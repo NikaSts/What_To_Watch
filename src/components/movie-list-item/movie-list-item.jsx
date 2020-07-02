@@ -12,7 +12,10 @@ export default class MovieListItem extends PureComponent {
   }
 
   render() {
-    const {movie: {title, image, preview}, onMovieTitleClick, onMovieCardMouseEnter, onMovieCardMouseLeave} = this.props;
+    const {
+      movie: {title, image, preview},
+      onMovieTitleClick, onMovieCardMouseEnter, onMovieCardMouseLeave
+    } = this.props;
     const {isPlaying} = this.state;
 
     return (
