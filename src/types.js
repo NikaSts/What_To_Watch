@@ -12,6 +12,7 @@ export const movieType = shape({
   text: arrayOf(string).isRequired,
   director: string.isRequired,
   starring: arrayOf(string).isRequired,
+  preview: string.isRequired,
 });
 
 export const promoMovieType = shape({

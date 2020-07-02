@@ -7,7 +7,8 @@ import MovieListItem from './movie-list-item.jsx';
 const movie = {
   id: `one`,
   title: `Harry Potter`,
-  image: `harry-potter`
+  image: `harry-potter`,
+  preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
 };
 
 Enzyme.configure({

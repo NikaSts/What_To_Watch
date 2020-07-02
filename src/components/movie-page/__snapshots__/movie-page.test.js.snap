@@ -257,14 +257,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Once Upon a Time in Hollywood"
+            <video
               height="175"
-              src="img/the-grand-budapest-hotel.jpg"
+              muted={true}
+              poster="img/the-grand-budapest-hotel.jpg"
+              preload="none"
               width="280"
             />
           </div>
@@ -284,14 +286,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Kill Bill"
+            <video
               height="175"
-              src="img/the-grand-budapest-hotel.jpg"
+              muted={true}
+              poster="img/the-grand-budapest-hotel.jpg"
+              preload="none"
               width="280"
             />
           </div>
