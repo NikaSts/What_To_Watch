@@ -8,7 +8,7 @@ export default class MovieList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hoveredCard: ``,
+      hoveredCard: null,
     };
   }
 
@@ -17,7 +17,7 @@ export default class MovieList extends Component {
   }
 
   _handleMovieCardMouseLeave() {
-    this.setState({hoveredCard: ``});
+    this.setState({hoveredCard: null});
   }
 
   render() {

@@ -12,7 +12,7 @@ export default class MovieListItem extends PureComponent {
   }
 
   render() {
-    const {movie: {title, image, preview}, onMovieTitleClick, onMovieCardMouseEnter} = this.props;
+    const {movie: {title, image, preview}, onMovieTitleClick, onMovieCardMouseEnter, onMovieCardMouseLeave} = this.props;
     const {isPlaying} = this.state;
 
     return (
@@ -23,7 +23,10 @@ export default class MovieListItem extends PureComponent {
           this.setState({isPlaying: true});
           onMovieCardMouseEnter(movie);
         }}
-        onMouseLeave={() => this.setState({isPlaying: false})}
+        onMouseLeave={() => {
+          this.setState({isPlaying: false});
+          onMovieCardMouseLeave();
+        }}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
@@ -53,4 +56,5 @@ MovieListItem.propTypes = {
   movie: cardMovieType.isRequired,
   onMovieTitleClick: func.isRequired,
   onMovieCardMouseEnter: func.isRequired,
+  onMovieCardMouseLeave: func.isRequired,
 };

@@ -25,7 +25,22 @@ it(`MovieListItem hover should return the movie`, () => {
   );
 
   movieCard.simulate(`mouseEnter`, movie.id);
+  expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
   expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.id);
+});
+
+it(`MovieListItem onMouseLeave should return null`, () => {
+  const onMovieCardMouseLeave = jest.fn((id) => id);
+  const movieCard = shallow(
+      <MovieListItem
+        movie={movie}
+        onMovieCardMouseLeave={onMovieCardMouseLeave}
+      />
+  );
+
+  movieCard.simulate(`mouseLeave`);
+  expect(onMovieCardMouseLeave).toHaveBeenCalledTimes(1);
+  expect(onMovieCardMouseLeave).not.toHaveReturnedWith(movie.id);
 });
 
 it(`Movie title should be pressed and new page won't open`, () => {
