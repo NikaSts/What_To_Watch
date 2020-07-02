@@ -15,8 +15,31 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`MovieListItem hover should return the movie`, () => {
-  const onMovieCardMouseEnter = jest.fn((id) => id);
+it(`MovieListItem onMouseEnter/onMouseLeave starts/ends playing video`, () => {
+  const isPlaying = false;
+  const onMovieCardMouseEnter = jest.fn();
+  const onMovieCardMouseLeave = jest.fn();
+  const movieCard = shallow(
+      <MovieListItem
+        movie={movie}
+        isPlaying={isPlaying}
+        onMovieCardMouseEnter={onMovieCardMouseEnter}
+        onMovieCardMouseLeave={onMovieCardMouseLeave}
+      />);
+
+  expect(movieCard.state(`isPlaying`)).toBe(false);
+
+  movieCard.simulate(`mouseEnter`);
+  expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
+  expect(movieCard.state(`isPlaying`)).toBe(true);
+
+  movieCard.simulate(`mouseLeave`);
+  expect(onMovieCardMouseLeave).toHaveBeenCalledTimes(1);
+  expect(movieCard.state(`isPlaying`)).toBe(false);
+});
+
+it(`MovieListItem onMouseEnter should return the movie preview`, () => {
+  const onMovieCardMouseEnter = jest.fn((preview) => preview);
   const movieCard = shallow(
       <MovieListItem
         movie={movie}
@@ -24,9 +47,9 @@ it(`MovieListItem hover should return the movie`, () => {
       />
   );
 
-  movieCard.simulate(`mouseEnter`, movie.id);
+  movieCard.simulate(`mouseEnter`, movie.preview);
   expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.id);
+  expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.preview);
 });
 
 it(`MovieListItem onMouseLeave should return null`, () => {
