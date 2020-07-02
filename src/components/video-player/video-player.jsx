@@ -21,7 +21,9 @@ export default class VideoPlayer extends PureComponent {
 
     if (video) {
       if (isPlaying) {
-        video.play();
+        setTimeout(() => {
+          video.play();
+        }, 1000);
       } else {
         video.load();
       }
@@ -33,8 +35,10 @@ export default class VideoPlayer extends PureComponent {
     if (video) {
       video.src = ``;
       video.onplay = null;
+      clearTimeout();
     }
   }
+
 
   render() {
     const {src, poster, muted} = this.props;
