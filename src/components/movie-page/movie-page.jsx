@@ -10,7 +10,7 @@ import MovieInfo from '../movie-info/movie-info.jsx';
 import {movieType, cardMovieType} from '../../types';
 
 
-const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnter}) => {
+const MoviePage = ({activeMovie, movies, onMovieTitleClick}) => {
   const {id, title, genre, releaseDate, image} = activeMovie;
 
   return (
@@ -56,7 +56,6 @@ const MoviePage = ({activeMovie, movies, onMovieTitleClick, onMovieCardMouseEnte
           <MovieList
             movies={movies}
             onMovieTitleClick={onMovieTitleClick}
-            onMovieCardMouseEnter={onMovieCardMouseEnter}
           />
         </section>
         <PageFooter />
@@ -71,5 +70,4 @@ MoviePage.propTypes = {
   activeMovie: movieType.isRequired,
   movies: arrayOf(cardMovieType.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
-  onMovieCardMouseEnter: func.isRequired,
 };

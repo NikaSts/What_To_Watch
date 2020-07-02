@@ -13,7 +13,7 @@ const moreButton = <div className="catalog__more">
 </div>;
 
 const Main = (props) => {
-  const {promoMovie, movies, genres, onMovieTitleClick, onMovieCardMouseEnter} = props;
+  const {promoMovie, movies, genres, onMovieTitleClick} = props;
 
   return (
     <Fragment>
@@ -31,7 +31,6 @@ const Main = (props) => {
           <MovieList
             movies={movies}
             onMovieTitleClick={onMovieTitleClick}
-            onMovieCardMouseEnter={onMovieCardMouseEnter}
           />
           {moreButton}
         </section>
@@ -46,7 +45,6 @@ Main.propTypes = {
   movies: arrayOf(cardMovieType.isRequired).isRequired,
   genres: arrayOf(string.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
-  onMovieCardMouseEnter: func.isRequired,
 };
 
 export default Main;

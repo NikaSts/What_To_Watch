@@ -47,7 +47,6 @@ it(`MoviePage should render correctly`, () => {
         activeMovie={activeMovie}
         movies={movies}
         onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={() => {}}
       />
   ).toJSON();
 

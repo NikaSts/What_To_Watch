@@ -3,7 +3,7 @@ import {bool} from 'prop-types';
 
 const Controls = (props) => {
   const {isLogged} = props;
-  const reviewLink = isLogged ? <a href="add-review.html" className="btn movie-card__button">Add review</a> : null;
+  const reviewLink = isLogged && <a href="add-review.html" className="btn movie-card__button">Add review</a>;
 
   return (
     <div className="movie-card__buttons">

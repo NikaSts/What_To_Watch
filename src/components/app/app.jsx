@@ -11,11 +11,9 @@ export default class App extends PureComponent {
     super(props);
     this.state = {
       activeMovie: null,
-      hoveredCard: ``,
     };
 
     this._handleMovieTitleClick = this._handleMovieTitleClick.bind(this);
-    this._handleMovieCardMouseEnter = this._handleMovieCardMouseEnter.bind(this);
   }
 
   _renderApp() {
@@ -34,7 +32,6 @@ export default class App extends PureComponent {
         movies={movies}
         genres={genres}
         onMovieTitleClick={this._handleMovieTitleClick}
-        onMovieCardMouseEnter={this._handleMovieCardMouseEnter}
       />
     );
   }
@@ -45,17 +42,12 @@ export default class App extends PureComponent {
         activeMovie={activeMovie}
         movies={movies}
         onMovieTitleClick={this._handleMovieTitleClick}
-        onMovieCardMouseEnter={this._handleMovieCardMouseEnter}
       />
     );
   }
 
   _handleMovieTitleClick(activeMovie) {
     this.setState({activeMovie});
-  }
-
-  _handleMovieCardMouseEnter(hoveredCard) {
-    this.setState({hoveredCard});
   }
 
   render() {
