@@ -2,7 +2,8 @@ import React, {Fragment, PureComponent} from 'react';
 import {func, arrayOf, string} from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
-import MovieCard from '../movie-card/movie-card.jsx';
+import MovieInfo from '../movie-info/movie-info.jsx';
+import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
@@ -28,13 +29,30 @@ export default class Main extends PureComponent {
 
   render() {
     const {promoMovie, movies, genres, onMovieTitleClick} = this.props;
+    const {title, genre, releaseDate, image} = promoMovie;
     const {activeGenre} = this.state;
     return (
       <Fragment>
-        <MovieCard
-          movie={promoMovie}
-          isLogged={false}
-        />
+        <section className="movie-card">
+          <div className="movie-card__bg">
+            <img src={`img/bg-${image}.jpg`} alt={title} />
+          </div>
+          <h1 className="visually-hidden">WTW</h1>
+          <PageHeader />
+          <div className="movie-card__wrap">
+            <div className="movie-card__info">
+              <div className="movie-card__poster">
+                <img src={`img/${image}-poster.jpg`} alt={title} width="218" height="327" />
+              </div>
+              <MovieInfo
+                title={title}
+                genre={genre}
+                releaseDate={releaseDate}
+                isLogged={false}
+              />
+            </div>
+          </div>
+        </section>
 
         <PageContent>
           <section className="catalog">

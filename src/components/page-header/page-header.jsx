@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AppHeader = () => (
+const PageHeader = () => (
   <header className="page-header movie-card__head">
     <div className="logo">
       <a className="logo__link">
@@ -18,4 +18,4 @@ const AppHeader = () => (
   </header>
 );
 
-export default AppHeader;
+export default PageHeader;
