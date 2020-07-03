@@ -45,12 +45,14 @@ const movies = [
   },
 ];
 
+const activeGenre = `All genres`;
+
 it(`MoviesList should render correctly`, () => {
   const tree = renderer
       .create(<MovieList
         movies={movies}
+        activeGenre={activeGenre}
         onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={() => {}}
       />)
       .toJSON();
 

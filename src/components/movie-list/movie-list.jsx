@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {arrayOf, func} from 'prop-types';
+import {arrayOf, func, string} from 'prop-types';
 import MovieListItem from '../movie-list-item/movie-list-item.jsx';
 import {cardMovieType} from '../../types.js';
+import {getMoviesToShow} from '../../utils/funcs';
 
 
 export default class MovieList extends Component {
@@ -21,10 +22,12 @@ export default class MovieList extends Component {
   }
 
   render() {
-    const {movies, onMovieTitleClick} = this.props;
+    const {movies, activeGenre, onMovieTitleClick} = this.props;
+    const moviesToShow = getMoviesToShow(movies, activeGenre);
+
     return (
       <div className="catalog__movies-list">
-        {movies.map((movie) => {
+        {moviesToShow.map((movie) => {
           return (
             <MovieListItem
               key={movie.id}
@@ -41,5 +44,6 @@ export default class MovieList extends Component {
 }
 MovieList.propTypes = {
   movies: arrayOf(cardMovieType.isRequired).isRequired,
+  activeGenre: string.isRequired,
   onMovieTitleClick: func.isRequired,
 };

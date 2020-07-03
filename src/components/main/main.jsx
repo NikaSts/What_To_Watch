@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {func, arrayOf, string} from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
@@ -12,33 +12,53 @@ const moreButton = <div className="catalog__more">
   <button className="catalog__button" type="button">Show more</button>
 </div>;
 
-const Main = (props) => {
-  const {promoMovie, movies, genres, onMovieTitleClick} = props;
+export default class Main extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeGenre: `All genres`,
+    };
 
-  return (
-    <Fragment>
-      <MovieCard
-        movie={promoMovie}
-        isLogged={false}
-      />
+    this._handleGenreClick = this._handleGenreClick.bind(this);
+  }
 
-      <PageContent>
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenreList
-            genres={genres}
-          />
-          <MovieList
-            movies={movies}
-            onMovieTitleClick={onMovieTitleClick}
-          />
-          {moreButton}
-        </section>
-        <PageFooter />
-      </PageContent>
-    </Fragment>
-  );
-};
+  _handleGenreClick(activeGenre) {
+    this.setState({activeGenre});
+  }
+
+  render() {
+    const {promoMovie, movies, genres, onMovieTitleClick} = this.props;
+    const {activeGenre} = this.state;
+    return (
+      <Fragment>
+        <MovieCard
+          movie={promoMovie}
+          isLogged={false}
+        />
+
+        <PageContent>
+          <section className="catalog">
+            <h2 className="catalog__title visually-hidden">Catalog</h2>
+            <GenreList
+              genres={genres}
+              activeGenre={activeGenre}
+              onGenreClick={this._handleGenreClick}
+            />
+            <MovieList
+              movies={movies}
+              activeGenre={activeGenre}
+              onMovieTitleClick={onMovieTitleClick}
+            />
+            {moreButton}
+          </section>
+          <PageFooter />
+        </PageContent>
+      </Fragment>
+    );
+
+  }
+}
+
 
 Main.propTypes = {
   promoMovie: promoMovieType.isRequired,
@@ -46,5 +66,3 @@ Main.propTypes = {
   genres: arrayOf(string.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
 };
-
-export default Main;

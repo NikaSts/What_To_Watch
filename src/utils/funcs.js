@@ -1,3 +1,5 @@
+import {defaultGenre} from './consts';
+
 export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -57,4 +59,11 @@ export const getRatingLevel = (score) => {
     return `Very good`;
   }
   return `Excelent`;
+};
+
+export const getMoviesToShow = (movies, activeGenre) => {
+  if (activeGenre === defaultGenre) {
+    return movies;
+  }
+  return movies.filter((movie) => movie.genre === activeGenre);
 };
