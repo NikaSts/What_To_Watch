@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MovieListItem from './movie-list-item.jsx';
+import MovieCard from './movie-card.jsx';
 
 
 const movie = {
@@ -15,12 +15,12 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`MovieListItem onMouseEnter/onMouseLeave starts/ends playing video`, () => {
+it(`MovieCard onMouseEnter/onMouseLeave starts/ends playing video`, () => {
   const isPlaying = false;
   const onMovieCardMouseEnter = jest.fn();
   const onMovieCardMouseLeave = jest.fn();
   const movieCard = shallow(
-      <MovieListItem
+      <MovieCard
         movie={movie}
         isPlaying={isPlaying}
         onMovieCardMouseEnter={onMovieCardMouseEnter}
@@ -38,10 +38,10 @@ it(`MovieListItem onMouseEnter/onMouseLeave starts/ends playing video`, () => {
   expect(movieCard.state(`isPlaying`)).toBe(false);
 });
 
-it(`MovieListItem onMouseEnter should return the movie preview`, () => {
+it(`MovieCard onMouseEnter should return the movie preview`, () => {
   const onMovieCardMouseEnter = jest.fn((preview) => preview);
   const movieCard = shallow(
-      <MovieListItem
+      <MovieCard
         movie={movie}
         onMovieCardMouseEnter={onMovieCardMouseEnter}
       />
@@ -52,10 +52,10 @@ it(`MovieListItem onMouseEnter should return the movie preview`, () => {
   expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.preview);
 });
 
-it(`MovieListItem onMouseLeave should return null`, () => {
+it(`MovieCard onMouseLeave should return null`, () => {
   const onMovieCardMouseLeave = jest.fn((id) => id);
   const movieCard = shallow(
-      <MovieListItem
+      <MovieCard
         movie={movie}
         onMovieCardMouseLeave={onMovieCardMouseLeave}
       />
@@ -69,7 +69,7 @@ it(`MovieListItem onMouseLeave should return null`, () => {
 it(`Movie title should be pressed and new page won't open`, () => {
   const onMovieTitleClick = jest.fn();
   const movieCard = shallow(
-      <MovieListItem
+      <MovieCard
         movie={movie}
         onMovieTitleClick={onMovieTitleClick}
       />

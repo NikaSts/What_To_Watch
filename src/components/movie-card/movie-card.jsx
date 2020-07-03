@@ -3,7 +3,7 @@ import {func} from 'prop-types';
 import {cardMovieType} from '../../types.js';
 import VideoPlayer from '../video-player/video-player.jsx';
 
-export default class MovieListItem extends PureComponent {
+export default class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +55,7 @@ export default class MovieListItem extends PureComponent {
   }
 }
 
-MovieListItem.propTypes = {
+MovieCard.propTypes = {
   movie: cardMovieType.isRequired,
   onMovieTitleClick: func.isRequired,
   onMovieCardMouseEnter: func.isRequired,

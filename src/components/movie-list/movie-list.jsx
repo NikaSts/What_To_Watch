@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {arrayOf, func, string} from 'prop-types';
-import MovieListItem from '../movie-list-item/movie-list-item.jsx';
+import MovieCard from '../movie-card/movie-card.jsx';
 import {cardMovieType} from '../../types.js';
 import {getMoviesToShow} from '../../utils/funcs';
 
@@ -29,7 +29,7 @@ export default class MovieList extends Component {
       <div className="catalog__movies-list">
         {moviesToShow.map((movie) => {
           return (
-            <MovieListItem
+            <MovieCard
               key={movie.id}
               movie={movie}
               onMovieTitleClick={() => onMovieTitleClick(movie)}
