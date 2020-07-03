@@ -1,9 +1,8 @@
 import React, {Fragment} from 'react';
-import {movieType} from '../../types';
+import {string, number, arrayOf} from 'prop-types';
 
 
-const MovieOverview = ({activeMovie}) => {
-  const {ratingScore, ratingLevel, ratingCount, text, director, starring} = activeMovie;
+const Overview = ({ratingScore, ratingLevel, ratingCount, text, director, starring}) => {
   const shownActors = starring.slice(0, 4).join(`, `);
 
   return (
@@ -19,15 +18,18 @@ const MovieOverview = ({activeMovie}) => {
       <div className="movie-card__text">
         {text.join(` `)}
         <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
         <p className="movie-card__starring"><strong>Starring: {shownActors} and other</strong></p>
       </div>
-
     </Fragment>
   );
 };
 
-MovieOverview.propTypes = {
-  activeMovie: movieType.isRequired,
+Overview.propTypes = {
+  ratingScore: string.isRequired,
+  ratingLevel: string.isRequired,
+  ratingCount: number.isRequired,
+  text: arrayOf(string).isRequired,
+  director: string.isRequired,
+  starring: arrayOf(string).isRequired,
 };
-export default MovieOverview;
+export default Overview;

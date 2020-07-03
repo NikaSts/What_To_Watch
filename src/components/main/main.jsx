@@ -7,7 +7,7 @@ import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
-
+import {getMoviesToShow} from '../../utils/funcs';
 
 const moreButton = <div className="catalog__more">
   <button className="catalog__button" type="button">Show more</button>
@@ -31,6 +31,8 @@ export default class Main extends PureComponent {
     const {promoMovie, movies, genres, onMovieTitleClick} = this.props;
     const {title, genre, releaseDate, image} = promoMovie;
     const {activeGenre} = this.state;
+    const moviesToShow = getMoviesToShow(movies, activeGenre).splice(0, 8);
+
     return (
       <Fragment>
         <section className="movie-card">
@@ -63,8 +65,7 @@ export default class Main extends PureComponent {
               onGenreClick={this._handleGenreClick}
             />
             <MovieList
-              movies={movies}
-              activeGenre={activeGenre}
+              movies={moviesToShow}
               onMovieTitleClick={onMovieTitleClick}
             />
             {moreButton}

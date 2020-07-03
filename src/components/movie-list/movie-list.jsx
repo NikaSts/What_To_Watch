@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {arrayOf, func, string} from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 import {cardMovieType} from '../../types.js';
-import {getMoviesToShow} from '../../utils/funcs';
 
 
 export default class MovieList extends Component {
@@ -22,12 +21,11 @@ export default class MovieList extends Component {
   }
 
   render() {
-    const {movies, activeGenre, onMovieTitleClick} = this.props;
-    const moviesToShow = getMoviesToShow(movies, activeGenre);
+    const {movies, onMovieTitleClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
-        {moviesToShow.map((movie) => {
+        {movies.map((movie) => {
           return (
             <MovieCard
               key={movie.id}

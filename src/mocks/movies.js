@@ -29,6 +29,7 @@ export const movies = titles.map((title) => {
   return ({
     id: nanoid(10),
     title,
+    runTime: `1h 39m`,
     genre: getRandomItem(genres),
     releaseDate: getRandomNumber(2000, 2021),
     image: getUrlFromTitle(title),

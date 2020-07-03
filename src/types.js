@@ -3,6 +3,7 @@ import {string, number, shape, arrayOf} from 'prop-types';
 export const movieType = shape({
   id: string.isRequired,
   title: string.isRequired,
+  runTime: string.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,
   image: string.isRequired,

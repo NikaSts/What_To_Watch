@@ -1,4 +1,4 @@
-import {defaultGenre} from './consts';
+import {defaultGenre, Rating, Score} from './consts';
 
 export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -40,30 +40,24 @@ export const suffleItems = (items) => {
 };
 
 export const getRatingLevel = (score) => {
-  if (score < 10) {
-    return `The worst`;
+  if (score < Score.BAD) {
+    return Rating.BAD;
   }
-  if (score < 30) {
-    return `Very bad`;
+  if (score < Score.NORMAL) {
+    return Rating.NORMAL;
   }
-  if (score < 50) {
-    return `Bad`;
+  if (score < Score.GOOD) {
+    return Rating.GOOD;
   }
-  if (score < 70) {
-    return `Not bad`;
+  if (score < Score.VERY_GOOD) {
+    return Rating.VERY_GOOD;
   }
-  if (score < 80) {
-    return `Good`;
-  }
-  if (score < 90) {
-    return `Very good`;
-  }
-  return `Excelent`;
+  return Rating.AWESOME;
 };
 
 export const getMoviesToShow = (movies, activeGenre) => {
   if (activeGenre === defaultGenre) {
-    return movies;
+    return [...movies];
   }
-  return movies.filter((movie) => movie.genre === activeGenre);
+  return [...movies].filter((movie) => movie.genre === activeGenre);
 };

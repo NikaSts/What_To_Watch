@@ -1,70 +1,118 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 import {func, arrayOf} from 'prop-types';
+import MovieInfo from '../movie-info/movie-info.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
 import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 import Tabs from '../tabs/tabs.jsx';
-import MovieOverview from '../movie-overview/movie-overview.jsx';
-import MovieInfo from '../movie-info/movie-info.jsx';
+import Overview from '../overview/overview.jsx';
+import Reviews from '../reviews/reviews.jsx';
+import Details from '../details/details.jsx';
 import {movieType, cardMovieType} from '../../types';
+import {Tab} from '../../utils/consts';
+import {getMoviesToShow} from '../../utils/funcs';
 
 
-const MoviePage = ({activeMovie, movies, onMovieTitleClick}) => {
-  const {id, title, genre, releaseDate, image} = activeMovie;
+export default class MoviePage extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: Tab.OVERVIEW,
+    };
 
-  return (
-    <Fragment>
-      <section key={id} className="movie-card movie-card--full">
-        <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img src={`img/${image}.jpg`} alt={title} />
-          </div>
-          <h1 className="visually-hidden">WTW</h1>
-          <PageHeader />
+    this._handleTabClick = this._handleTabClick.bind(this);
+  }
 
-          <div className="movie-card__wrap">
-            <MovieInfo
-              title={title}
-              genre={genre}
-              releaseDate={releaseDate}
-              isLogged={true}
-            />
-          </div>
-        </div>
+  _handleTabClick(activeTab) {
+    this.setState({activeTab});
+  }
 
-        <div className="movie-card__wrap movie-card__translate-top">
-          <div className="movie-card__info">
-            <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${image}.jpg`} alt={title} width="218" height="327" />
+  _renderActiveTab(activeTab, activeMovie) {
+    const {runTime, genre, releaseDate, ratingScore, ratingLevel, ratingCount,
+      text, director, starring} = activeMovie;
+    switch (activeTab) {
+      case Tab.REVIEWS:
+        return <Reviews />;
+      case Tab.DETAILS:
+        return <Details
+          runTime={runTime}
+          genre={genre}
+          releaseDate={releaseDate}
+          director={director}
+          starring={starring}
+        />;
+      default:
+        return <Overview
+          ratingScore={ratingScore}
+          ratingLevel={ratingLevel}
+          ratingCount={ratingCount}
+          text={text}
+          director={director}
+          starring={starring}
+        />;
+    }
+  }
+
+
+  render() {
+    const {activeMovie, movies, onMovieTitleClick} = this.props;
+    const {id, title, genre, releaseDate, image} = activeMovie;
+    const {activeTab} = this.state;
+    const moviesToShow = getMoviesToShow(movies, activeMovie.genre).splice(0, 4);
+
+    return (
+      <Fragment>
+        <section key={id} className="movie-card movie-card--full">
+          <div className="movie-card__hero">
+            <div className="movie-card__bg">
+              <img src={`img/${image}.jpg`} alt={title} />
             </div>
+            <h1 className="visually-hidden">WTW</h1>
+            <PageHeader />
 
-            <div className="movie-card__desc">
-              <Tabs />
-              <MovieOverview
-                activeMovie={activeMovie}
+            <div className="movie-card__wrap">
+              <MovieInfo
+                title={title}
+                genre={genre}
+                releaseDate={releaseDate}
+                isLogged={true}
               />
+            </div>
+          </div>
+
+          <div className="movie-card__wrap movie-card__translate-top">
+            <div className="movie-card__info">
+              <div className="movie-card__poster movie-card__poster--big">
+                <img src={`img/${image}.jpg`} alt={title} width="218" height="327" />
+              </div>
+
+              <div className="movie-card__desc">
+                <Tabs
+                  activeTab={activeTab}
+                  onTabClick={this._handleTabClick}
+                />
+                {this._renderActiveTab(activeTab, activeMovie)}
+              </div>
 
             </div>
           </div>
-        </div>
-      </section>
-
-      <PageContent>
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <MovieList
-            movies={movies}
-            onMovieTitleClick={onMovieTitleClick}
-          />
         </section>
-        <PageFooter />
-      </PageContent>
-    </Fragment>
-  );
-};
 
-export default MoviePage;
+        <PageContent>
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <MovieList
+              movies={moviesToShow}
+              onMovieTitleClick={onMovieTitleClick}
+            />
+          </section>
+          <PageFooter />
+        </PageContent>
+      </Fragment>
+    );
+  }
+}
 
 MoviePage.propTypes = {
   activeMovie: movieType.isRequired,
