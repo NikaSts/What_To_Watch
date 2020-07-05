@@ -17,3 +17,6 @@ plugins: ['react']
 settings:
   react:
     version: '16'
+
+rules:
+  max-len: ['error', 100, 4, {ignoreUrls: true}]

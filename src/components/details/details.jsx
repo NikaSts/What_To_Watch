@@ -1,0 +1,46 @@
+import React from 'react';
+import {string, number, arrayOf} from 'prop-types';
+
+const Details = ({runTime, genre, releaseDate, director, starring}) => {
+  return (
+    <div className="movie-card__text movie-card__row">
+      <div className="movie-card__text-col">
+        <p className="movie-card__details-item">
+          <strong className="movie-card__details-name">Director</strong>
+          <span className="movie-card__details-value">{director}</span>
+        </p>
+        <p className="movie-card__details-item">
+          <strong className="movie-card__details-name">Starring</strong>
+          <span className="movie-card__details-value">
+            {[...starring].join(`, ${`\n`}`)}
+          </span>
+        </p>
+      </div>
+
+      <div className="movie-card__text-col">
+        <p className="movie-card__details-item">
+          <strong className="movie-card__details-name">Run Time</strong>
+          <span className="movie-card__details-value">{runTime}</span>
+        </p>
+        <p className="movie-card__details-item">
+          <strong className="movie-card__details-name">Genre</strong>
+          <span className="movie-card__details-value">{genre}</span>
+        </p>
+        <p className="movie-card__details-item">
+          <strong className="movie-card__details-name">Released</strong>
+          <span className="movie-card__details-value">{releaseDate}</span>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+Details.propTypes = {
+  runTime: string.isRequired,
+  genre: string.isRequired,
+  releaseDate: number.isRequired,
+  director: string.isRequired,
+  starring: arrayOf(string).isRequired,
+};
+
+export default Details;

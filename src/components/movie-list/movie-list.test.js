@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoviesList from './movies-list.jsx';
+import MovieList from './movie-list.jsx';
 
 const movies = [
   {
@@ -45,12 +45,14 @@ const movies = [
   },
 ];
 
+const activeGenre = `All genres`;
+
 it(`MoviesList should render correctly`, () => {
   const tree = renderer
-      .create(<MoviesList
+      .create(<MovieList
         movies={movies}
+        activeGenre={activeGenre}
         onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={() => {}}
       />)
       .toJSON();
 

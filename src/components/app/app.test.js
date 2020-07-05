@@ -54,16 +54,18 @@ const movies = [
   },
 ];
 
+const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`,
+  `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
 
-describe(`AppComponent`, () => {
-  it(`App should render correctly`, () => {
-    const tree = renderer
+
+it(`App should render correctly`, () => {
+  const tree = renderer
       .create(<App
         promoMovie={promoMovie}
         movies={movies}
+        genres={genres}
       />)
       .toJSON();
 
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });

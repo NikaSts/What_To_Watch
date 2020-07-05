@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MoviePage shoul render correctly 1`] = `
+exports[`MoviePage should render correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -29,7 +29,6 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
           >
             <span
               className="logo__letter logo__letter--1"
@@ -166,28 +165,31 @@ Array [
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
                   Overview
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
-                  Details
+                  Reviews
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
-                  Reviews
+                  Details
                 </a>
               </li>
             </ul>
@@ -217,7 +219,11 @@ Array [
           <div
             className="movie-card__text"
           >
-            Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles, where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize anymore. The ninth film from the writer-director features a large ensemble cast and multiple storylines in a tribute to the final moments of Hollywood's golden age.
+            Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
+  stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
+  anymore. The ninth film from the writer-director features a large ensemble cast and multiple
+  storylines in a tribute to the final moments of Hollywood's golden age.
             <p
               className="movie-card__director"
             >
@@ -258,14 +264,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Once Upon a Time in Hollywood"
+            <video
               height="175"
-              src="img/the-grand-budapest-hotel.jpg"
+              muted={true}
+              poster="img/the-grand-budapest-hotel.jpg"
+              preload="none"
               width="280"
             />
           </div>
@@ -285,14 +293,16 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              alt="Kill Bill"
+            <video
               height="175"
-              src="img/the-grand-budapest-hotel.jpg"
+              muted={true}
+              poster="img/the-grand-budapest-hotel.jpg"
+              preload="none"
               width="280"
             />
           </div>

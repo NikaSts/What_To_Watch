@@ -14,6 +14,7 @@ it(`MovieCard should render correctly`, () => {
           movie={movie}
           onMovieTitleClick={() => {}}
           onMovieCardMouseEnter={() => {}}
+          onMovieCardMouseLeave={() => {}}
         />)
       .toJSON();
 

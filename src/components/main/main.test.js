@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import React from 'react';
+import renderer from 'react-test-renderer';
 import Main from './main.jsx';
 
 const promoMovie = {
@@ -53,14 +53,17 @@ const movies = [
   },
 ];
 
+const genres = [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`,
+  `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+
 describe(`MainComponent`, () => {
   it(`Main should render correctly`, () => {
     const tree = renderer
       .create(<Main
         promoMovie={promoMovie}
         movies={movies}
+        genres={genres}
         onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={() => {}}
       />)
       .toJSON();
 
