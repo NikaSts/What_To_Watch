@@ -1,10 +1,12 @@
 import React, {PureComponent, createRef} from 'react';
 import {string, bool} from 'prop-types';
+import {DELAY} from '../../utils/consts';
 
 export default class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
     this._videoRef = createRef();
+    this._timerId = null;
   }
 
   componentDidMount() {
@@ -18,15 +20,15 @@ export default class VideoPlayer extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
     const {isPlaying} = this.props;
-
-    if (video) {
-      if (isPlaying) {
-        setTimeout(() => {
-          video.play();
-        }, 1000);
-      } else {
-        video.load();
-      }
+    if (!video) {
+      return;
+    }
+    if (isPlaying) {
+      const playVideo = () => video.play();
+      this._timerId = setTimeout(playVideo, DELAY);
+    } else {
+      clearTimeout(this._timerId);
+      video.load();
     }
   }
 
@@ -35,7 +37,7 @@ export default class VideoPlayer extends PureComponent {
     if (video) {
       video.src = ``;
       video.onplay = null;
-      clearTimeout();
+      clearTimeout(this._timerId);
     }
   }
 

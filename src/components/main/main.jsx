@@ -8,6 +8,7 @@ import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
 import {getMoviesToShow} from '../../utils/funcs';
+import {DEFAULT_GENRE} from '../../utils/consts';
 
 const moreButton = <div className="catalog__more">
   <button className="catalog__button" type="button">Show more</button>
@@ -17,7 +18,7 @@ export default class Main extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeGenre: `All genres`,
+      activeGenre: DEFAULT_GENRE,
     };
 
     this._handleGenreClick = this._handleGenreClick.bind(this);
