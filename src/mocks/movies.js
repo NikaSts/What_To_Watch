@@ -5,17 +5,17 @@ import {
 
 
 const titles = [`Fantastic Beasts The Crimes of Grindelwald`, `Bohemian Rhapsody`, `Macbeth`,
-  `Aviator`, `We need to talk about Kevin`, `What We Do in the Shadows`, `Revenant`, `Johnny
-  English`, `Shutter Island`, `Pulp Fiction`, `No Country for Old Men`, `Snatch`, `Moonrise
-  Kingdom`, `Seven Years in Tibet`, `Midnight Special`, `War of the Worlds`, `Dardjeeling
-  Limited`, `Orlando`, `Mindhunter`, `Midnight Special`];
+  `Aviator`, `We need to talk about Kevin`, `What We Do in the Shadows`, `Revenant`,
+  `Johnny English`, `Shutter Island`, `Pulp Fiction`, `No Country for Old Men`, `Snatch`,
+  `Moonrise Kingdom`, `Seven Years in Tibet`, `Midnight Special`, `War of the Worlds`,
+  `Dardjeeling Limited`, `Orlando`, `Mindhunter`, `Midnight Special`];
 const genres = [`Comedia`, `Crime`, `Documentary`, `Drama`, `Horror`, `Kids & Family`,
   `Romance`, `Sci-Fi`, `Thrillers`];
 const directors = [`Wes Andreson`, `Steven Spielberg`, `Ridley Scott`, `Tim Burton`,
   `Christopher Nolan`, `Robert Zemeckis`, `James Cameron`];
 const actors = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Johnny Depp`,
-  `Al Pacino`, `Charlize Theron`, `Robert De Niro`, `Brad Pitt`, `Angelina Jolie`, `Leonardo
-DiCaprio`, `Tom Cruise`, `Kate Winslet`];
+  `Al Pacino`, `Charlize Theron`, `Robert De Niro`, `Brad Pitt`, `Angelina Jolie`,
+  `Leonardo DiCaprio`, `Tom Cruise`, `Kate Winslet`];
 const previews = [`https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
   `https://upload.wikimedia.org/wikipedia/commons/5/56/2020-06-19_%E2%80%94_herman_de_vries%2C_de_waterlelies_%28Fechner-monument%2C_Diepenheim%29.webm`,
   `https://upload.wikimedia.org/wikipedia/commons/a/aa/2020-06_Autostrada_A4_%2804%29_-_MOP_M%C5%82y%C5%84ski_Staw.webm`,

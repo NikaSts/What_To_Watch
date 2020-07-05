@@ -6,7 +6,7 @@ export const Tab = {
 
 export const tabs = [Tab.OVERVIEW, Tab.REVIEWS, Tab.DETAILS];
 
-export const defaultGenre = `All genres`;
+export const DEFAULT_GENRE = `All genres`;
 
 export const Rating = {
   BAD: `Bad`,
@@ -23,3 +23,5 @@ export const Score = {
   VERY_GOOD: 90,
   AWESOME: 100,
 };
+
+export const DELAY = 1000;
