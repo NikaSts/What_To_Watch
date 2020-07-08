@@ -1,6 +1,6 @@
 import {reducer} from './reducer';
 import {ActionType} from '../../utils/consts';
-import {getMoviesToShow} from '../../utils/funcs';
+import {filterMovies} from '../../utils/funcs';
 
 const movies = [
   {
@@ -31,7 +31,7 @@ const movies = [
 ];
 
 const activeGenre = `Documentary`;
-const moviesByGenre = getMoviesToShow(movies, activeGenre);
+const moviesByGenre = filterMovies(movies, activeGenre);
 
 it(`Reducer without state and actions should return undefined`, () => {
   expect(reducer(void 0, {})).toEqual(undefined);
@@ -55,7 +55,7 @@ it(`Reducer should update moviesByGenre`, () => {
       {moviesByGenre: movies},
       {
         type: ActionType.GET_MOVIES_BY_GENRE,
-        payload: getMoviesToShow(movies, activeGenre),
+        payload: filterMovies(movies, activeGenre),
       }
   ))
     .toEqual({

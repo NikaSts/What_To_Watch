@@ -68,16 +68,19 @@ const moviesByGenre = [
   },
 ];
 
-describe(`MainComponent`, () => {
-  it(`Main should render correctly`, () => {
-    const tree = renderer
+it(`Main should render with ShowMoreButton`, () => {
+  const shownMoviesCount = 1;
+
+  const tree = renderer
       .create(<Main
         promoMovie={promoMovie}
         genres={genres}
         activeGenre={activeGenre}
         moviesByGenre={moviesByGenre}
+        shownMoviesCount={shownMoviesCount}
         onGenreClick={() => {}}
-        onMovieTitleClick={() => {}}
+        onMovieTitleClick={() => { }}
+        onShowMoreButtonClick={() => {}}
       />, {
         createNodeMock: () => {
           return {};
@@ -85,6 +88,28 @@ describe(`MainComponent`, () => {
       })
       .toJSON();
 
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Main should render without ShowMoreButton`, () => {
+  const shownMoviesCount = 8;
+
+  const tree = renderer
+      .create(<Main
+        promoMovie={promoMovie}
+        genres={genres}
+        activeGenre={activeGenre}
+        moviesByGenre={moviesByGenre}
+        shownMoviesCount={shownMoviesCount}
+        onGenreClick={() => {}}
+        onMovieTitleClick={() => { }}
+        onShowMoreButtonClick={() => {}}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      })
+      .toJSON();
+
+  expect(tree).toMatchSnapshot();
 });

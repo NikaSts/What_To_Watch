@@ -1,3 +1,4 @@
+
 import {DEFAULT_GENRE, Rating, Score} from './consts';
 
 export const getRandomNumber = (min, max) => {
@@ -55,7 +56,7 @@ export const getRatingLevel = (score) => {
   return Rating.AWESOME;
 };
 
-export const getMoviesToShow = (movies, activeGenre) => {
+export const filterMovies = (movies, activeGenre) => {
   if (activeGenre === DEFAULT_GENRE) {
     return [...movies];
   }

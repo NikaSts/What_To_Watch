@@ -9,7 +9,7 @@ export const tabs = [Tab.OVERVIEW, Tab.REVIEWS, Tab.DETAILS];
 export const DEFAULT_GENRE = `All genres`;
 
 export const MAX_GENRES_TO_SHOW = 10;
-export const MAX_MOVIES_TO_SHOW = 8;
+export const MOVIES_TO_SHOW_COUNT = 8;
 export const MAX_SIMILAR_MOVIES = 4;
 
 export const Rating = {
@@ -32,5 +32,6 @@ export const DELAY = 1000;
 
 export const ActionType = {
   CHANGE_ACTIVE_GENRE: `changeActiveGenre`,
-  GET_MOVIES_BY_GENRE: `filterMoviesByGenre`,
+  GET_MOVIES_BY_GENRE: `getMoviesByGenre`,
+  INCREMENT_SHOWN_MOVIES_COUNT: `incrementShownMoviesCount`,
 };

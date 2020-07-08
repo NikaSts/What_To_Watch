@@ -68,6 +68,7 @@ const movies = [
 const genres = [`All genres`, `Drama`];
 const activeGenre = `All genres`;
 const moviesByGenre = movies;
+const shownMoviesCount = 3;
 
 it(`App render`, () => {
   const store = mockStore({
@@ -76,6 +77,7 @@ it(`App render`, () => {
     genres,
     activeGenre: `All genres`,
     moviesByGenre,
+    shownMoviesCount,
   });
 
   const tree = renderer
@@ -87,8 +89,10 @@ it(`App render`, () => {
             genres={genres}
             activeGenre={activeGenre}
             moviesByGenre={moviesByGenre}
+            shownMoviesCount={shownMoviesCount}
             onGenreClick={() => { }}
-            onMovieTitleClick={() => {}}
+            onMovieTitleClick={() => { }}
+            onShowMoreButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {

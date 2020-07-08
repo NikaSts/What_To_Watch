@@ -69,6 +69,8 @@ const moviesByGenre = [
   },
 ];
 const activeGenre = `All genres`;
+const shownMoviesCount = 8;
+
 
 it(`Movie card should be pressed`, () => {
   const onMovieTitleClick = jest.fn();
@@ -80,6 +82,8 @@ it(`Movie card should be pressed`, () => {
         moviesByGenre={moviesByGenre}
         onGenreClick={() => {}}
         onMovieTitleClick={onMovieTitleClick}
+        shownMoviesCount={shownMoviesCount}
+        onShowMoreButtonClick={() => {}}
       />
   );
   const movieCard = main.find(`.small-movie-card`);

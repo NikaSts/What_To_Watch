@@ -1,17 +1,13 @@
 import React, {Fragment, PureComponent} from 'react';
-import {func, arrayOf, string} from 'prop-types';
+import {func, arrayOf, string, number} from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import MovieInfo from '../movie-info/movie-info.jsx';
 import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
+import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
-import {MAX_MOVIES_TO_SHOW} from '../../utils/consts.js';
-
-const moreButton = <div className="catalog__more">
-  <button className="catalog__button" type="button">Show more</button>
-</div>;
 
 export default class Main extends PureComponent {
   constructor(props) {
@@ -20,10 +16,17 @@ export default class Main extends PureComponent {
 
   render() {
     const {
-      promoMovie, genres, activeGenre, moviesByGenre, onGenreClick, onMovieTitleClick
+      promoMovie,
+      genres,
+      activeGenre,
+      moviesByGenre,
+      onGenreClick,
+      onMovieTitleClick,
+      shownMoviesCount,
+      onShowMoreButtonClick,
     } = this.props;
     const {title, genre, releaseDate, image} = promoMovie;
-    const moviesToShow = moviesByGenre.splice(0, MAX_MOVIES_TO_SHOW);
+    const moviesToShow = [...moviesByGenre].splice(0, shownMoviesCount);
 
     return (
       <Fragment>
@@ -60,7 +63,9 @@ export default class Main extends PureComponent {
               movies={moviesToShow}
               onMovieTitleClick={onMovieTitleClick}
             />
-            {moreButton}
+            {(shownMoviesCount < moviesByGenre.length) ? <ShowMoreButton
+              onShowMoreButtonClick={onShowMoreButtonClick}
+            /> : null}
           </section>
           <PageFooter />
         </PageContent>
@@ -74,6 +79,8 @@ Main.propTypes = {
   genres: arrayOf(string.isRequired).isRequired,
   activeGenre: string.isRequired,
   moviesByGenre: arrayOf(cardMovieType.isRequired).isRequired,
+  shownMoviesCount: number.isRequired,
+  onShowMoreButtonClick: func.isRequired,
   onGenreClick: func.isRequired,
   onMovieTitleClick: func.isRequired,
 };

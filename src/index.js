@@ -6,7 +6,7 @@ import App from './components/app/app.jsx';
 import {reducer} from './store/reduсers/reducer';
 import {movies} from './mocks/movies';
 import {promoMovie} from './mocks/promoMovie';
-import {DEFAULT_GENRE} from './utils/consts';
+import {DEFAULT_GENRE, MOVIES_TO_SHOW_COUNT} from './utils/consts';
 import {getGenres} from './utils/funcs.js';
 
 const initialState = {
@@ -15,6 +15,7 @@ const initialState = {
   genres: getGenres(movies),
   activeGenre: DEFAULT_GENRE,
   moviesByGenre: movies,
+  shownMoviesCount: MOVIES_TO_SHOW_COUNT,
 };
 
 const store = createStore(

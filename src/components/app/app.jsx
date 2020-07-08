@@ -1,10 +1,10 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {arrayOf, string, func} from "prop-types";
+import {arrayOf, string, func, number} from "prop-types";
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
 import {connect} from 'react-redux';
-import {changeActiveGenre, getMoviesByGenre} from '../../store/actions';
+import {changeActiveGenre, getMoviesByGenre, incrementShownMoviesCount} from '../../store/actions';
 import {movieType, cardMovieType, promoMovieType} from '../../types';
 
 
@@ -27,7 +27,16 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
-    const {promoMovie, genres, activeGenre, moviesByGenre, onGenreClick} = this.props;
+    const {
+      promoMovie,
+      genres,
+      activeGenre,
+      moviesByGenre,
+      onGenreClick,
+      shownMoviesCount,
+      onShowMoreButtonClick,
+    } = this.props;
+
     return (
       <Main
         promoMovie={promoMovie}
@@ -36,6 +45,8 @@ class App extends PureComponent {
         moviesByGenre={moviesByGenre}
         onGenreClick={onGenreClick}
         onMovieTitleClick={this._handleMovieTitleClick}
+        shownMoviesCount={shownMoviesCount}
+        onShowMoreButtonClick={onShowMoreButtonClick}
       />
     );
   }
@@ -79,10 +90,14 @@ App.propTypes = {
   activeGenre: string.isRequired,
   moviesByGenre: arrayOf(cardMovieType.isRequired).isRequired,
   onGenreClick: func.isRequired,
+  shownMoviesCount: number.isRequired,
+  onShowMoreButtonClick: func.isRequired,
 };
 
-const mapStateToProps = ({movies, genres, promoMovie, activeGenre, moviesByGenre}) => ({
-  movies, genres, promoMovie, activeGenre, moviesByGenre
+const mapStateToProps = ({
+  movies, genres, promoMovie, activeGenre, moviesByGenre, shownMoviesCount
+}) => ({
+  movies, genres, promoMovie, activeGenre, moviesByGenre, shownMoviesCount
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -90,6 +105,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeActiveGenre(genre));
     dispatch(getMoviesByGenre(genre));
   },
+  onShowMoreButtonClick() {
+    dispatch(incrementShownMoviesCount());
+  }
 });
 
 export {App};
