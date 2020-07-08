@@ -7,8 +7,7 @@ import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
-import {getMoviesToShow} from '../../utils/funcs';
-import {DEFAULT_GENRE} from '../../utils/consts';
+import {MAX_MOVIES_TO_SHOW} from '../../utils/consts.js';
 
 const moreButton = <div className="catalog__more">
   <button className="catalog__button" type="button">Show more</button>
@@ -17,22 +16,14 @@ const moreButton = <div className="catalog__more">
 export default class Main extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      activeGenre: DEFAULT_GENRE,
-    };
-
-    this._handleGenreClick = this._handleGenreClick.bind(this);
-  }
-
-  _handleGenreClick(activeGenre) {
-    this.setState({activeGenre});
   }
 
   render() {
-    const {promoMovie, movies, genres, onMovieTitleClick} = this.props;
+    const {
+      promoMovie, genres, activeGenre, moviesByGenre, onGenreClick, onMovieTitleClick
+    } = this.props;
     const {title, genre, releaseDate, image} = promoMovie;
-    const {activeGenre} = this.state;
-    const moviesToShow = getMoviesToShow(movies, activeGenre).splice(0, 8);
+    const moviesToShow = moviesByGenre.splice(0, MAX_MOVIES_TO_SHOW);
 
     return (
       <Fragment>
@@ -63,7 +54,7 @@ export default class Main extends PureComponent {
             <GenreList
               genres={genres}
               activeGenre={activeGenre}
-              onGenreClick={this._handleGenreClick}
+              onGenreClick={onGenreClick}
             />
             <MovieList
               movies={moviesToShow}
@@ -75,14 +66,14 @@ export default class Main extends PureComponent {
         </PageContent>
       </Fragment>
     );
-
   }
 }
 
-
 Main.propTypes = {
   promoMovie: promoMovieType.isRequired,
-  movies: arrayOf(cardMovieType.isRequired).isRequired,
   genres: arrayOf(string.isRequired).isRequired,
+  activeGenre: string.isRequired,
+  moviesByGenre: arrayOf(cardMovieType.isRequired).isRequired,
+  onGenreClick: func.isRequired,
   onMovieTitleClick: func.isRequired,
 };

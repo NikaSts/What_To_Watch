@@ -23,6 +23,7 @@ it(`MovieCard onMouseEnter/onMouseLeave starts/ends playing video`, () => {
       <MovieCard
         movie={movie}
         isPlaying={isPlaying}
+        onMovieTitleClick={() => {}}
         onMovieCardMouseEnter={onMovieCardMouseEnter}
         onMovieCardMouseLeave={onMovieCardMouseLeave}
       />);
@@ -43,7 +44,9 @@ it(`MovieCard onMouseEnter should return the movie preview`, () => {
   const movieCard = shallow(
       <MovieCard
         movie={movie}
+        onMovieTitleClick={() => {}}
         onMovieCardMouseEnter={onMovieCardMouseEnter}
+        onMovieCardMouseLeave={() => {}}
       />
   );
 
@@ -57,6 +60,8 @@ it(`MovieCard onMouseLeave should return null`, () => {
   const movieCard = shallow(
       <MovieCard
         movie={movie}
+        onMovieTitleClick={() => {}}
+        onMovieCardMouseEnter={() => {}}
         onMovieCardMouseLeave={onMovieCardMouseLeave}
       />
   );
@@ -72,6 +77,8 @@ it(`Movie title should be pressed and new page won't open`, () => {
       <MovieCard
         movie={movie}
         onMovieTitleClick={onMovieTitleClick}
+        onMovieCardMouseEnter={() => {}}
+        onMovieCardMouseLeave={() => {}}
       />
   );
 

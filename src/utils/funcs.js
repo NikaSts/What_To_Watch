@@ -61,3 +61,11 @@ export const getMoviesToShow = (movies, activeGenre) => {
   }
   return [...movies].filter((movie) => movie.genre === activeGenre);
 };
+
+export const getGenres = (movies) => {
+  return [DEFAULT_GENRE, ...new Set(movies.map((movie) => movie.genre))];
+};
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};

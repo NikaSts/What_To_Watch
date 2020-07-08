@@ -52,3 +52,4 @@ export const movies = titles.map((title) => {
     preview: getRandomItem(previews),
   });
 });
+

@@ -207,7 +207,9 @@ Array [
             >
               <span
                 className="movie-rating__level"
-              />
+              >
+                Very good
+              </span>
               <span
                 className="movie-rating__count"
               >
@@ -274,6 +276,7 @@ Array [
               muted={true}
               poster="img/the-grand-budapest-hotel.jpg"
               preload="none"
+              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
               width="280"
             />
           </div>
@@ -303,6 +306,7 @@ Array [
               muted={true}
               poster="img/the-grand-budapest-hotel.jpg"
               preload="none"
+              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
               width="280"
             />
           </div>
