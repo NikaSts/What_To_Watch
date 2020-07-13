@@ -10,8 +10,8 @@ import Overview from '../overview/overview.jsx';
 import Reviews from '../reviews/reviews.jsx';
 import Details from '../details/details.jsx';
 import {movieType, cardMovieType} from '../../types';
-import {Tab} from '../../utils/consts';
-import {getMoviesToShow} from '../../utils/funcs';
+import {Tab, MAX_SIMILAR_MOVIES} from '../../utils/consts';
+import {filterMovies} from '../../utils/funcs';
 
 
 export default class MoviePage extends PureComponent {
@@ -59,7 +59,7 @@ export default class MoviePage extends PureComponent {
     const {activeMovie, movies, onMovieTitleClick} = this.props;
     const {id, title, genre, releaseDate, image} = activeMovie;
     const {activeTab} = this.state;
-    const moviesToShow = getMoviesToShow(movies, activeMovie.genre).splice(0, 4);
+    const moviesToShow = filterMovies(movies, activeMovie.genre).splice(0, MAX_SIMILAR_MOVIES);
 
     return (
       <Fragment>
@@ -115,7 +115,7 @@ export default class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
-  activeMovie: movieType.isRequired,
+  activeMovie: movieType,
   movies: arrayOf(cardMovieType.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
 };

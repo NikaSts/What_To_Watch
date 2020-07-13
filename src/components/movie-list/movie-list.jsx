@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {arrayOf, func, string} from 'prop-types';
+import {arrayOf, func} from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 import {cardMovieType} from '../../types.js';
 
@@ -42,6 +42,5 @@ export default class MovieList extends Component {
 }
 MovieList.propTypes = {
   movies: arrayOf(cardMovieType.isRequired).isRequired,
-  activeGenre: string.isRequired,
   onMovieTitleClick: func.isRequired,
 };
