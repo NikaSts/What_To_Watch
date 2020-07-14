@@ -6,11 +6,11 @@ export const reducer = (state, action) => {
   switch (action.type) {
     case ActionType.CHANGE_ACTIVE_GENRE:
       return extend(state, {
-        activeGenre: action.payload,
+        activeGenre: action.payload.activeGenre,
       });
     case ActionType.GET_MOVIES_BY_GENRE:
       return extend(state, {
-        moviesByGenre: action.payload,
+        moviesByGenre: action.payload.moviesByGenre,
       });
     case ActionType.INCREMENT_SHOWN_MOVIES_COUNT:
       return extend(state, {
