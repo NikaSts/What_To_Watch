@@ -34,4 +34,5 @@ export const ActionType = {
   CHANGE_ACTIVE_GENRE: `changeActiveGenre`,
   GET_MOVIES_BY_GENRE: `getMoviesByGenre`,
   INCREMENT_SHOWN_MOVIES_COUNT: `incrementShownMoviesCount`,
+  SET_DEFAULT_SHOWN_MOVIES_COUNT: `setDefaultShownMoviesCount`
 };

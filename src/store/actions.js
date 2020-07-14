@@ -17,8 +17,6 @@ export const incrementShownMoviesCount = () => ({
   type: ActionType.INCREMENT_SHOWN_MOVIES_COUNT,
 });
 
-/* export const getMoviesToShow = (moviesByGenre, shownMovies) => ({
-  type: ActionType.GET_MOVIES_TO_SHOW,
-  payload: moviesByGenre.splice(0, shownMovies)
+export const setDefaultShownMoviesCount = () => ({
+  type: ActionType.SET_DEFAULT_SHOWN_MOVIES_COUNT,
 });
- */

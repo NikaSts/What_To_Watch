@@ -4,7 +4,9 @@ import {arrayOf, string, func, number} from "prop-types";
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
 import {connect} from 'react-redux';
-import {changeActiveGenre, getMoviesByGenre, incrementShownMoviesCount} from '../../store/actions';
+import {
+  changeActiveGenre, getMoviesByGenre, incrementShownMoviesCount, setDefaultShownMoviesCount
+} from '../../store/actions';
 import {movieType, cardMovieType, promoMovieType} from '../../types';
 
 
@@ -104,6 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
     dispatch(changeActiveGenre(genre));
     dispatch(getMoviesByGenre(genre));
+    dispatch(setDefaultShownMoviesCount());
   },
   onShowMoreButtonClick() {
     dispatch(incrementShownMoviesCount());

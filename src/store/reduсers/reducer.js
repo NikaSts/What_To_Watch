@@ -16,6 +16,10 @@ export const reducer = (state, action) => {
       return extend(state, {
         shownMoviesCount: state.shownMoviesCount + MOVIES_TO_SHOW_COUNT,
       });
+    case ActionType.SET_DEFAULT_SHOWN_MOVIES_COUNT:
+      return extend(state, {
+        shownMoviesCount: MOVIES_TO_SHOW_COUNT,
+      });
     default:
       return state;
   }
