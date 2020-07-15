@@ -42,7 +42,7 @@ it(`Reducer should update genre`, () => {
       {activeGenre: `Horror`},
       {
         type: ActionType.CHANGE_ACTIVE_GENRE,
-        payload: activeGenre,
+        payload: {activeGenre},
       }
   ))
     .toEqual({
@@ -55,7 +55,7 @@ it(`Reducer should update moviesByGenre`, () => {
       {moviesByGenre: movies},
       {
         type: ActionType.GET_MOVIES_BY_GENRE,
-        payload: filterMovies(movies, activeGenre),
+        payload: {moviesByGenre: filterMovies(movies, activeGenre)},
       }
   ))
     .toEqual({
