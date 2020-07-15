@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 import Main from './main.jsx';
+
+const mockStore = configureStore([]);
 
 const promoMovie = {
   id: `one`,
@@ -22,12 +26,49 @@ const promoMovie = {
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
 
 };
-
 const genres = [`All genres`, `Drama`, `Horror`];
-
 const activeGenre = `All genres`;
-
 const moviesByGenre = [
+  {
+    id: `1`,
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    runTime: `1h 39m`,
+    genre: `Drama`,
+    releaseDate: 2014,
+    image: `fantastic-beasts-the-crimes-of-grindelwald`,
+    ratingScore: `8,9`,
+    ratingLevel: `Very good`,
+    ratingCount: 240,
+    text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
+  stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
+  anymore. The ninth film from the writer-director features a large ensemble cast and multiple
+  storylines in a tribute to the final moments of Hollywood's golden age.`],
+    director: `Quentin Tarantino`,
+    starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
+  },
+  {
+    id: `2`,
+    title: `Bohemian Rhapsody`,
+    runTime: `1h 39m`,
+    genre: `Drama`,
+    releaseDate: 2014,
+    image: `bohemian-rhapsody`,
+    ratingScore: `8,9`,
+    ratingLevel: `Very good`,
+    ratingCount: 240,
+    text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
+  stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
+  anymore. The ninth film from the writer-director features a large ensemble cast and multiple
+  storylines in a tribute to the final moments of Hollywood's golden age.`],
+    director: `Quentin Tarantino`,
+    starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
+  },
+];
+const movies = [
   {
     id: `1`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -68,47 +109,58 @@ const moviesByGenre = [
   },
 ];
 
+
 it(`Main should render with ShowMoreButton`, () => {
-  const shownMoviesCount = 1;
+  const store = mockStore({
+    promoMovie,
+    movies,
+    genres,
+    activeGenre,
+    moviesByGenre,
+    shownMoviesCount: 1,
+  });
 
   const tree = renderer
-      .create(<Main
-        promoMovie={promoMovie}
-        genres={genres}
-        activeGenre={activeGenre}
-        moviesByGenre={moviesByGenre}
-        shownMoviesCount={shownMoviesCount}
-        onGenreClick={() => {}}
-        onMovieTitleClick={() => { }}
-        onShowMoreButtonClick={() => {}}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+    .create(
+        <Provider store={store}>
+          <Main
+            onGenreClick={() => {}}
+            onMovieTitleClick={() => { }}
+            onShowMoreButtonClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
       .toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
 it(`Main should render without ShowMoreButton`, () => {
-  const shownMoviesCount = 8;
+  const store = mockStore({
+    promoMovie,
+    movies,
+    genres,
+    activeGenre,
+    moviesByGenre,
+    shownMoviesCount: 3,
+  });
 
   const tree = renderer
-      .create(<Main
-        promoMovie={promoMovie}
-        genres={genres}
-        activeGenre={activeGenre}
-        moviesByGenre={moviesByGenre}
-        shownMoviesCount={shownMoviesCount}
-        onGenreClick={() => {}}
-        onMovieTitleClick={() => { }}
-        onShowMoreButtonClick={() => {}}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+    .create(
+        <Provider store={store}>
+          <Main
+            onGenreClick={() => {}}
+            onMovieTitleClick={() => { }}
+            onShowMoreButtonClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
       .toJSON();
 
   expect(tree).toMatchSnapshot();

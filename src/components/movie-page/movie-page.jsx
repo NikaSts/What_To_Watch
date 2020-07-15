@@ -1,5 +1,7 @@
 import React, {Fragment, PureComponent} from 'react';
 import {func, arrayOf} from 'prop-types';
+import {connect} from 'react-redux';
+import {changeActiveMovie} from '../../store/actions';
 import MovieInfo from '../movie-info/movie-info.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
 import PageHeader from '../page-header/page-header.jsx';
@@ -14,7 +16,7 @@ import {Tab, MAX_SIMILAR_MOVIES} from '../../utils/consts';
 import {filterMovies} from '../../utils/funcs';
 
 
-export default class MoviePage extends PureComponent {
+class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,7 +55,6 @@ export default class MoviePage extends PureComponent {
         />;
     }
   }
-
 
   render() {
     const {activeMovie, movies, onMovieTitleClick} = this.props;
@@ -119,3 +120,15 @@ MoviePage.propTypes = {
   movies: arrayOf(cardMovieType.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
 };
+
+const mapStateToProps = ({movies, activeMovie}) => ({movies, activeMovie});
+
+const mapDispatchToProps = (dispatch) => ({
+  onMovieTitleClick(activeMovie) {
+    dispatch(changeActiveMovie(activeMovie));
+  }
+});
+
+
+export {MoviePage};
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

@@ -20,6 +20,10 @@ export const reducer = (state, action) => {
       return extend(state, {
         shownMoviesCount: MOVIES_TO_SHOW_COUNT,
       });
+    case ActionType.CHANGE_ACTIVE_MOVIE:
+      return extend(state, {
+        activeMovie: action.payload.activeMovie,
+      });
     default:
       return state;
   }

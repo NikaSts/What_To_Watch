@@ -1,5 +1,13 @@
 import React, {Fragment, PureComponent} from 'react';
 import {func, arrayOf, string, number} from 'prop-types';
+import {connect} from 'react-redux';
+import {
+  changeActiveGenre,
+  getMoviesByGenre,
+  incrementShownMoviesCount,
+  setDefaultShownMoviesCount,
+  changeActiveMovie
+} from '../../store/actions';
 import MovieList from '../movie-list/movie-list.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import MovieInfo from '../movie-info/movie-info.jsx';
@@ -9,7 +17,7 @@ import PageFooter from '../page-footer/page-footer.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import {cardMovieType, promoMovieType} from '../../types';
 
-export default class Main extends PureComponent {
+class Main extends PureComponent {
   constructor(props) {
     super(props);
   }
@@ -84,3 +92,26 @@ Main.propTypes = {
   onGenreClick: func.isRequired,
   onMovieTitleClick: func.isRequired,
 };
+
+const mapStateToProps = ({
+  movies, genres, promoMovie, activeGenre, moviesByGenre, shownMoviesCount
+}) => ({
+  movies, genres, promoMovie, activeGenre, moviesByGenre, shownMoviesCount
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(genre) {
+    dispatch(changeActiveGenre(genre));
+    dispatch(getMoviesByGenre(genre));
+    dispatch(setDefaultShownMoviesCount());
+  },
+  onShowMoreButtonClick() {
+    dispatch(incrementShownMoviesCount());
+  },
+  onMovieTitleClick(activeMovie) {
+    dispatch(changeActiveMovie(activeMovie));
+  }
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

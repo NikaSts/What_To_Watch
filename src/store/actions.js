@@ -20,3 +20,8 @@ export const incrementShownMoviesCount = () => ({
 export const setDefaultShownMoviesCount = () => ({
   type: ActionType.SET_DEFAULT_SHOWN_MOVIES_COUNT,
 });
+
+export const changeActiveMovie = (activeMovie) => ({
+  type: ActionType.CHANGE_ACTIVE_MOVIE,
+  payload: {activeMovie},
+});
