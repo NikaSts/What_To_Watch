@@ -37,4 +37,5 @@ GenreList.propTypes = {
   onGenreClick: func.isRequired,
 };
 
+
 export default GenreList;
