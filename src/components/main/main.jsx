@@ -1,9 +1,8 @@
 import React, {Fragment, PureComponent} from 'react';
-import {func, arrayOf, string, number} from 'prop-types';
+import {func, string, number, arrayOf} from 'prop-types';
 import {connect} from 'react-redux';
 import {
   changeActiveGenre,
-  getMoviesByGenre,
   incrementShownMoviesCount,
   setDefaultShownMoviesCount,
   changeActiveMovie
@@ -15,7 +14,8 @@ import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
-import {cardMovieType, promoMovieType} from '../../types';
+import {promoMovieType, movieType} from '../../types';
+import {getGenres, filterMovies} from '../../utils/funcs';
 
 class Main extends PureComponent {
   constructor(props) {
@@ -25,25 +25,25 @@ class Main extends PureComponent {
   render() {
     const {
       promoMovie,
-      genres,
+      movies,
       activeGenre,
-      moviesByGenre,
       onGenreClick,
       onMovieTitleClick,
       shownMoviesCount,
       onShowMoreButtonClick,
     } = this.props;
     const {title, genre, releaseDate, image} = promoMovie;
+    const genres = (getGenres(movies));
+    const moviesByGenre = filterMovies(movies, activeGenre);
     const moviesToShow = [...moviesByGenre].splice(0, shownMoviesCount);
 
     return (
       <Fragment>
         <section className="movie-card">
-          <div className="movie-card__bg">
-            <img src={`img/bg-${image}.jpg`} alt={title} />
-          </div>
-          <h1 className="visually-hidden">WTW</h1>
-          <PageHeader />
+          <PageHeader
+            imagePath={`img/bg-${image}.jpg`}
+            title={title}
+          />
           <div className="movie-card__wrap">
             <div className="movie-card__info">
               <div className="movie-card__poster">
@@ -75,7 +75,9 @@ class Main extends PureComponent {
               onShowMoreButtonClick={onShowMoreButtonClick}
             /> : null}
           </section>
-          <PageFooter />
+          <PageFooter
+            isMain={true}
+          />
         </PageContent>
       </Fragment>
     );
@@ -83,10 +85,9 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
+  movies: arrayOf(movieType.isRequired).isRequired,
   promoMovie: promoMovieType.isRequired,
-  genres: arrayOf(string.isRequired).isRequired,
   activeGenre: string.isRequired,
-  moviesByGenre: arrayOf(cardMovieType.isRequired).isRequired,
   shownMoviesCount: number.isRequired,
   onShowMoreButtonClick: func.isRequired,
   onGenreClick: func.isRequired,
@@ -94,15 +95,14 @@ Main.propTypes = {
 };
 
 const mapStateToProps = ({
-  movies, genres, promoMovie, activeGenre, moviesByGenre, shownMoviesCount
+  movies, promoMovie, activeGenre, shownMoviesCount
 }) => ({
-  movies, genres, promoMovie, activeGenre, moviesByGenre, shownMoviesCount
+  movies, promoMovie, activeGenre, shownMoviesCount
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
     dispatch(changeActiveGenre(genre));
-    dispatch(getMoviesByGenre(genre));
     dispatch(setDefaultShownMoviesCount());
   },
   onShowMoreButtonClick() {

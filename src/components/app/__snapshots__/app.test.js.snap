@@ -249,7 +249,6 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -501,11 +500,13 @@ Array [
           <div
             className="movie-card__text"
           >
-            Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+            <p>
+              Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.
+            </p>
             <p
               className="movie-card__director"
             >

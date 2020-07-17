@@ -7,15 +7,12 @@ import {reducer} from './store/reduсers/reducer';
 import {movies} from './mocks/movies';
 import {promoMovie} from './mocks/promoMovie';
 import {DEFAULT_GENRE, MOVIES_TO_SHOW_COUNT} from './utils/consts';
-import {getGenres} from './utils/funcs.js';
 
 const initialState = {
   promoMovie,
   activeMovie: null,
   movies,
-  genres: getGenres(movies),
   activeGenre: DEFAULT_GENRE,
-  moviesByGenre: movies,
   shownMoviesCount: MOVIES_TO_SHOW_COUNT,
 };
 

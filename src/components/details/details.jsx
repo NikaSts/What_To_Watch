@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {string, number, arrayOf} from 'prop-types';
 
-const Details = ({runTime, genre, releaseDate, director, starring}) => {
+const Details = ({runTime, genre, releaseDate, director, stars}) => {
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -12,7 +12,7 @@ const Details = ({runTime, genre, releaseDate, director, starring}) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
           <span className="movie-card__details-value">
-            {[...starring].join(`, ${`\n`}`)}
+            {[...stars].map((star) => <Fragment key={star}>{star},<br/></Fragment>)}
           </span>
         </p>
       </div>
@@ -40,7 +40,7 @@ Details.propTypes = {
   genre: string.isRequired,
   releaseDate: number.isRequired,
   director: string.isRequired,
-  starring: arrayOf(string).isRequired,
+  stars: arrayOf(string).isRequired,
 };
 
 export default Details;

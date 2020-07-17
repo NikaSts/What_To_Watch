@@ -32,7 +32,7 @@ class MoviePage extends PureComponent {
 
   _renderActiveTab(activeTab, activeMovie) {
     const {runTime, genre, releaseDate, ratingScore, ratingLevel, ratingCount,
-      text, director, starring} = activeMovie;
+      paragraphs, director, stars} = activeMovie;
     switch (activeTab) {
       case Tab.REVIEWS:
         return <Reviews />;
@@ -42,16 +42,16 @@ class MoviePage extends PureComponent {
           genre={genre}
           releaseDate={releaseDate}
           director={director}
-          starring={starring}
+          stars={stars}
         />;
       default:
         return <Overview
           ratingScore={ratingScore}
           ratingLevel={ratingLevel}
           ratingCount={ratingCount}
-          text={text}
+          paragraphs={paragraphs}
           director={director}
-          starring={starring}
+          stars={stars}
         />;
     }
   }
@@ -60,18 +60,17 @@ class MoviePage extends PureComponent {
     const {activeMovie, movies, onMovieTitleClick} = this.props;
     const {id, title, genre, releaseDate, image} = activeMovie;
     const {activeTab} = this.state;
-    const moviesToShow = filterMovies(movies, activeMovie.genre).splice(0, MAX_SIMILAR_MOVIES);
+    const moviesToShow = filterMovies(movies, activeMovie.genre, activeMovie.title)
+      .splice(0, MAX_SIMILAR_MOVIES);
 
     return (
       <Fragment>
         <section key={id} className="movie-card movie-card--full">
           <div className="movie-card__hero">
-            <div className="movie-card__bg">
-              <img src={`img/${image}.jpg`} alt={title} />
-            </div>
-            <h1 className="visually-hidden">WTW</h1>
-            <PageHeader />
-
+            <PageHeader
+              imagePath={`img/${image}.jpg`}
+              title={title}
+            />
             <div className="movie-card__wrap">
               <MovieInfo
                 title={title}
@@ -108,7 +107,9 @@ class MoviePage extends PureComponent {
               onMovieTitleClick={onMovieTitleClick}
             />
           </section>
-          <PageFooter />
+          <PageFooter
+            isMain={false}
+          />
         </PageContent>
       </Fragment>
     );

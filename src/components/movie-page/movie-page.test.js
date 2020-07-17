@@ -16,13 +16,13 @@ const activeMovie = {
   ratingScore: `8,9`,
   ratingLevel: `Very good`,
   ratingCount: 240,
-  text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
   director: `Quentin Tarantino`,
-  starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+  stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
 };
 const movies = [{
@@ -35,13 +35,13 @@ const movies = [{
   ratingScore: `8,9`,
   ratingLevel: `Very good`,
   ratingCount: 240,
-  text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
   director: `Quentin Tarantino`,
-  starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+  stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
 }, {
   id: `two`,
@@ -53,13 +53,13 @@ const movies = [{
   ratingScore: `8,9`,
   ratingLevel: `Very good`,
   ratingCount: 240,
-  text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
   director: `Quentin Tarantino`,
-  starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+  stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
 }];
 

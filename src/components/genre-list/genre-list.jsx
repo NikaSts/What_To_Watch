@@ -21,7 +21,10 @@ const GenreList = ({genres, activeGenre, onGenreClick}) => {
             <a
               href="#"
               className="catalog__genres-link"
-              onClick={() => onGenreClick(genreName)}>
+              onClick={(evt) => {
+                evt.preventDefault();
+                onGenreClick(genreName);
+              }}>
               {genreName}
             </a>
           </li>
