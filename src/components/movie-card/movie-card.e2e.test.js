@@ -15,24 +15,6 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`MovieCard onMouseEnter/onMouseLeave starts/ends playing video`, () => {
-  const isPlaying = false;
-  const movieCard = shallow(
-      <MovieCard
-        movie={movie}
-        isPlaying={isPlaying}
-        onMovieTitleClick={() => { }}
-      />);
-
-  expect(movieCard.state(`isPlaying`)).toBe(false);
-
-  movieCard.simulate(`mouseEnter`);
-  expect(movieCard.state(`isPlaying`)).toBe(true);
-
-  movieCard.simulate(`mouseLeave`);
-  expect(movieCard.state(`isPlaying`)).toBe(false);
-});
-
 it(`Movie title should be pressed and new page won't open`, () => {
   const onMovieTitleClick = jest.fn();
   const movieCard = shallow(

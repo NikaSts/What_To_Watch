@@ -13,6 +13,8 @@ it(`VideoPlayer should render correctly`, () => {
             poster={poster}
             muted={true}
             isPlaying={false}
+            onMouseEnter={() => {}}
+            onMouseLeave={() => {}}
           />, {
             createNodeMock: () => {
               return {};

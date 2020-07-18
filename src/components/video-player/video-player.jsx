@@ -1,5 +1,5 @@
 import React, {PureComponent, createRef} from 'react';
-import {string, bool} from 'prop-types';
+import {string, bool, func} from 'prop-types';
 import {DELAY} from '../../utils/consts';
 
 export default class VideoPlayer extends PureComponent {
@@ -42,18 +42,22 @@ export default class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const {src, poster, muted} = this.props;
+    const {src, poster, muted, onMouseEnter, onMouseLeave} = this.props;
 
     return (
-      <video
-        ref={this._videoRef}
-        src={src}
-        width="280"
-        height="175"
-        preload="none"
-        poster={poster}
-        muted={muted}
-      />
+      <div className="small-movie-card__image"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}>
+        <video
+          ref={this._videoRef}
+          src={src}
+          width="280"
+          height="175"
+          preload="none"
+          poster={poster}
+          muted={muted}
+        />
+      </div>
     );
   }
 }
@@ -63,4 +67,6 @@ VideoPlayer.propTypes = {
   poster: string.isRequired,
   muted: bool.isRequired,
   isPlaying: bool.isRequired,
+  onMouseEnter: func.isRequired,
+  onMouseLeave: func.isRequired,
 };
