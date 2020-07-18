@@ -18,5 +18,4 @@ it(`MovieInfo should render correctly`, () => {
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
-
 });

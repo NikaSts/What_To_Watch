@@ -82,10 +82,10 @@ it(`Movie title should be pressed and new page won't open`, () => {
       />
   );
 
-  const movieTitle = movieCard.find(`a.small-movie-card__link`);
+  const movieTitles = movieCard.find(`a.small-movie-card__link`);
   const newPageOpenPrevention = jest.fn();
 
-  movieTitle.forEach((title) => title.simulate(`click`, {
+  movieTitles.forEach((title) => title.simulate(`click`, {
     preventDefault: newPageOpenPrevention,
   }));
 
