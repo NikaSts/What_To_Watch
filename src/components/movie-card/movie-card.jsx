@@ -9,12 +9,23 @@ export default class MovieCard extends PureComponent {
     this.state = {
       isPlaying: false,
     };
+
+    this._handleMovieCardMouseEnter = this._handleMovieCardMouseEnter.bind(this);
+    this._handleMovieCardMouseLeave = this._handleMovieCardMouseLeave.bind(this);
+  }
+
+  _handleMovieCardMouseEnter() {
+    this.setState({isPlaying: true});
+  }
+
+  _handleMovieCardMouseLeave() {
+    this.setState({isPlaying: false});
   }
 
   render() {
     const {
       movie: {title, image, preview},
-      onMovieTitleClick, onMovieCardMouseEnter, onMovieCardMouseLeave
+      onMovieTitleClick,
     } = this.props;
     const {isPlaying} = this.state;
 
@@ -22,14 +33,8 @@ export default class MovieCard extends PureComponent {
       <article
         className="small-movie-card catalog__movies-card"
         onClick={onMovieTitleClick}
-        onMouseEnter={(movie) => {
-          this.setState({isPlaying: true});
-          onMovieCardMouseEnter(movie);
-        }}
-        onMouseLeave={() => {
-          this.setState({isPlaying: false});
-          onMovieCardMouseLeave();
-        }}
+        onMouseEnter={this._handleMovieCardMouseEnter}
+        onMouseLeave={this._handleMovieCardMouseLeave}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
@@ -58,6 +63,4 @@ export default class MovieCard extends PureComponent {
 MovieCard.propTypes = {
   movie: cardMovieType.isRequired,
   onMovieTitleClick: func.isRequired,
-  onMovieCardMouseEnter: func.isRequired,
-  onMovieCardMouseLeave: func.isRequired,
 };

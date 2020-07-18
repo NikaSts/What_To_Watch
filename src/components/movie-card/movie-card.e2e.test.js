@@ -17,58 +17,20 @@ Enzyme.configure({
 
 it(`MovieCard onMouseEnter/onMouseLeave starts/ends playing video`, () => {
   const isPlaying = false;
-  const onMovieCardMouseEnter = jest.fn();
-  const onMovieCardMouseLeave = jest.fn();
   const movieCard = shallow(
       <MovieCard
         movie={movie}
         isPlaying={isPlaying}
-        onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={onMovieCardMouseEnter}
-        onMovieCardMouseLeave={onMovieCardMouseLeave}
+        onMovieTitleClick={() => { }}
       />);
 
   expect(movieCard.state(`isPlaying`)).toBe(false);
 
   movieCard.simulate(`mouseEnter`);
-  expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
   expect(movieCard.state(`isPlaying`)).toBe(true);
 
   movieCard.simulate(`mouseLeave`);
-  expect(onMovieCardMouseLeave).toHaveBeenCalledTimes(1);
   expect(movieCard.state(`isPlaying`)).toBe(false);
-});
-
-it(`MovieCard onMouseEnter should return the movie preview`, () => {
-  const onMovieCardMouseEnter = jest.fn((preview) => preview);
-  const movieCard = shallow(
-      <MovieCard
-        movie={movie}
-        onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={onMovieCardMouseEnter}
-        onMovieCardMouseLeave={() => {}}
-      />
-  );
-
-  movieCard.simulate(`mouseEnter`, movie.preview);
-  expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.preview);
-});
-
-it(`MovieCard onMouseLeave should return null`, () => {
-  const onMovieCardMouseLeave = jest.fn((id) => id);
-  const movieCard = shallow(
-      <MovieCard
-        movie={movie}
-        onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={() => {}}
-        onMovieCardMouseLeave={onMovieCardMouseLeave}
-      />
-  );
-
-  movieCard.simulate(`mouseLeave`);
-  expect(onMovieCardMouseLeave).toHaveBeenCalledTimes(1);
-  expect(onMovieCardMouseLeave).not.toHaveReturnedWith(movie.id);
 });
 
 it(`Movie title should be pressed and new page won't open`, () => {
@@ -77,8 +39,6 @@ it(`Movie title should be pressed and new page won't open`, () => {
       <MovieCard
         movie={movie}
         onMovieTitleClick={onMovieTitleClick}
-        onMovieCardMouseEnter={() => {}}
-        onMovieCardMouseLeave={() => {}}
       />
   );
 
