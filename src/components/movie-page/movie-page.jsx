@@ -55,9 +55,7 @@ const MoviePage = ({activeMovie, moviesToShow, onMovieTitleClick}) => {
             onMovieTitleClick={onMovieTitleClick}
           />
         </section>
-        <PageFooter
-          isMain={false}
-        />
+        <PageFooter />
       </PageContent>
     </Fragment>
   );

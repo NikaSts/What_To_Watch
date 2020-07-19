@@ -19,6 +19,10 @@ const PageFooter = ({isMain}) => (
   </footer>
 );
 
+PageFooter.defaultProps = {
+  isMain: false,
+};
+
 PageFooter.propTypes = {
   isMain: bool.isRequired,
 };
