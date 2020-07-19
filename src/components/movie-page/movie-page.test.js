@@ -1,6 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 import MoviePage from './movie-page';
+
+const mockStore = configureStore([]);
 
 const activeMovie = {
   id: `one`,
@@ -21,7 +25,6 @@ const activeMovie = {
   starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
 };
-
 const movies = [{
   id: `one`,
   title: `Once Upon a Time in Hollywood`,
@@ -62,14 +65,23 @@ const movies = [{
 
 
 it(`MoviePage should render correctly`, () => {
+  const store = mockStore({
+    activeMovie,
+    movies,
+  });
+
   const tree = renderer
-  .create(
-      <MoviePage
-        activeMovie={activeMovie}
-        movies={movies}
-        onMovieTitleClick={() => {}}
-      />
-  ).toJSON();
+    .create(
+        <Provider store={store}>
+          <MoviePage
+            onMovieTitleClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+      .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

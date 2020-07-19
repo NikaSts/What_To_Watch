@@ -5,20 +5,23 @@ import {movies} from '../mocks/movies';
 
 export const changeActiveGenre = (activeGenre) => ({
   type: ActionType.CHANGE_ACTIVE_GENRE,
-  payload: activeGenre,
+  payload: {activeGenre},
 });
 
 export const getMoviesByGenre = (genre) => ({
   type: ActionType.GET_MOVIES_BY_GENRE,
-  payload: filterMovies(movies, genre),
+  payload: {moviesByGenre: filterMovies(movies, genre)},
 });
 
 export const incrementShownMoviesCount = () => ({
   type: ActionType.INCREMENT_SHOWN_MOVIES_COUNT,
 });
 
-/* export const getMoviesToShow = (moviesByGenre, shownMovies) => ({
-  type: ActionType.GET_MOVIES_TO_SHOW,
-  payload: moviesByGenre.splice(0, shownMovies)
+export const setDefaultShownMoviesCount = () => ({
+  type: ActionType.SET_DEFAULT_SHOWN_MOVIES_COUNT,
 });
- */
+
+export const changeActiveMovie = (activeMovie) => ({
+  type: ActionType.CHANGE_ACTIVE_MOVIE,
+  payload: {activeMovie},
+});

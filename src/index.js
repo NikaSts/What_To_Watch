@@ -11,6 +11,7 @@ import {getGenres} from './utils/funcs.js';
 
 const initialState = {
   promoMovie,
+  activeMovie: null,
   movies,
   genres: getGenres(movies),
   activeGenre: DEFAULT_GENRE,
