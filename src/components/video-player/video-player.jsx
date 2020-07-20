@@ -1,19 +1,19 @@
 import React, {PureComponent, createRef} from 'react';
 import {string, bool, func} from 'prop-types';
-import {DELAY} from '../../utils/consts';
 
 export default class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
     this._videoRef = createRef();
-    this._timerId = null;
   }
 
   componentDidMount() {
-    const {src} = this.props;
+    const {src, poster, muted} = this.props;
     const video = this._videoRef.current;
     if (video) {
       video.src = src;
+      video.poster = poster;
+      video.muted = muted;
     }
   }
 
@@ -24,10 +24,8 @@ export default class VideoPlayer extends PureComponent {
       return;
     }
     if (isPlaying) {
-      const playVideo = () => video.play();
-      this._timerId = setTimeout(playVideo, DELAY);
+      video.play();
     } else {
-      clearTimeout(this._timerId);
       video.load();
     }
   }
@@ -36,28 +34,24 @@ export default class VideoPlayer extends PureComponent {
     const video = this._videoRef.current;
     if (video) {
       video.src = ``;
+      video.poster = null;
+      video.muted = null;
       video.onplay = null;
-      clearTimeout(this._timerId);
     }
   }
 
   render() {
-    const {src, poster, muted, onMouseEnter, onMouseLeave} = this.props;
+    const {onMouseEnter, onMouseLeave} = this.props;
 
     return (
-      <div className="small-movie-card__image"
+      <video
+        ref={this._videoRef}
+        width="280"
+        height="175"
+        preload="none"
         onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}>
-        <video
-          ref={this._videoRef}
-          src={src}
-          width="280"
-          height="175"
-          preload="none"
-          poster={poster}
-          muted={muted}
-        />
-      </div>
+        onMouseLeave={onMouseLeave}
+      />
     );
   }
 }

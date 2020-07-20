@@ -268,20 +268,13 @@ Array [
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <video
+            height="175"
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
-          >
-            <video
-              height="175"
-              muted={true}
-              poster="img/the-grand-budapest-hotel.jpg"
-              preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
-              width="280"
-            />
-          </div>
+            preload="none"
+            width="280"
+          />
           <h3
             className="small-movie-card__title"
           >

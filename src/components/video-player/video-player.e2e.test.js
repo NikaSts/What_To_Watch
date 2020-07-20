@@ -1,26 +1,53 @@
-import Enzyme from 'enzyme';
+import React from 'react';
+import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import VideoPlayer from './video-player.jsx';
 
-
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 
-it(`SetTimeout is called`, () => {
-  jest.useFakeTimers();
-  const cb = jest.fn();
-  setTimeout(cb, 1000);
 
-  expect(setTimeout).toHaveBeenCalledTimes(1);
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+it(`VideoPlayer should play`, () => {
+  const isPlaying = true;
+  const player = mount(
+      <VideoPlayer
+        src={``}
+        poster={``}
+        muted={true}
+        isPlaying={isPlaying}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+      />
+  );
+
+  HTMLMediaElement.prototype.play = jest.fn();
+
+  player.instance().componentDidUpdate();
+
+  const isPlay = player.instance().props.isPlaying;
+  expect(isPlay).toBe(true);
+  expect(HTMLMediaElement.prototype.play).toHaveBeenCalledTimes(1);
 });
 
-it(`Timer calls the callback after 1 second`, () => {
-  const cb = jest.fn();
-  setTimeout(cb, 1000);
-  expect(cb).not.toBeCalled();
+it(`VideoPlayer should stop playing and start loading`, () => {
+  const isPlaying = false;
+  const player = mount(
+      <VideoPlayer
+        src={``}
+        poster={``}
+        muted={true}
+        isPlaying={isPlaying}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+      />
+  );
 
-  jest.runAllTimers();
-  expect(cb).toBeCalled();
-  expect(cb).toHaveBeenCalledTimes(1);
+  HTMLMediaElement.prototype.load = jest.fn();
+
+  player.instance().componentDidUpdate();
+
+  const isPlay = player.instance().props.isPlaying;
+  expect(isPlay).toBe(false);
+  expect(HTMLMediaElement.prototype.load).toHaveBeenCalledTimes(1);
 });

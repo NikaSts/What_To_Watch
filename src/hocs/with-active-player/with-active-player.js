@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {DELAY} from '../../utils/consts';
 
 const withActivePlayer = (Component) => {
   class Wrapper extends PureComponent {
@@ -7,16 +8,23 @@ const withActivePlayer = (Component) => {
       this.state = {
         isPlaying: false,
       };
+      this._timerId = null;
 
       this._handleMovieCardMouseEnter = this._handleMovieCardMouseEnter.bind(this);
       this._handleMovieCardMouseLeave = this._handleMovieCardMouseLeave.bind(this);
     }
 
+    componentWillUnmount() {
+      clearTimeout(this._timerId);
+    }
+
     _handleMovieCardMouseEnter() {
-      this.setState({isPlaying: true});
+      const playVideo = () => (this.setState({isPlaying: true}));
+      this._timerId = setTimeout(playVideo, DELAY);
     }
 
     _handleMovieCardMouseLeave() {
+      clearTimeout(this._timerId);
       this.setState({isPlaying: false});
     }
 
