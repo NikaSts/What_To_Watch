@@ -3,7 +3,6 @@ import {func, arrayOf} from 'prop-types';
 import {connect} from 'react-redux';
 import {changeActiveMovie} from '../../store/actions';
 import MovieInfo from '../movie-info/movie-info.jsx';
-import MovieList from '../movie-list/movie-list.jsx';
 import PageHeader from '../page-header/page-header.jsx';
 import PageContent from '../page-content/page-content.jsx';
 import PageFooter from '../page-footer/page-footer.jsx';
@@ -12,10 +11,11 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType, cardMovieType} from '../../types';
 import {MAX_SIMILAR_MOVIES} from '../../utils/consts';
 import {filterMovies} from '../../utils/funcs';
+import Catalog from '../catalog/catalog.jsx';
 
 const WrappedTabs = withActiveItem(Tabs);
 
-const MoviePage = ({activeMovie, moviesToShow, onMovieTitleClick}) => {
+const MoviePage = ({activeMovie}) => {
   const {id, title, genre, releaseDate, image} = activeMovie;
   return (
     <Fragment>
@@ -48,13 +48,7 @@ const MoviePage = ({activeMovie, moviesToShow, onMovieTitleClick}) => {
       </section>
 
       <PageContent>
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-          <MovieList
-            movies={moviesToShow}
-            onMovieTitleClick={onMovieTitleClick}
-          />
-        </section>
+        <Catalog />
         <PageFooter />
       </PageContent>
     </Fragment>

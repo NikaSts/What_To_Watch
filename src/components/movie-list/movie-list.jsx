@@ -1,6 +1,6 @@
 import React from 'react';
-import {arrayOf, func} from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
+import {arrayOf, func} from 'prop-types';
 import {cardMovieType} from '../../types.js';
 
 

@@ -6,14 +6,11 @@ import App from './components/app/app.jsx';
 import {reducer} from './store/reduсers/reducer';
 import {movies} from './mocks/movies';
 import {promoMovie} from './mocks/promoMovie';
-import {DEFAULT_GENRE, MOVIES_TO_SHOW_COUNT} from './utils/consts';
 
 const initialState = {
   promoMovie,
   activeMovie: null,
   movies,
-  activeGenre: DEFAULT_GENRE,
-  shownMoviesCount: MOVIES_TO_SHOW_COUNT,
 };
 
 const store = createStore(

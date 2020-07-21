@@ -32,8 +32,5 @@ export const Score = {
 export const DELAY = 1000;
 
 export const ActionType = {
-  CHANGE_ACTIVE_GENRE: `changeActiveGenre`,
   CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
-  INCREMENT_SHOWN_MOVIES_COUNT: `incrementShownMoviesCount`,
-  SET_DEFAULT_SHOWN_MOVIES_COUNT: `setDefaultShownMoviesCount`,
 };

@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import MoviePage from '../movie-page/movie-page.jsx';
 import {connect} from 'react-redux';
-import {movieType} from '../../types';
+import {movieType, promoMovieType} from '../../types';
 
 
 class App extends PureComponent {
@@ -20,8 +20,11 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
+    const {promoMovie} = this.props;
     return (
-      <Main />
+      <Main
+        promoMovie={promoMovie}
+      />
     );
   }
 
@@ -49,9 +52,10 @@ class App extends PureComponent {
 
 App.propTypes = {
   activeMovie: movieType,
+  promoMovie: promoMovieType.isRequired,
 };
 
-const mapStateToProps = ({activeMovie}) => ({activeMovie});
+const mapStateToProps = ({activeMovie, promoMovie}) => ({activeMovie, promoMovie});
 
 
 export {App};
