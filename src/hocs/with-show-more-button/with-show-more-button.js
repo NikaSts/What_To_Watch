@@ -1,7 +1,7 @@
 import React, {PureComponent, Fragment} from 'react';
-import ShowMoreButton from '../../components/show-more-button/show-more-button.jsx';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import {arrayOf, func} from 'prop-types';
-import {cardMovieType} from '../../types.js';
+import {cardMovieType} from '../../types';
 import {MOVIES_TO_SHOW_COUNT} from '../../utils/consts';
 
 const withShowMoreButton = (Component) => {
@@ -18,11 +18,15 @@ const withShowMoreButton = (Component) => {
 
     componentDidUpdate(prevState) {
       if (prevState !== this.props) {
-        const moviesToShow = this.props.movies.slice(0, MOVIES_TO_SHOW_COUNT);
-        this.setState({
-          moviesToShow,
-        });
+        this._updateState();
       }
+    }
+
+    _updateState() {
+      const moviesToShow = this.props.movies.slice(0, MOVIES_TO_SHOW_COUNT);
+      this.setState({
+        moviesToShow,
+      });
     }
 
     _handleShowMoreButtonClick() {

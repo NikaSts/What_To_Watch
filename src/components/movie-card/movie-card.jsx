@@ -1,8 +1,8 @@
 import React from 'react';
-import VideoPlayer from '../video-player/video-player.jsx';
-import withActivePlayer from '../../hocs/with-active-player/with-active-player.js';
+import VideoPlayer from '../video-player/video-player';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player';
 import {func} from 'prop-types';
-import {cardMovieType} from '../../types.js';
+import {cardMovieType} from '../../types';
 
 const WrappedPlayer = withActivePlayer(VideoPlayer);
 

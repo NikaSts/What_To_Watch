@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PageHeader from './page-header.jsx';
+import PageHeader from './page-header';
 
 const url = `src/img/pic.png`;
 const title = `Kill Bill`;

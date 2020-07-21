@@ -1,9 +1,8 @@
 import React, {Fragment} from 'react';
-import MovieInfo from '../movie-info/movie-info.jsx';
-import PageHeader from '../page-header/page-header.jsx';
-import PageContent from '../page-content/page-content.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
-import Catalog from '../catalog/catalog.jsx';
+import MovieInfo from '../movie-info/movie-info';
+import PageHeader from '../page-header/page-header';
+import PageFooter from '../page-footer/page-footer';
+import Catalog from '../catalog/catalog';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {promoMovieType} from '../../types';
 
@@ -32,14 +31,14 @@ const Main = ({promoMovie: {title, genre, releaseDate, image}}) => (
       </div>
     </section>
 
-    <PageContent>
+    <div className="page-content">
       <WrappedCatalog
         isMain={true}
       />
       <PageFooter
         isMain={true}
       />
-    </PageContent>
+    </div>
   </Fragment>
 );
 

@@ -2,16 +2,15 @@ import React, {Fragment} from 'react';
 import {func, arrayOf} from 'prop-types';
 import {connect} from 'react-redux';
 import {changeActiveMovie} from '../../store/actions';
-import MovieInfo from '../movie-info/movie-info.jsx';
-import PageHeader from '../page-header/page-header.jsx';
-import PageContent from '../page-content/page-content.jsx';
-import PageFooter from '../page-footer/page-footer.jsx';
-import Tabs from '../tabs/tabs.jsx';
+import MovieInfo from '../movie-info/movie-info';
+import PageHeader from '../page-header/page-header';
+import PageFooter from '../page-footer/page-footer';
+import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType, cardMovieType} from '../../types';
 import {MAX_SIMILAR_MOVIES} from '../../utils/consts';
 import {filterMovies} from '../../utils/funcs';
-import Catalog from '../catalog/catalog.jsx';
+import Catalog from '../catalog/catalog';
 
 const WrappedTabs = withActiveItem(Tabs);
 
@@ -47,10 +46,10 @@ const MoviePage = ({activeMovie}) => {
         </div>
       </section>
 
-      <PageContent>
+      <div className="page-content">
         <Catalog />
         <PageFooter />
-      </PageContent>
+      </div>
     </Fragment>
   );
 };

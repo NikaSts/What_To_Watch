@@ -1,11 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
-import Overview from '../overview/overview.jsx';
-import Reviews from '../reviews/reviews.jsx';
-import Details from '../details/details.jsx';
+import Overview from '../overview/overview';
+import Reviews from '../reviews/reviews';
+import Details from '../details/details';
 
 import {tabs, Tab} from '../../utils/consts';
-import {movieType} from '../../types.js';
+import {movieType} from '../../types';
 import {string, func} from 'prop-types';
 
 const renderActiveTab = (activeTab, activeMovie) => {

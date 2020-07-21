@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withActiveItem from './with-active-item.js';
+import withActiveItem from './with-active-item';
 import {func} from 'prop-types';
 
 configure({

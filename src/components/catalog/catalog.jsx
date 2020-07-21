@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import cn from 'classnames';
-import MovieList from '../movie-list/movie-list.jsx';
-import GenreList from '../genre-list/genre-list.jsx';
+import MovieList from '../movie-list/movie-list';
+import GenreList from '../genre-list/genre-list';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {func, arrayOf, string, bool} from 'prop-types';
 import {movieType} from '../../types';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withActivePlayer from './with-active-player.js';
+import withActivePlayer from './with-active-player';
 import {func} from 'prop-types';
 
 configure({

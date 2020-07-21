@@ -1,6 +1,6 @@
 import React from 'react';
 import {bool, string, number} from 'prop-types';
-import Controls from '../сontrols/controls.jsx';
+import Controls from '../сontrols/controls';
 
 
 const MovieInfo = ({title, genre, releaseDate, isLogged}) => {

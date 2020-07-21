@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Main from '../main/main.jsx';
-import MoviePage from '../movie-page/movie-page.jsx';
+import Main from '../main/main';
+import MoviePage from '../movie-page/movie-page';
 import {connect} from 'react-redux';
 import {movieType, promoMovieType} from '../../types';
 

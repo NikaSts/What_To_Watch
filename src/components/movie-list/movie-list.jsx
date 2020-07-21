@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieCard from '../movie-card/movie-card.jsx';
+import MovieCard from '../movie-card/movie-card';
 import {arrayOf, func} from 'prop-types';
-import {cardMovieType} from '../../types.js';
+import {cardMovieType} from '../../types';
 
 
 const MovieList = ({movies, onMovieTitleClick}) => (
