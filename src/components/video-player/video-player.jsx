@@ -1,5 +1,5 @@
 import React, {PureComponent, createRef} from 'react';
-import {string, bool, func} from 'prop-types';
+import {string, bool} from 'prop-types';
 
 export default class VideoPlayer extends PureComponent {
   constructor(props) {
@@ -41,16 +41,12 @@ export default class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const {onMouseEnter, onMouseLeave} = this.props;
-
     return (
       <video
         ref={this._videoRef}
         width="280"
         height="175"
         preload="none"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
       />
     );
   }
@@ -61,6 +57,4 @@ VideoPlayer.propTypes = {
   poster: string.isRequired,
   muted: bool.isRequired,
   isPlaying: bool.isRequired,
-  onMouseEnter: func.isRequired,
-  onMouseLeave: func.isRequired,
 };

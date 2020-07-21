@@ -1,20 +1,22 @@
 import React from 'react';
+import {func, string, bool} from 'prop-types';
 import VideoPlayer from '../video-player/video-player';
-import withActivePlayer from '../../hocs/with-active-player/with-active-player';
-import {func} from 'prop-types';
-import {cardMovieType} from '../../types';
 
-const WrappedPlayer = withActivePlayer(VideoPlayer);
-
-const MovieCard = ({movie: {title, image, preview}, onMovieTitleClick}) => (
+const MovieCard = ({
+  title, src, poster, onMovieTitleClick, isPlaying, onMouseEnter, onMouseLeave
+}) => (
   <article
     className="small-movie-card catalog__movies-card"
     onClick={onMovieTitleClick}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+
   >
-    <WrappedPlayer
-      src={preview}
-      poster={`img/${image}.jpg`}
+    <VideoPlayer
+      src={src}
+      poster={poster}
       muted={true}
+      isPlaying={isPlaying}
     />
     <h3 className="small-movie-card__title">
       <a
@@ -31,8 +33,13 @@ const MovieCard = ({movie: {title, image, preview}, onMovieTitleClick}) => (
 );
 
 MovieCard.propTypes = {
-  movie: cardMovieType.isRequired,
+  title: string.isRequired,
+  src: string.isRequired,
+  poster: string.isRequired,
   onMovieTitleClick: func.isRequired,
+  isPlaying: bool.isRequired,
+  onMouseEnter: func.isRequired,
+  onMouseLeave: func.isRequired,
 };
 
 export default MovieCard;
