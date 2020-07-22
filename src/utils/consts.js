@@ -33,4 +33,6 @@ export const DELAY = 1000;
 
 export const ActionType = {
   CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
+  OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
+  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`
 };

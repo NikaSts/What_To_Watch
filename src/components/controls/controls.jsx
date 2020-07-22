@@ -1,14 +1,16 @@
 import React from 'react';
-import {bool} from 'prop-types';
+import {bool, func} from 'prop-types';
 
-const Controls = (props) => {
-  const {isLogged} = props;
+const Controls = ({isLogged, onPlayButtonClick}) => {
   const reviewLink = isLogged && <a href="add-review.html" className="btn movie-card__button">
     Add review</a>;
 
   return (
     <div className="movie-card__buttons">
-      <button className="btn btn--play movie-card__button" type="button">
+      <button
+        onClick={onPlayButtonClick}
+        className="btn btn--play movie-card__button"
+        type="button">
         <svg viewBox="0 0 19 19" width="19" height="19">
           <use xlinkHref="#play-s"></use>
         </svg>
@@ -27,6 +29,7 @@ const Controls = (props) => {
 
 Controls.propTypes = {
   isLogged: bool.isRequired,
+  onPlayButtonClick: func.isRequired,
 };
 
 export default Controls;

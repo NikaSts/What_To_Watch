@@ -11,6 +11,7 @@ const initialState = {
   promoMovie,
   activeMovie: null,
   movies,
+  isVideoPlayer: false,
 };
 
 const store = createStore(

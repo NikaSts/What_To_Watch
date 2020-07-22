@@ -3,8 +3,13 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import {connect} from 'react-redux';
-import {movieType, promoMovieType} from '../../types';
+import {movieType} from '../../types';
+import {bool} from 'prop-types';
+import withFullScreenPlayer from '../../hocs/with-full-screen-player/with-full-screen-player';
+import VideoPlayerBig from '../video-player-big/video-player-big';
 
+
+const WrappedPlayer = withFullScreenPlayer(VideoPlayerBig);
 
 class App extends PureComponent {
   constructor(props) {
@@ -12,7 +17,10 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {activeMovie} = this.props;
+    const {activeMovie, isVideoPlayer} = this.props;
+    if (isVideoPlayer) {
+      return this._renderVideoPlayer();
+    }
     if (activeMovie) {
       return this._renderMoviePage();
     }
@@ -20,18 +28,27 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
-    const {promoMovie} = this.props;
-    return (
-      <Main
-        promoMovie={promoMovie}
-      />
-    );
+    return <Main />;
   }
 
   _renderMoviePage() {
-    return (
-      <MoviePage />
-    );
+    return <MoviePage />;
+  }
+
+  _renderVideoPlayer() {
+    const {activeMovie, promoMovie} = this.props;
+    if (activeMovie) {
+      return <WrappedPlayer
+        title={activeMovie.title}
+        src={activeMovie.preview}
+        poster={`img/bg-${activeMovie.image}.jpg`}
+      />;
+    }
+    return <WrappedPlayer
+      title={promoMovie.title}
+      src={promoMovie.preview}
+      poster={`img/bg-${promoMovie.image}.jpg`}
+    />;
   }
 
   render() {
@@ -52,10 +69,15 @@ class App extends PureComponent {
 
 App.propTypes = {
   activeMovie: movieType,
-  promoMovie: promoMovieType.isRequired,
+  promoMovie: movieType.isRequired,
+  isVideoPlayer: bool.isRequired,
 };
 
-const mapStateToProps = ({activeMovie, promoMovie}) => ({activeMovie, promoMovie});
+const mapStateToProps = ({
+  activeMovie, promoMovie, isVideoPlayer
+}) => ({
+  activeMovie, promoMovie, isVideoPlayer
+});
 
 
 export {App};

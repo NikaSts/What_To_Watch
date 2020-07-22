@@ -70,3 +70,16 @@ export const getGenres = (movies) => {
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
+
+export const formatTime = (time) => {
+  const minutes = Math.trunc(time / 60);
+  const seconds = Math.trunc(time % 60);
+  const hours = Math.trunc(minutes / 60);
+
+  return [
+    (`0` + hours).slice(-2),
+    (`0` + minutes).slice(-2),
+    (`0` + seconds).slice(-2)
+  ].join(`:`);
+};
+

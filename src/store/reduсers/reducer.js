@@ -8,6 +8,14 @@ export const reducer = (state, action) => {
       return extend(state, {
         activeMovie: action.payload.activeMovie,
       });
+    case ActionType.OPEN_FULL_SCREEN_PLAYER:
+      return extend(state, {
+        isVideoPlayer: true,
+      });
+    case ActionType.CLOSE_FULL_SCREEN_PLAYER:
+      return extend(state, {
+        isVideoPlayer: false,
+      });
     default:
       return state;
   }
