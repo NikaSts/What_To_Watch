@@ -1,20 +1,18 @@
 import React, {Fragment} from 'react';
-import {func, arrayOf} from 'prop-types';
+import {func} from 'prop-types';
 import {connect} from 'react-redux';
-import {changeActiveMovie} from '../../store/actions';
+import {changeActiveMovie, openFullScreenPlayer} from '../../store/actions';
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import PageFooter from '../page-footer/page-footer';
 import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {movieType, cardMovieType} from '../../types';
-import {MAX_SIMILAR_MOVIES} from '../../utils/consts';
-import {filterMovies} from '../../utils/funcs';
+import {movieType} from '../../types';
 import Catalog from '../catalog/catalog';
 
 const WrappedTabs = withActiveItem(Tabs);
 
-const MoviePage = ({activeMovie}) => {
+const MoviePage = ({activeMovie, onPlayButtonClick}) => {
   const {id, title, genre, releaseDate, image} = activeMovie;
   return (
     <Fragment>
@@ -30,6 +28,7 @@ const MoviePage = ({activeMovie}) => {
               genre={genre}
               releaseDate={releaseDate}
               isLogged={true}
+              onPlayButtonClick={onPlayButtonClick}
             />
           </div>
         </div>
@@ -56,22 +55,24 @@ const MoviePage = ({activeMovie}) => {
 
 MoviePage.propTypes = {
   activeMovie: movieType,
-  moviesToShow: arrayOf(cardMovieType.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
+  onPlayButtonClick: func.isRequired,
 };
 
 const mapStateToProps = ({movies, activeMovie}) => {
   return {
     movies,
     activeMovie,
-    moviesToShow: filterMovies(movies, activeMovie.genre, activeMovie.title)
-      .splice(0, MAX_SIMILAR_MOVIES),
+    onPlayButtonClick: func.isRequired,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onMovieTitleClick(activeMovie) {
     dispatch(changeActiveMovie(activeMovie));
+  },
+  onPlayButtonClick() {
+    dispatch(openFullScreenPlayer());
   }
 });
 
