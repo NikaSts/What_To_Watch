@@ -8,6 +8,7 @@ it(`Controls should render correctly if user is logged in`, () => {
   .create(
       <Controls
         isLogged={true}
+        onPlayButtonClick={() => {}}
       />
   ).toJSON();
 
@@ -19,6 +20,7 @@ it(`Controls should render correctly if user is not logged in`, () => {
   .create(
       <Controls
         isLogged={false}
+        onPlayButtonClick={() => {}}
       />
   ).toJSON();
 

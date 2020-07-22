@@ -27,7 +27,9 @@ it(`withActiveVideo should start playing video after timer onMouseEnter`, () => 
   const wrapper = mount(
       <MockComponentWrapped
         onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
+        onMouseLeave={() => { }}
+        src={``}
+        poster={``}
       />);
 
   jest.useFakeTimers();
@@ -47,7 +49,9 @@ it(`withActiveVideo should clear timer onMouseLeave`, () => {
   const wrapper = mount(
       <MockComponentWrapped
         onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
+        onMouseLeave={() => { }}
+        src={``}
+        poster={``}
       />);
 
   jest.useFakeTimers();
@@ -63,7 +67,9 @@ it(`withActiveVideo should clear timer on componentWillUnmount`, () => {
   const wrapper = mount(
       <MockComponentWrapped
         onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
+        onMouseLeave={() => { }}
+        src={``}
+        poster={``}
       />);
 
   jest.useFakeTimers();

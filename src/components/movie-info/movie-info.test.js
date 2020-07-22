@@ -14,6 +14,7 @@ it(`MovieInfo should render correctly`, () => {
         genre={genre}
         releaseDate={releaseDate}
         isLogged={true}
+        onPlayButtonClick={() => {}}
       />
   ).toJSON();
 

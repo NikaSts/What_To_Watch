@@ -102,6 +102,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -182,21 +183,24 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <video
-            height="175"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            preload="none"
-            width="280"
-          />
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -205,21 +209,24 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <video
-            height="175"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            preload="none"
-            width="280"
-          />
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -357,6 +364,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -532,21 +540,24 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <video
-            height="175"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            preload="none"
-            width="280"
-          />
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -555,21 +566,24 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <video
-            height="175"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            preload="none"
-            width="280"
-          />
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>

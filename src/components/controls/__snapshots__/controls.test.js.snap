@@ -6,6 +6,7 @@ exports[`Controls should render correctly if user is logged in 1`] = `
 >
   <button
     className="btn btn--play movie-card__button"
+    onClick={[Function]}
     type="button"
   >
     <svg
@@ -53,6 +54,7 @@ exports[`Controls should render correctly if user is not logged in 1`] = `
 >
   <button
     className="btn btn--play movie-card__button"
+    onClick={[Function]}
     type="button"
   >
     <svg

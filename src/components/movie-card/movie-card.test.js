@@ -2,21 +2,20 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import MovieCard from './movie-card';
 
-const movie = {
-  title: `Harry Potter`,
-  image: `harry-potter`,
-  preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
-};
+const title = `Harry Potter`;
+const children = <video />;
 
 it(`MovieCard should render correctly`, () => {
   const tree = renderer
     .create(
         <MovieCard
-          movie={movie}
+          title={title}
           onMovieTitleClick={() => {}}
-          onMovieCardMouseEnter={() => {}}
-          onMovieCardMouseLeave={() => {}}
-        />)
+          onMouseEnter={() => {}}
+          onMouseLeave={() => { }}
+        >
+          {children}
+        </MovieCard>)
       .toJSON();
 
   expect(tree).toMatchSnapshot();

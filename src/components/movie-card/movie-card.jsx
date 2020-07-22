@@ -14,15 +14,9 @@ const MovieCard = ({
       {children}
     </div>
     <h3 className="small-movie-card__title">
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-        onClick={(evt) => {
-          evt.preventDefault();
-          onMovieTitleClick();
-        }}
-      >
-        {title}</a>
+      <a className="small-movie-card__link" href="movie-page.html">
+        {title}
+      </a>
     </h3>
   </article>
 );

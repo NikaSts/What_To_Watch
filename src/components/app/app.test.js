@@ -84,25 +84,20 @@ const movies = [
     preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
   },
 ];
-const activeGenre = `All genres`;
-const shownMoviesCount = 3;
 
 it(`App should render Main`, () => {
   const store = mockStore({
     activeMovie: null,
     promoMovie,
+    isVideoPlayer: false,
     movies,
-    activeGenre,
-    shownMoviesCount,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            onGenreClick={() => { }}
             onMovieTitleClick={() => { }}
-            onShowMoreButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -119,18 +114,15 @@ it(`App should render MoviePage`, () => {
   const store = mockStore({
     activeMovie,
     promoMovie,
+    isVideoPlayer: false,
     movies,
-    activeGenre,
-    shownMoviesCount,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            onGenreClick={() => { }}
             onMovieTitleClick={() => { }}
-            onShowMoreButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -141,3 +133,27 @@ it(`App should render MoviePage`, () => {
 
   expect(tree).toMatchSnapshot();
 });
+
+/* it(`App should render VideoPlayer`, () => {
+  const store = mockStore({
+    activeMovie: null,
+    promoMovie,
+    isVideoPlayer: true,
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App
+            onMovieTitleClick={() => { }}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+      .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+ */

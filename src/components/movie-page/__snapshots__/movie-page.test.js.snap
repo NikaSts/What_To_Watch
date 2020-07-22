@@ -92,6 +92,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -267,21 +268,50 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
-          <video
-            height="175"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-            preload="none"
-            width="280"
-          />
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
+            >
+              Once Upon a Time in Hollywood
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
             >
               Kill Bill
             </a>
