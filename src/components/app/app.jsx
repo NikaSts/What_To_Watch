@@ -5,11 +5,11 @@ import MoviePage from '../movie-page/movie-page';
 import {connect} from 'react-redux';
 import {movieType} from '../../types';
 import {bool} from 'prop-types';
-import withFullScreenPlayer from '../../hocs/with-full-screen-player/with-full-screen-player';
-import VideoPlayerBig from '../video-player-big/video-player-big';
+import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
+import VideoPlayer from '../video-player/video-player';
 
 
-const WrappedPlayer = withFullScreenPlayer(VideoPlayerBig);
+const WrappedPlayer = withFullScreen(VideoPlayer);
 
 class App extends PureComponent {
   constructor(props) {

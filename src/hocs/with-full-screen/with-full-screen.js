@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from 'react';
 import {string} from 'prop-types';
 
 
-const withFullScreenPlayer = (Component) => {
+const withFullScreen = (Component) => {
   class Wrapper extends PureComponent {
     constructor(props) {
       super(props);
@@ -107,4 +107,4 @@ const withFullScreenPlayer = (Component) => {
 };
 
 
-export default withFullScreenPlayer;
+export default withFullScreen;

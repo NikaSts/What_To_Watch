@@ -2,10 +2,10 @@ import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import {arrayOf, func} from 'prop-types';
 import {cardMovieType} from '../../types';
-import withActivePlayer from '../../hocs/with-active-player/with-active-player';
+import withVideo from '../../hocs/with-video/with-video';
 
 
-const WrappedMovieCard = withActivePlayer(MovieCard);
+const WrappedMovieCard = withVideo(MovieCard);
 
 const MovieList = ({movies, onMovieTitleClick}) => (
   <div className="catalog__movies-list">

@@ -1,23 +1,18 @@
 import React from 'react';
-import {func, string, bool} from 'prop-types';
-import VideoPlayer from '../video-player/video-player';
+import {func, string, node} from 'prop-types';
 
 const MovieCard = ({
-  title, src, poster, onMovieTitleClick, isPlaying, onMouseEnter, onMouseLeave
+  title, onMovieTitleClick, onMouseEnter, onMouseLeave, children
 }) => (
   <article
     className="small-movie-card catalog__movies-card"
     onClick={onMovieTitleClick}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
-
   >
-    <VideoPlayer
-      src={src}
-      poster={poster}
-      muted={true}
-      isPlaying={isPlaying}
-    />
+    <div className="small-movie-card__image">
+      {children}
+    </div>
     <h3 className="small-movie-card__title">
       <a
         className="small-movie-card__link"
@@ -34,12 +29,10 @@ const MovieCard = ({
 
 MovieCard.propTypes = {
   title: string.isRequired,
-  src: string.isRequired,
-  poster: string.isRequired,
   onMovieTitleClick: func.isRequired,
-  isPlaying: bool.isRequired,
   onMouseEnter: func.isRequired,
   onMouseLeave: func.isRequired,
+  children: node.isRequired,
 };
 
 export default MovieCard;
