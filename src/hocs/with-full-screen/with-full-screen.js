@@ -1,5 +1,5 @@
 import React, {PureComponent, createRef} from 'react';
-import {string} from 'prop-types';
+import {string, func} from 'prop-types';
 
 
 const withFullScreen = (Component) => {
@@ -15,7 +15,6 @@ const withFullScreen = (Component) => {
 
       this._handlePlayButtonToggle = this._handlePlayButtonToggle.bind(this);
       this._handleFullScreenButtonClick = this._handleFullScreenButtonClick.bind(this);
-      this._handleExitButtonClick = this._handleExitButtonClick.bind(this);
     }
 
     componentDidMount() {
@@ -65,14 +64,9 @@ const withFullScreen = (Component) => {
       video.requestFullscreen();
     }
 
-    _handleExitButtonClick() {
-    // eslint-disable-next-line no-console
-      console.log(`exit`);
-    }
-
     render() {
       const {isPlaying, progress, duration} = this.state;
-      const {title, poster, src} = this.props;
+      const {title, poster, src, onExitButtonClick} = this.props;
 
       return (
         <Component
@@ -82,7 +76,7 @@ const withFullScreen = (Component) => {
           duration={duration}
           onPlayButtonToggle={this._handlePlayButtonToggle}
           onFullScreenButtonClick={this._handleFullScreenButtonClick}
-          onExitButtonClick={this._handleExitButtonClick}
+          onExitButtonClick={onExitButtonClick}
         >
           <video
             ref={this._videoRef}
@@ -101,6 +95,7 @@ const withFullScreen = (Component) => {
     title: string.isRequired,
     src: string.isRequired,
     poster: string.isRequired,
+    onExitButtonClick: func.isRequired,
   };
 
   return Wrapper;

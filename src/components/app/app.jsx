@@ -4,9 +4,10 @@ import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import {connect} from 'react-redux';
 import {movieType} from '../../types';
-import {bool} from 'prop-types';
+import {bool, func} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
+import {closeFullScreenPlayer} from '../../store/actions';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -36,18 +37,20 @@ class App extends PureComponent {
   }
 
   _renderVideoPlayer() {
-    const {activeMovie, promoMovie} = this.props;
+    const {activeMovie, promoMovie, onExitButtonClick} = this.props;
     if (activeMovie) {
       return <WrappedPlayer
         title={activeMovie.title}
         src={activeMovie.preview}
         poster={`img/bg-${activeMovie.image}.jpg`}
+        onExitButtonClick={onExitButtonClick}
       />;
     }
     return <WrappedPlayer
       title={promoMovie.title}
       src={promoMovie.preview}
       poster={`img/bg-${promoMovie.image}.jpg`}
+      onExitButtonClick={onExitButtonClick}
     />;
   }
 
@@ -71,6 +74,7 @@ App.propTypes = {
   activeMovie: movieType,
   promoMovie: movieType.isRequired,
   isVideoPlayer: bool.isRequired,
+  onExitButtonClick: func.isRequired,
 };
 
 const mapStateToProps = ({
@@ -79,6 +83,12 @@ const mapStateToProps = ({
   activeMovie, promoMovie, isVideoPlayer
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onExitButtonClick(activeMovie) {
+    dispatch(closeFullScreenPlayer(activeMovie));
+  }
+});
+
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
