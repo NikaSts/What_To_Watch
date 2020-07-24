@@ -3,20 +3,11 @@ import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
-import {reducer} from './store/reduсers/reducer';
-import {movies} from './mocks/movies';
-import {promoMovie} from './mocks/promoMovie';
+import {rootReducer} from './store/reduсers/reducer';
 
-const initialState = {
-  promoMovie,
-  activeMovie: null,
-  movies,
-  isVideoPlayer: false,
-};
 
 const store = createStore(
-    reducer,
-    initialState,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 

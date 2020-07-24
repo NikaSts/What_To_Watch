@@ -1,7 +1,11 @@
 import {extend} from '../../../utils/funcs';
 import {ActionType} from '../../../utils/consts';
 
-export const reducer = (state, action) => {
+const initialState = {
+  isVideoPlayer: false,
+};
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.OPEN_FULL_SCREEN_PLAYER:
       return extend(state, {

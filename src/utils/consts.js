@@ -34,5 +34,13 @@ export const DELAY = 1000;
 export const ActionType = {
   CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
   OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
-  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`
+  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
+  LOAD_MOVIES: `loadMovies`,
+  LOAD_PROMO_MOVIE: `loadPromoMovie`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
 };
