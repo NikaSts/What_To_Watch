@@ -8,7 +8,7 @@ const titles = [`Fantastic Beasts The Crimes of Grindelwald`, `Bohemian Rhapsody
   `Aviator`, `We need to talk about Kevin`, `What We Do in the Shadows`, `Revenant`,
   `Johnny English`, `Shutter Island`, `Pulp Fiction`, `No Country for Old Men`, `Snatch`,
   `Moonrise Kingdom`, `Seven Years in Tibet`, `Midnight Special`, `War of the Worlds`,
-  `Dardjeeling Limited`, `Orlando`, `Mindhunter`, `Midnight Special`];
+  `Dardjeeling Limited`, `Orlando`, `Mindhunter`];
 const genres = [`Comedia`, `Crime`, `Documentary`, `Drama`, `Horror`, `Kids & Family`,
   `Romance`, `Sci-Fi`, `Thrillers`];
 const directors = [`Wes Andreson`, `Steven Spielberg`, `Ridley Scott`, `Tim Burton`,
@@ -36,7 +36,7 @@ export const movies = titles.map((title) => {
     ratingScore: score.toString().split(``).join(`,`),
     ratingLevel: getRatingLevel(score),
     ratingCount: getRandomNumber(1, 500),
-    text: [`Ясность нашей позиции очевидна: высококачественный прототип будущего проекта
+    paragraphs: [`Ясность нашей позиции очевидна: высококачественный прототип будущего проекта
     в значительной степени обусловливает важность глубокомысленных рассуждений. Экономическая
     повестка сегодняшнего дня однозначно определяет каждого участника как способного принимать
     собственные решения касаемо форм воздействия.`, `С учётом сложившейся международной
@@ -48,8 +48,7 @@ export const movies = titles.map((title) => {
     `В целом, конечно, укрепление и развитие внутренней структуры не даёт нам иного выбора,
     кроме определения существующих финансовых и административных условий.`],
     director: getRandomItem(directors),
-    starring: getRandomItems(suffleItems(actors)),
+    stars: getRandomItems(suffleItems(actors)),
     preview: getRandomItem(previews),
   });
 });
-

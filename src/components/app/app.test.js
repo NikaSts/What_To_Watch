@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import App from './app.jsx';
+import App from './app';
 
 const mockStore = configureStore([]);
 
@@ -16,13 +16,13 @@ const activeMovie = {
   ratingScore: `8,9`,
   ratingLevel: `Very good`,
   ratingCount: 240,
-  text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
   director: `Quentin Tarantino`,
-  starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+  stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
 };
 const promoMovie = {
@@ -35,13 +35,13 @@ const promoMovie = {
   ratingScore: `8,9`,
   ratingLevel: `Very good`,
   ratingCount: 240,
-  text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+  paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
   director: `Quentin Tarantino`,
-  starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+  stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
   preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
 };
 const movies = [
@@ -55,13 +55,13 @@ const movies = [
     ratingScore: `8,9`,
     ratingLevel: `Very good`,
     ratingCount: 240,
-    text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+    paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
     director: `Quentin Tarantino`,
-    starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+    stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
   },
   {
@@ -74,39 +74,30 @@ const movies = [
     ratingScore: `8,9`,
     ratingLevel: `Very good`,
     ratingCount: 240,
-    text: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+    paragraphs: [`Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.`],
     director: `Quentin Tarantino`,
-    starring: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
+    stars: [`Leonardo DiCaprio`, `Brad Pitt`, `Margot Robbie`],
     preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`
   },
 ];
-const genres = [`All genres`, `Drama`];
-const activeGenre = `All genres`;
-const moviesByGenre = movies;
-const shownMoviesCount = 3;
 
 it(`App should render Main`, () => {
   const store = mockStore({
     activeMovie: null,
     promoMovie,
+    isVideoPlayer: false,
     movies,
-    genres,
-    activeGenre,
-    moviesByGenre,
-    shownMoviesCount,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            onGenreClick={() => { }}
             onMovieTitleClick={() => { }}
-            onShowMoreButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -123,20 +114,15 @@ it(`App should render MoviePage`, () => {
   const store = mockStore({
     activeMovie,
     promoMovie,
+    isVideoPlayer: false,
     movies,
-    genres,
-    activeGenre,
-    moviesByGenre,
-    shownMoviesCount,
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            onGenreClick={() => { }}
             onMovieTitleClick={() => { }}
-            onShowMoreButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -147,3 +133,27 @@ it(`App should render MoviePage`, () => {
 
   expect(tree).toMatchSnapshot();
 });
+
+/* it(`App should render VideoPlayer`, () => {
+  const store = mockStore({
+    activeMovie: null,
+    promoMovie,
+    isVideoPlayer: true,
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <App
+            onMovieTitleClick={() => { }}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+      .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+ */

@@ -1,46 +1,32 @@
-import React, {Component} from 'react';
+import React from 'react';
+import MovieCard from '../movie-card/movie-card';
 import {arrayOf, func} from 'prop-types';
-import MovieCard from '../movie-card/movie-card.jsx';
-import {cardMovieType} from '../../types.js';
+import {cardMovieType} from '../../types';
+import withVideo from '../../hocs/with-video/with-video';
 
 
-export default class MovieList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hoveredCard: null,
-    };
-  }
+const WrappedMovieCard = withVideo(MovieCard);
 
-  _handleMovieCardMouseEnter(hoveredCard) {
-    this.setState({hoveredCard});
-  }
+const MovieList = ({movies, onMovieTitleClick}) => (
+  <div className="catalog__movies-list">
+    {movies.map((movie) => {
+      const {title, image, preview} = movie;
+      return (
+        <WrappedMovieCard
+          key={movie.id}
+          title={title}
+          src={preview}
+          poster={`img/${image}.jpg`}
+          onMovieTitleClick={() => onMovieTitleClick(movie)}
+        />
+      );
+    })}
+  </div>
+);
 
-  _handleMovieCardMouseLeave() {
-    this.setState({hoveredCard: null});
-  }
-
-  render() {
-    const {movies, onMovieTitleClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {movies.map((movie) => {
-          return (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieTitleClick={() => onMovieTitleClick(movie)}
-              onMovieCardMouseEnter={() => this._handleMovieCardMouseEnter(movie)}
-              onMovieCardMouseLeave={() => this._handleMovieCardMouseLeave}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
 MovieList.propTypes = {
   movies: arrayOf(cardMovieType.isRequired).isRequired,
   onMovieTitleClick: func.isRequired,
 };
+
+export default MovieList;

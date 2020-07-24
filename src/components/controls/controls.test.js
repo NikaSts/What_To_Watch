@@ -4,11 +4,11 @@ import Controls from './controls';
 
 
 it(`Controls should render correctly if user is logged in`, () => {
-  const isLogged = true;
   const tree = renderer
   .create(
       <Controls
-        isLogged={isLogged}
+        isLogged={true}
+        onPlayButtonClick={() => {}}
       />
   ).toJSON();
 
@@ -16,11 +16,11 @@ it(`Controls should render correctly if user is logged in`, () => {
 });
 
 it(`Controls should render correctly if user is not logged in`, () => {
-  const isLogged = false;
   const tree = renderer
   .create(
       <Controls
-        isLogged={isLogged}
+        isLogged={false}
+        onPlayButtonClick={() => {}}
       />
   ).toJSON();
 

@@ -15,10 +15,7 @@ exports[`MoviesList should render correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
-        poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
         width="280"
       />
     </div>
@@ -28,7 +25,6 @@ exports[`MoviesList should render correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -45,10 +41,7 @@ exports[`MoviesList should render correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
-        poster="img/bohemian-rhapsody.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
         width="280"
       />
     </div>
@@ -58,7 +51,6 @@ exports[`MoviesList should render correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         Bohemian Rhapsody
       </a>
@@ -75,10 +67,7 @@ exports[`MoviesList should render correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
-        poster="img/macbeth.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
         width="280"
       />
     </div>
@@ -88,7 +77,6 @@ exports[`MoviesList should render correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         Macbeth
       </a>
@@ -105,10 +93,7 @@ exports[`MoviesList should render correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
-        poster="img/aviator.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
         width="280"
       />
     </div>
@@ -118,7 +103,6 @@ exports[`MoviesList should render correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         Aviator
       </a>
@@ -135,10 +119,7 @@ exports[`MoviesList should render correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
-        poster="img/we-need-to-talk-about-kevin.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
         width="280"
       />
     </div>
@@ -148,7 +129,6 @@ exports[`MoviesList should render correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         We need to talk about Kevin
       </a>
@@ -165,10 +145,7 @@ exports[`MoviesList should render correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
-        poster="img/what-we-do-in-the-shadows.jpg"
         preload="none"
-        src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
         width="280"
       />
     </div>
@@ -178,7 +155,6 @@ exports[`MoviesList should render correctly 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
-        onClick={[Function]}
       >
         What We Do in the Shadows
       </a>

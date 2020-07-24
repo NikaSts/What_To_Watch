@@ -102,6 +102,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -190,10 +191,7 @@ Array [
           >
             <video
               height="175"
-              muted={true}
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
               width="280"
             />
           </div>
@@ -203,7 +201,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -220,10 +217,7 @@ Array [
           >
             <video
               height="175"
-              muted={true}
-              poster="img/bohemian-rhapsody.jpg"
               preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
               width="280"
             />
           </div>
@@ -233,7 +227,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -249,7 +242,6 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -372,6 +364,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -501,11 +494,13 @@ Array [
           <div
             className="movie-card__text"
           >
-            Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
+            <p>
+              Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
   where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
   stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
   anymore. The ninth film from the writer-director features a large ensemble cast and multiple
   storylines in a tribute to the final moments of Hollywood's golden age.
+            </p>
             <p
               className="movie-card__director"
             >
@@ -553,10 +548,7 @@ Array [
           >
             <video
               height="175"
-              muted={true}
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
               width="280"
             />
           </div>
@@ -566,7 +558,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -583,10 +574,7 @@ Array [
           >
             <video
               height="175"
-              muted={true}
-              poster="img/bohemian-rhapsody.jpg"
               preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm"
               width="280"
             />
           </div>
@@ -596,7 +584,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onClick={[Function]}
             >
               Bohemian Rhapsody
             </a>

@@ -1,94 +1,30 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MovieCard from './movie-card.jsx';
+import MovieCard from './movie-card';
 
-
-const movie = {
-  id: `one`,
-  title: `Harry Potter`,
-  image: `harry-potter`,
-  preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
-};
-
-Enzyme.configure({
+configure({
   adapter: new Adapter(),
 });
 
-it(`MovieCard onMouseEnter/onMouseLeave starts/ends playing video`, () => {
-  const isPlaying = false;
-  const onMovieCardMouseEnter = jest.fn();
-  const onMovieCardMouseLeave = jest.fn();
-  const movieCard = shallow(
-      <MovieCard
-        movie={movie}
-        isPlaying={isPlaying}
-        onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={onMovieCardMouseEnter}
-        onMovieCardMouseLeave={onMovieCardMouseLeave}
-      />);
+const title = `Harry Potter`;
+const children = <video />;
 
-  expect(movieCard.state(`isPlaying`)).toBe(false);
-
-  movieCard.simulate(`mouseEnter`);
-  expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
-  expect(movieCard.state(`isPlaying`)).toBe(true);
-
-  movieCard.simulate(`mouseLeave`);
-  expect(onMovieCardMouseLeave).toHaveBeenCalledTimes(1);
-  expect(movieCard.state(`isPlaying`)).toBe(false);
-});
-
-it(`MovieCard onMouseEnter should return the movie preview`, () => {
-  const onMovieCardMouseEnter = jest.fn((preview) => preview);
-  const movieCard = shallow(
-      <MovieCard
-        movie={movie}
-        onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={onMovieCardMouseEnter}
-        onMovieCardMouseLeave={() => {}}
-      />
-  );
-
-  movieCard.simulate(`mouseEnter`, movie.preview);
-  expect(onMovieCardMouseEnter).toHaveBeenCalledTimes(1);
-  expect(onMovieCardMouseEnter).toHaveReturnedWith(movie.preview);
-});
-
-it(`MovieCard onMouseLeave should return null`, () => {
-  const onMovieCardMouseLeave = jest.fn((id) => id);
-  const movieCard = shallow(
-      <MovieCard
-        movie={movie}
-        onMovieTitleClick={() => {}}
-        onMovieCardMouseEnter={() => {}}
-        onMovieCardMouseLeave={onMovieCardMouseLeave}
-      />
-  );
-
-  movieCard.simulate(`mouseLeave`);
-  expect(onMovieCardMouseLeave).toHaveBeenCalledTimes(1);
-  expect(onMovieCardMouseLeave).not.toHaveReturnedWith(movie.id);
-});
-
-it(`Movie title should be pressed and new page won't open`, () => {
+it(`MovieCard should be pressed`, () => {
   const onMovieTitleClick = jest.fn();
-  const movieCard = shallow(
+  const movieCard = mount(
       <MovieCard
-        movie={movie}
+        title={title}
         onMovieTitleClick={onMovieTitleClick}
-        onMovieCardMouseEnter={() => {}}
-        onMovieCardMouseLeave={() => {}}
-      />
+        onMouseEnter={() => {}}
+        onMouseLeave={() => { }}
+      >
+        {children}
+      </MovieCard>
   );
 
   const movieTitle = movieCard.find(`a.small-movie-card__link`);
-  const newPageOpenPrevention = jest.fn();
-
-  movieTitle.forEach((title) => title.simulate(`click`, {
-    preventDefault: newPageOpenPrevention,
-  }));
+  movieTitle.simulate(`click`);
 
   expect(onMovieTitleClick).toHaveBeenCalledTimes(1);
-  expect(newPageOpenPrevention).toHaveBeenCalledTimes(1);
 });

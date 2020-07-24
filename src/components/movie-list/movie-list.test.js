@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieList from './movie-list.jsx';
+import MovieList from './movie-list';
 
 const movies = [
   {
@@ -40,7 +40,6 @@ const movies = [
     preview: `https://upload.wikimedia.org/wikipedia/commons/b/bb/2020-06-19_%E2%80%94_Fechner_monument%2C_Diepenheim.webm`,
   },
 ];
-
 const activeGenre = `All genres`;
 
 it(`MoviesList should render correctly`, () => {

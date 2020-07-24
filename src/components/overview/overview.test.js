@@ -5,10 +5,10 @@ import Overview from './overview';
 const ratingScore = `8,9`;
 const ratingLevel = `Very Good`;
 const ratingCount = 240;
-const text = [`In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
+const paragraphs = [`In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
   presided over by concierge Gustave H. (Ralph Fiennes).`];
 const director = `Wes Andreson`;
-const starring = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`];
+const stars = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`];
 
 
 it(`Overview should render correctly`, () => {
@@ -18,9 +18,9 @@ it(`Overview should render correctly`, () => {
           ratingScore={ratingScore}
           ratingLevel={ratingLevel}
           ratingCount={ratingCount}
-          text={text}
+          paragraphs={paragraphs}
           director={director}
-          starring={starring}
+          stars={stars}
         />)
     .toJSON();
 

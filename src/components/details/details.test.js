@@ -6,7 +6,7 @@ const runTime = `1h 29m`;
 const genre = `Comedy`;
 const releaseDate = 2004;
 const director = `Wes Andreson`;
-const starring = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`];
+const stars = [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`];
 
 
 it(`Overview should render correctly`, () => {
@@ -17,7 +17,7 @@ it(`Overview should render correctly`, () => {
           genre={genre}
           releaseDate={releaseDate}
           director={director}
-          starring={starring}
+          stars={stars}
         />)
     .toJSON();
 

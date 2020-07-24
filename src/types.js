@@ -10,9 +10,9 @@ export const movieType = shape({
   ratingScore: string.isRequired,
   ratingLevel: string.isRequired,
   ratingCount: number.isRequired,
-  text: arrayOf(string).isRequired,
+  paragraphs: arrayOf(string).isRequired,
   director: string.isRequired,
-  starring: arrayOf(string).isRequired,
+  stars: arrayOf(string).isRequired,
   preview: string.isRequired,
 });
 
