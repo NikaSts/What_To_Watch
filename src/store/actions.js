@@ -6,13 +6,13 @@ export const changeActiveMovie = (activeMovie) => ({
   payload: {activeMovie},
 });
 
-export const loadMovies = (movies) => ({
-  type: ActionType.LOAD_MOVIES,
+export const getMovies = (movies) => ({
+  type: ActionType.GET_MOVIES,
   payload: {movies},
 });
 
-export const loadPromoMovie = (promoMovie) => ({
-  type: ActionType.LOAD_PROMO_MOVIE,
+export const getPromoMovie = (promoMovie) => ({
+  type: ActionType.GET_PROMO_MOVIE,
   payload: {promoMovie},
 });
 
@@ -25,6 +25,6 @@ export const closeFullScreenPlayer = () => ({
 });
 
 export const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
+  type: ActionType.REQUIRE_AUTHORIZATION,
   payload: {status},
 });

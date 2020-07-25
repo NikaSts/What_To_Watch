@@ -35,9 +35,9 @@ export const ActionType = {
   CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
   OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
   CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
-  LOAD_MOVIES: `loadMovies`,
-  LOAD_PROMO_MOVIE: `loadPromoMovie`,
-  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  GET_MOVIES: `getMovies`,
+  GET_PROMO_MOVIE: `getPromoMovie`,
+  REQUIRE_AUTHORIZATION: `requireAuthorization`,
 };
 
 export const AuthorizationStatus = {
