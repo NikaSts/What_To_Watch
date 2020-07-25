@@ -40,8 +40,7 @@ const withShowMoreButton = (Component) => {
                 prevState.moviesToShow.length + MOVIES_TO_SHOW_COUNT
             )
           ]
-        }
-        );
+        });
       });
     }
 

@@ -8,17 +8,17 @@ import {promoMovieType} from '../../types';
 import {func} from 'prop-types';
 
 const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
-  const {image, title, genre, releaseDate} = promoMovie;
+  const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
   return (
     <section className="movie-card">
       <PageHeader
-        imagePath={`img/bg-${image}.jpg`}
+        imagePath={backgroundImage}
         title={title}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={`img/${image}-poster.jpg`} alt={title} width="218" height="327" />
+            <img src={poster} alt={title} width="218" height="327" />
           </div>
           <MovieInfo
             title={title}

@@ -7,10 +7,13 @@ import Details from '../details/details';
 import {tabs, Tab} from '../../utils/consts';
 import {movieType} from '../../types';
 import {string, func} from 'prop-types';
+import {getRatingLevel} from '../../utils/funcs';
 
 const renderActiveTab = (activeTab, activeMovie) => {
-  const {runTime, genre, releaseDate, ratingScore, ratingLevel, ratingCount,
-    paragraphs, director, stars} = activeMovie;
+  const {runTime, genre, releaseDate, ratingScore, ratingCount,
+    description, director, stars} = activeMovie;
+  const ratingLevel = getRatingLevel(ratingScore);
+
   switch (activeTab) {
     case Tab.REVIEWS:
       return <Reviews />;
@@ -27,7 +30,7 @@ const renderActiveTab = (activeTab, activeMovie) => {
         ratingScore={ratingScore}
         ratingLevel={ratingLevel}
         ratingCount={ratingCount}
-        paragraphs={paragraphs}
+        description={description}
         director={director}
         stars={stars}
       />;

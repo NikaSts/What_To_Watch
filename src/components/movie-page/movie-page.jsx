@@ -13,13 +13,13 @@ import Catalog from '../catalog/catalog';
 const WrappedTabs = withActiveItem(Tabs);
 
 const MoviePage = ({activeMovie, onPlayButtonClick}) => {
-  const {id, title, genre, releaseDate, image} = activeMovie;
+  const {id, title, genre, releaseDate, poster} = activeMovie;
   return (
     <Fragment>
       <section key={id} className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <PageHeader
-            imagePath={`img/${image}.jpg`}
+            imagePath={poster}
             title={title}
           />
           <div className="movie-card__wrap">
@@ -36,7 +36,7 @@ const MoviePage = ({activeMovie, onPlayButtonClick}) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${image}.jpg`} alt={title} width="218" height="327" />
+              <img src={poster} alt={title} width="218" height="327" />
             </div>
             <WrappedTabs
               activeMovie={activeMovie}
