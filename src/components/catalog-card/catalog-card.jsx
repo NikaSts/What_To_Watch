@@ -1,7 +1,7 @@
 import React from 'react';
 import {func, string, node} from 'prop-types';
 
-const MovieCard = ({
+const CatalogCard = ({
   title, onMovieTitleClick, onMouseEnter, onMouseLeave, children
 }) => (
   <article
@@ -21,7 +21,7 @@ const MovieCard = ({
   </article>
 );
 
-MovieCard.propTypes = {
+CatalogCard.propTypes = {
   title: string.isRequired,
   onMovieTitleClick: func.isRequired,
   onMouseEnter: func.isRequired,
@@ -29,4 +29,4 @@ MovieCard.propTypes = {
   children: node.isRequired,
 };
 
-export default MovieCard;
+export default CatalogCard;

@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import cn from 'classnames';
-import MovieList from '../movie-list/movie-list';
-import GenreList from '../genre-list/genre-list';
+import CatalogList from '../catalog-list/catalog-list';
+import GenreList from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {func, arrayOf, string, bool} from 'prop-types';
 import {movieType} from '../../types';
@@ -11,7 +11,7 @@ import {getGenres, filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
 import NameSpace from '../../store/reduсers/name-space';
 
-const WrappedMovieList = withShowMoreButton(MovieList);
+const WrappedCatalogList = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
@@ -40,11 +40,11 @@ const Catalog = (props) => {
         onGenreClick={onItemClick}
       />}
       {isMain
-        ? <WrappedMovieList
+        ? <WrappedCatalogList
           movies={moviesByGenre}
           onMovieTitleClick={onMovieTitleClick}
         />
-        : <MovieList
+        : <CatalogList
           movies={moviesToShow}
           onMovieTitleClick={onMovieTitleClick}
         />}

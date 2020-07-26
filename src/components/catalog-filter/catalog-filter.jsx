@@ -3,7 +3,7 @@ import {arrayOf, string, func} from 'prop-types';
 import cn from 'classnames';
 import {MAX_GENRES_TO_SHOW} from '../../utils/consts';
 
-const GenreList = ({genres, activeGenre, onGenreClick}) => {
+const CatalogFilter = ({genres, activeGenre, onGenreClick}) => {
   const genresToShow = genres.slice(0, MAX_GENRES_TO_SHOW);
 
   return (
@@ -34,11 +34,11 @@ const GenreList = ({genres, activeGenre, onGenreClick}) => {
   );
 };
 
-GenreList.propTypes = {
+CatalogFilter.propTypes = {
   genres: arrayOf(string.isRequired).isRequired,
   activeGenre: string.isRequired,
   onGenreClick: func.isRequired,
 };
 
 
-export default GenreList;
+export default CatalogFilter;
