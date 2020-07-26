@@ -14,7 +14,7 @@ export const DataOperation = {
   loadPromoMovie: () => (dispatch, getState, api) => (
     api.get(`/films/promo`)
     .then((response) => {
-      dispatch(getPromoMovie(response.data));
+      dispatch(getPromoMovie(movieAdapter(response.data)));
     })
   ),
 };

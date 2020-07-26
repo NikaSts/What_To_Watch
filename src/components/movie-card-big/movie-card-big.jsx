@@ -13,8 +13,8 @@ const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
   return (
     <section className="movie-card">
       <PageHeader
-        imagePath={backgroundImage}
         title={title}
+        backgroundImage={backgroundImage}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">

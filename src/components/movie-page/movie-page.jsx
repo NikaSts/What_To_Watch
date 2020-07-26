@@ -14,14 +14,17 @@ import NameSpace from '../../store/reduсers/name-space';
 const WrappedTabs = withActiveItem(Tabs);
 
 const MoviePage = ({activeMovie, onPlayButtonClick}) => {
-  const {id, title, genre, releaseDate, poster} = activeMovie;
+  const {id, title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
   return (
     <Fragment>
-      <section key={id} className="movie-card movie-card--full">
+      <section
+        key={id}
+        className="movie-card movie-card--full"
+        style={{backgroundColor: `${backgroundColor}`}}>
         <div className="movie-card__hero">
           <PageHeader
-            imagePath={poster}
             title={title}
+            backgroundImage={backgroundImage}
           />
           <div className="movie-card__wrap">
             <MovieInfo

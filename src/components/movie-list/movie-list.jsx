@@ -10,13 +10,13 @@ const WrappedMovieCard = withVideo(MovieCard);
 const MovieList = ({movies, onMovieTitleClick}) => (
   <div className="catalog__movies-list">
     {movies.map((movie) => {
-      const {id, title, poster, preview} = movie;
+      const {id, title, previewImage, preview} = movie;
       return (
         <WrappedMovieCard
           key={id}
           title={title}
           src={preview}
-          poster={poster}
+          previewImage={previewImage}
           onMovieTitleClick={() => onMovieTitleClick(movie)}
         />
       );
