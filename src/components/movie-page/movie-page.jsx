@@ -9,6 +9,7 @@ import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType} from '../../types';
 import Catalog from '../catalog/catalog';
+import NameSpace from '../../store/reduсers/name-space';
 
 const WrappedTabs = withActiveItem(Tabs);
 
@@ -59,13 +60,10 @@ MoviePage.propTypes = {
   onPlayButtonClick: func.isRequired,
 };
 
-const mapStateToProps = ({movies, activeMovie}) => {
-  return {
-    movies,
-    activeMovie,
-    onPlayButtonClick: func.isRequired,
-  };
-};
+const mapStateToProps = (store) => ({
+  movies: store[NameSpace.DATA].movies,
+  activeMovie: store[NameSpace.DATA].activeMovie,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onMovieTitleClick(activeMovie) {

@@ -8,6 +8,7 @@ import {bool, func} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
 import {closeFullScreenPlayer} from '../../store/actions';
+import NameSpace from '../../store/reduсers/name-space';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -41,15 +42,15 @@ class App extends PureComponent {
     if (activeMovie) {
       return <WrappedPlayer
         title={activeMovie.title}
-        src={activeMovie.preview}
-        poster={`img/bg-${activeMovie.image}.jpg`}
+        src={activeMovie.video}
+        poster={activeMovie.poster}
         onExitButtonClick={onExitButtonClick}
       />;
     }
     return <WrappedPlayer
       title={promoMovie.title}
-      src={promoMovie.preview}
-      poster={`img/bg-${promoMovie.image}.jpg`}
+      src={promoMovie.video}
+      poster={promoMovie.poster}
       onExitButtonClick={onExitButtonClick}
     />;
   }
@@ -77,10 +78,10 @@ App.propTypes = {
   onExitButtonClick: func.isRequired,
 };
 
-const mapStateToProps = ({
-  activeMovie, promoMovie, isVideoPlayer
-}) => ({
-  activeMovie, promoMovie, isVideoPlayer
+const mapStateToProps = (store) => ({
+  activeMovie: store[NameSpace.DATA].activeMovie,
+  promoMovie: store[NameSpace.DATA].promoMovie,
+  isVideoPlayer: store[NameSpace.PLAYER].isVideoPlayer,
 });
 
 const mapDispatchToProps = (dispatch) => ({

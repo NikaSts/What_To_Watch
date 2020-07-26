@@ -9,6 +9,7 @@ import {movieType} from '../../types';
 import {changeActiveMovie} from '../../store/actions';
 import {getGenres, filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
+import NameSpace from '../../store/reduсers/name-space';
 
 const WrappedMovieList = withShowMoreButton(MovieList);
 
@@ -65,7 +66,9 @@ Catalog.propTypes = {
   onItemClick: func,
 };
 
-const mapStateToProps = ({movies}) => ({movies});
+const mapStateToProps = (store) => ({
+  movies: store[NameSpace.DATA].movies,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onMovieTitleClick(activeMovie) {

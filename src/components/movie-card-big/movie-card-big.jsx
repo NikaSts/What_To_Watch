@@ -6,6 +6,7 @@ import PageHeader from '../page-header/page-header';
 import {openFullScreenPlayer} from '../../store/actions';
 import {promoMovieType} from '../../types';
 import {func} from 'prop-types';
+import NameSpace from '../../store/reduсers/name-space';
 
 const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
   const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
@@ -38,7 +39,9 @@ MovieCardBig.propTypes = {
   onPlayButtonClick: func.isRequired,
 };
 
-const mapStateToProps = ({promoMovie}) => ({promoMovie});
+const mapStateToProps = (store) => ({
+  promoMovie: store[NameSpace.DATA].promoMovie,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
