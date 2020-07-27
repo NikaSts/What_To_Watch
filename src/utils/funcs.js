@@ -63,7 +63,7 @@ export const filterMovies = (movies, activeGenre, movieTitle) => {
   return [...movies].filter((movie) => movie.genre === activeGenre && movie.title !== movieTitle);
 };
 
-export const getGenres = (movies) => {
+export const getGenresFromMovies = (movies) => {
   return [DEFAULT_GENRE, ...new Set(movies.map((movie) => movie.genre))];
 };
 
@@ -82,4 +82,3 @@ export const formatTime = (time) => {
     (`0` + seconds).slice(-2)
   ].join(`:`);
 };
-

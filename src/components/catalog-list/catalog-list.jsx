@@ -7,7 +7,7 @@ import withVideo from '../../hocs/with-video/with-video';
 
 const WrappedCatalogCard = withVideo(CatalogCard);
 
-const CatalogList = ({movies, onMovieTitleClick}) => (
+const CatalogList = ({movies, onCatalogCardClick}) => (
   <div className="catalog__movies-list">
     {movies.map((movie) => {
       const {id, title, previewImage, preview} = movie;
@@ -17,7 +17,7 @@ const CatalogList = ({movies, onMovieTitleClick}) => (
           title={title}
           src={preview}
           previewImage={previewImage}
-          onMovieTitleClick={() => onMovieTitleClick(movie)}
+          onCatalogCardClick={() => onCatalogCardClick(movie)}
         />
       );
     })}
@@ -26,7 +26,7 @@ const CatalogList = ({movies, onMovieTitleClick}) => (
 
 CatalogList.propTypes = {
   movies: arrayOf(cardMovieType.isRequired).isRequired,
-  onMovieTitleClick: func.isRequired,
+  onCatalogCardClick: func.isRequired,
 };
 
 export default CatalogList;

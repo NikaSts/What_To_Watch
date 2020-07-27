@@ -46,12 +46,12 @@ const withShowMoreButton = (Component) => {
 
     render() {
       const {moviesToShow} = this.state;
-      const {movies, onMovieTitleClick} = this.props;
+      const {movies, onCatalogCardClick} = this.props;
       return (
         <Fragment>
           <Component
             movies={moviesToShow}
-            onMovieTitleClick={onMovieTitleClick}
+            onCatalogCardClick={onCatalogCardClick}
           />
           {(moviesToShow.length < movies.length) && <ShowMoreButton
             onShowMoreButtonClick={this._handleShowMoreButtonClick}
@@ -63,7 +63,7 @@ const withShowMoreButton = (Component) => {
   }
   Wrapper.propTypes = {
     movies: arrayOf(cardMovieType.isRequired).isRequired,
-    onMovieTitleClick: func.isRequired,
+    onCatalogCardClick: func.isRequired,
   };
 
   return Wrapper;

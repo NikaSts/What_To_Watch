@@ -2,11 +2,11 @@ import React from 'react';
 import {func, string, node} from 'prop-types';
 
 const CatalogCard = ({
-  title, onMovieTitleClick, onMouseEnter, onMouseLeave, children
+  title, onCatalogCardClick, onMouseEnter, onMouseLeave, children
 }) => (
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={onMovieTitleClick}
+    onClick={onCatalogCardClick}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
   >
@@ -23,7 +23,7 @@ const CatalogCard = ({
 
 CatalogCard.propTypes = {
   title: string.isRequired,
-  onMovieTitleClick: func.isRequired,
+  onCatalogCardClick: func.isRequired,
   onMouseEnter: func.isRequired,
   onMouseLeave: func.isRequired,
   children: node.isRequired,

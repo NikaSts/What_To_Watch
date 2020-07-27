@@ -7,8 +7,9 @@ import {movieType} from '../../types';
 import {bool, func} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
-import {closeFullScreenPlayer} from '../../store/actions';
-import NameSpace from '../../store/reduсers/name-space';
+import {PlayerActionCreator} from '../../store/reduсers/player/player';
+import {changeActiveMovie, getPromoMovie} from '../../store/reduсers/data/selectors';
+import {checkPlayerStatus} from '../../store/reduсers/player/selectors';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -79,14 +80,14 @@ App.propTypes = {
 };
 
 const mapStateToProps = (store) => ({
-  activeMovie: store[NameSpace.DATA].activeMovie,
-  promoMovie: store[NameSpace.DATA].promoMovie,
-  isVideoPlayer: store[NameSpace.PLAYER].isVideoPlayer,
+  activeMovie: changeActiveMovie(store),
+  promoMovie: getPromoMovie(store),
+  isVideoPlayer: checkPlayerStatus(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onExitButtonClick(activeMovie) {
-    dispatch(closeFullScreenPlayer(activeMovie));
+    dispatch(PlayerActionCreator.closeFullScreenPlayer(activeMovie));
   }
 });
 

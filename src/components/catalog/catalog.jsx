@@ -2,24 +2,24 @@ import React from 'react';
 import {connect} from 'react-redux';
 import cn from 'classnames';
 import CatalogList from '../catalog-list/catalog-list';
-import GenreList from '../catalog-filter/catalog-filter';
+import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {func, arrayOf, string, bool} from 'prop-types';
 import {movieType} from '../../types';
-import {changeActiveMovie} from '../../store/actions';
-import {getGenres, filterMovies} from '../../utils/funcs';
+import {DataActionCreator, DataOperation} from '../../store/reduсers/data/data';
+import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
-import NameSpace from '../../store/reduсers/name-space';
+import {getMovies, getGenres} from '../../store/reduсers/data/selectors';
 
 const WrappedCatalogList = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
-    isMain, movies, onMovieTitleClick, activeItem, onItemClick,
+    isMain, movies, genres, onCatalogCardClick, activeItem, onItemClick,
   } = props;
-  const genres = getGenres(movies);
   const moviesByGenre = filterMovies(movies, activeItem);
   const moviesToShow = [...moviesByGenre].splice(0, MAX_SIMILAR_MOVIES);
+
   const catalogClass = cn({
     'catalog': true,
     'catalog--like-this': !isMain,
@@ -34,7 +34,7 @@ const Catalog = (props) => {
       <h2 className={catalogTitleClass}>
         {isMain ? `Catalog` : `More like this`}
       </h2>
-      {isMain && <GenreList
+      {isMain && <CatalogFilter
         genres={genres}
         activeGenre={activeItem}
         onGenreClick={onItemClick}
@@ -42,16 +42,15 @@ const Catalog = (props) => {
       {isMain
         ? <WrappedCatalogList
           movies={moviesByGenre}
-          onMovieTitleClick={onMovieTitleClick}
+          onCatalogCardClick={onCatalogCardClick}
         />
         : <CatalogList
           movies={moviesToShow}
-          onMovieTitleClick={onMovieTitleClick}
+          onCatalogCardClick={onCatalogCardClick}
         />}
     </section>
   );
 };
-
 
 Catalog.defaultProps = {
   isMain: false,
@@ -61,21 +60,23 @@ Catalog.defaultProps = {
 Catalog.propTypes = {
   isMain: bool.isRequired,
   movies: arrayOf(movieType.isRequired).isRequired,
-  onMovieTitleClick: func.isRequired,
+  genres: arrayOf(string.isRequired).isRequired,
+  onCatalogCardClick: func.isRequired,
   activeItem: string,
   onItemClick: func,
 };
 
 const mapStateToProps = (store) => ({
-  movies: store[NameSpace.DATA].movies,
+  movies: getMovies(store),
+  genres: getGenres(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onMovieTitleClick(activeMovie) {
-    dispatch(changeActiveMovie(activeMovie));
+  onCatalogCardClick(activeMovie) {
+    dispatch(DataActionCreator.changeActiveMovie(activeMovie));
+    dispatch(DataOperation.loadComments(activeMovie.id));
   }
 });
-
 
 export {Catalog};
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

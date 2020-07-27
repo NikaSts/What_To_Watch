@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
-import {openFullScreenPlayer} from '../../store/actions';
 import {promoMovieType} from '../../types';
 import {func} from 'prop-types';
-import NameSpace from '../../store/reduсers/name-space';
+import {getPromoMovie} from '../../store/reduсers/data/selectors';
+import {PlayerActionCreator} from '../../store/reduсers/player/player';
+
 
 const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
   const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
@@ -40,12 +41,12 @@ MovieCardBig.propTypes = {
 };
 
 const mapStateToProps = (store) => ({
-  promoMovie: store[NameSpace.DATA].promoMovie,
+  promoMovie: getPromoMovie(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
-    dispatch(openFullScreenPlayer());
+    dispatch(PlayerActionCreator.openFullScreenPlayer());
   }
 });
 

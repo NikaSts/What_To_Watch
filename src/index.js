@@ -8,13 +8,13 @@ import App from './components/app/app';
 import {rootReducer} from './store/reduсers/reducer';
 import {createAPI} from './api';
 
-import {requireAuthorization} from './store/actions';
-import {DataOperation, UserOperation} from './store/operations';
+import {UserActionCreator} from './store/reduсers/user/user';
+import {DataOperation} from './store/reduсers/data/data';
 import {AuthorizationStatus} from './utils/consts';
 
 
 const api = createAPI(() => {
-  store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
 });
 
 const store = createStore(

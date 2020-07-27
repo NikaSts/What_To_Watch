@@ -26,7 +26,7 @@ const Overview = ({ratingScore, ratingLevel, ratingCount, description, director,
 };
 
 Overview.propTypes = {
-  ratingScore: string.isRequired,
+  ratingScore: number.isRequired,
   ratingLevel: string.isRequired,
   ratingCount: number.isRequired,
   description: string.isRequired,

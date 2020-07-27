@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import {func} from 'prop-types';
 import {connect} from 'react-redux';
-import {changeActiveMovie, openFullScreenPlayer} from '../../store/actions';
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import PageFooter from '../page-footer/page-footer';
@@ -9,7 +8,8 @@ import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType} from '../../types';
 import Catalog from '../catalog/catalog';
-import NameSpace from '../../store/reduсers/name-space';
+import {PlayerActionCreator} from '../../store/reduсers/player/player';
+import {getMovies, changeActiveMovie} from '../../store/reduсers/data/selectors';
 
 const WrappedTabs = withActiveItem(Tabs);
 
@@ -59,21 +59,17 @@ const MoviePage = ({activeMovie, onPlayButtonClick}) => {
 
 MoviePage.propTypes = {
   activeMovie: movieType,
-  onMovieTitleClick: func.isRequired,
   onPlayButtonClick: func.isRequired,
 };
 
 const mapStateToProps = (store) => ({
-  movies: store[NameSpace.DATA].movies,
-  activeMovie: store[NameSpace.DATA].activeMovie,
+  movies: getMovies(store),
+  activeMovie: changeActiveMovie(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onMovieTitleClick(activeMovie) {
-    dispatch(changeActiveMovie(activeMovie));
-  },
   onPlayButtonClick() {
-    dispatch(openFullScreenPlayer());
+    dispatch(PlayerActionCreator.openFullScreenPlayer());
   }
 });
 

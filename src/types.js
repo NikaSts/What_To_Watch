@@ -13,11 +13,11 @@ export const movieType = shape({
   ratingScore: number.isRequired,
   ratingLevel: string.isRequired,
   ratingCount: number.isRequired,
-  paragraphs: arrayOf(string).isRequired,
+  description: string.isRequired,
   director: string.isRequired,
   stars: arrayOf(string).isRequired,
   preview: string.isRequired,
-  isFavorite: bool.isRequired,
+  isFavorite: bool,
 });
 
 export const promoMovieType = shape({
@@ -32,5 +32,5 @@ export const promoMovieType = shape({
 
 export const cardMovieType = shape({
   title: string.isRequired,
-  image: string.isRequired,
+  previewImage: string.isRequired,
 });
