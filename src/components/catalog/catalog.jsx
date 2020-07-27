@@ -74,7 +74,7 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   onCatalogCardClick(activeMovie) {
     dispatch(DataActionCreator.changeActiveMovie(activeMovie));
-    dispatch(DataOperation.loadComments(activeMovie.id));
+    dispatch(DataOperation.loadReviews(activeMovie.id));
   }
 });
 

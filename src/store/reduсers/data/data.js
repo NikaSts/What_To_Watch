@@ -6,6 +6,7 @@ const initialState = {
   movies: [],
   promoMovie: {},
   activeMovie: null,
+  reviews: [],
 };
 
 export const DataActionCreator = {
@@ -21,20 +22,30 @@ export const DataActionCreator = {
     type: ActionType.CHANGE_ACTIVE_MOVIE,
     payload: {activeMovie},
   }),
+  getReviews: (reviews) => ({
+    type: ActionType.GET_REVIEWS,
+    payload: {reviews},
+  }),
 };
 
 export const DataOperation = {
   loadMovies: () => (dispatch, getState, api) => (
-    api.get(`/films`)
+    api.get(EntryPoint.MOVIES)
       .then((response) => {
         dispatch(DataActionCreator.getMovies(response.data.map((movie) => movieAdapter(movie))
         ));
-      }
-      )),
+      })
+  ),
   loadPromoMovie: () => (dispatch, getState, api) => (
     api.get(EntryPoint.PROMO)
       .then((response) => {
         dispatch(DataActionCreator.getPromoMovie(movieAdapter(response.data)));
+      })
+  ),
+  loadReviews: (movieId) => (dispatch, getState, api) => (
+    api.get(`${EntryPoint.REVIEWS}/${movieId}`)
+      .then((response) => {
+        dispatch(DataActionCreator.getReviews(response.data));
       })
   ),
 };
@@ -52,6 +63,10 @@ export const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_ACTIVE_MOVIE:
       return extend(state, {
         activeMovie: action.payload.activeMovie,
+      });
+    case ActionType.GET_REVIEWS:
+      return extend(state, {
+        reviews: action.payload.reviews,
       });
     default:
       return state;

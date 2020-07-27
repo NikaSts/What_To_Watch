@@ -37,6 +37,7 @@ export const ActionType = {
   CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
   GET_MOVIES: `getMovies`,
   GET_PROMO_MOVIE: `getPromoMovie`,
+  GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
 };
 
@@ -46,6 +47,7 @@ export const AuthorizationStatus = {
 };
 
 export const EntryPoint = {
+  REVIEWS: `/comments`,
   FAVORITE: `/favorite`,
   MOVIES: `/films`,
   PROMO: `/films/promo`,

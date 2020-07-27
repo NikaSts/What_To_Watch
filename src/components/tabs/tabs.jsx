@@ -6,17 +6,20 @@ import Details from '../details/details';
 
 import {tabs, Tab} from '../../utils/consts';
 import {movieType} from '../../types';
-import {string, func} from 'prop-types';
+import {string, func, arrayOf, number, shape} from 'prop-types';
 import {getRatingLevel} from '../../utils/funcs';
 
-const renderActiveTab = (activeTab, activeMovie) => {
+const renderActiveTab = (activeTab, activeMovie, reviews) => {
+  console.log(reviews);
   const {runTime, genre, releaseDate, ratingScore, ratingCount,
     description, director, stars} = activeMovie;
   const ratingLevel = getRatingLevel(ratingScore);
 
   switch (activeTab) {
     case Tab.REVIEWS:
-      return <Reviews />;
+      return <Reviews
+        reviews={reviews}
+      />;
     case Tab.DETAILS:
       return <Details
         runTime={runTime}
@@ -37,7 +40,7 @@ const renderActiveTab = (activeTab, activeMovie) => {
   }
 };
 
-const Tabs = ({activeMovie, activeItem, onItemClick}) => (
+const Tabs = ({activeMovie, activeItem, reviews, onItemClick}) => (
   <div className="movie-card__desc">
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -62,7 +65,7 @@ const Tabs = ({activeMovie, activeItem, onItemClick}) => (
         })}
       </ul>
     </nav>
-    {renderActiveTab(activeItem, activeMovie)}
+    {renderActiveTab(activeItem, activeMovie, reviews)}
   </div>
 );
 
@@ -74,6 +77,16 @@ Tabs.propTypes = {
   activeItem: string.isRequired,
   onItemClick: func.isRequired,
   activeMovie: movieType,
+  reviews: arrayOf(shape({
+    id: number.isRequired,
+    user: shape({
+      id: number.isRequired,
+      name: string.isRequired,
+    }).isRequired,
+    rating: number.isRequired,
+    comment: string.isRequired,
+    date: string.isRequired,
+  })),
 };
 
 export default Tabs;
