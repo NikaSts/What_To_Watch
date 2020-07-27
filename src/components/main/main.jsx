@@ -3,13 +3,17 @@ import PageFooter from '../page-footer/page-footer';
 import Catalog from '../catalog/catalog';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import MovieCardBig from '../movie-card-big/movie-card-big';
+import {func, string} from 'prop-types';
 
 
 const WrappedCatalog = withActiveItem(Catalog);
 
-const Main = () => (
+const Main = ({onSignInButtonClick, authorizationStatus}) => (
   <Fragment>
-    <MovieCardBig />
+    <MovieCardBig
+      onSignInButtonClick={onSignInButtonClick}
+      authorizationStatus={authorizationStatus}
+    />
 
     <div className="page-content">
       <WrappedCatalog
@@ -21,5 +25,10 @@ const Main = () => (
     </div>
   </Fragment>
 );
+
+Main.propTypes = {
+  onSignInButtonClick: func.isRequired,
+  authorizationStatus: string.isRequired,
+};
 
 export default Main;

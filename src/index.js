@@ -7,15 +7,16 @@ import thunk from 'redux-thunk';
 import App from './components/app/app';
 import {rootReducer} from './store/reduсers/reducer';
 import {createAPI} from './api';
-
-import {UserActionCreator} from './store/reduсers/user/user';
+import {UserActionCreator, UserOperation} from './store/reduсers/user/user';
 import {DataOperation} from './store/reduсers/data/data';
 import {AuthorizationStatus} from './utils/consts';
 
 
-const api = createAPI(() => {
+const onUnauthorized = () => {
   store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-});
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     rootReducer,
@@ -27,7 +28,7 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadMovies());
 store.dispatch(DataOperation.loadPromoMovie());
-// store.dispatch(UserOperation.checkAuth());
+store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

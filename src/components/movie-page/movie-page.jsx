@@ -10,11 +10,17 @@ import {movieType} from '../../types';
 import Catalog from '../catalog/catalog';
 import {PlayerActionCreator} from '../../store/reduсers/player/player';
 import {getMovies, changeActiveMovie, getReviews} from '../../store/reduсers/data/selectors';
+import {UserActionCreator} from '../../store/reduсers/user/user';
+import {getAuthorizationStatus} from '../../store/reduсers/user/selectors';
+import {AuthorizationStatus} from '../../utils/consts';
 
 const WrappedTabs = withActiveItem(Tabs);
 
-const MoviePage = ({activeMovie, reviews, onPlayButtonClick}) => {
+const MoviePage = ({
+  activeMovie, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus
+}) => {
   const {id, title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
+  const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
   return (
     <Fragment>
       <section
@@ -22,16 +28,21 @@ const MoviePage = ({activeMovie, reviews, onPlayButtonClick}) => {
         className="movie-card movie-card--full"
         style={{backgroundColor: `${backgroundColor}`}}>
         <div className="movie-card__hero">
+          <div className="movie-card__bg">
+            <img src={backgroundImage} alt={title} />
+          </div>
+          <h1 className="visually-hidden">WTW</h1>
+
           <PageHeader
-            title={title}
-            backgroundImage={backgroundImage}
+            onSignInButtonClick={onSignInButtonClick}
+            isSignedIn={isSignedIn}
           />
           <div className="movie-card__wrap">
             <MovieInfo
               title={title}
               genre={genre}
               releaseDate={releaseDate}
-              isLogged={true}
+              isSignedIn={isSignedIn}
               onPlayButtonClick={onPlayButtonClick}
             />
           </div>
@@ -61,6 +72,8 @@ const MoviePage = ({activeMovie, reviews, onPlayButtonClick}) => {
 MoviePage.propTypes = {
   activeMovie: movieType,
   onPlayButtonClick: func.isRequired,
+  onSignInButtonClick: func.isRequired,
+  authorizationStatus: string.isRequired,
   reviews: oneOfType([
     arrayOf(shape({
       id: number.isRequired,
@@ -79,11 +92,15 @@ const mapStateToProps = (store) => ({
   movies: getMovies(store),
   activeMovie: changeActiveMovie(store),
   reviews: getReviews(store),
+  authorizationStatus: getAuthorizationStatus(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(PlayerActionCreator.openFullScreenPlayer());
+  },
+  onSignInButtonClick() {
+    dispatch(UserActionCreator.isAuthorizing());
   }
 });
 

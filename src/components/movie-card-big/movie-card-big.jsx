@@ -4,18 +4,27 @@ import {connect} from 'react-redux';
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import {promoMovieType} from '../../types';
-import {func} from 'prop-types';
+import {func, string} from 'prop-types';
 import {getPromoMovie} from '../../store/reduсers/data/selectors';
 import {PlayerActionCreator} from '../../store/reduсers/player/player';
+import {UserActionCreator} from '../../store/reduсers/user/user';
+import {AuthorizationStatus} from '../../utils/consts';
 
 
-const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
+const MovieCardBig = ({
+  promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus
+}) => {
   const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
+  const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
   return (
     <section className="movie-card">
+      <div className="movie-card__bg">
+        <img src={backgroundImage} alt={title} />
+      </div>
+      <h1 className="visually-hidden">WTW</h1>
       <PageHeader
-        title={title}
-        backgroundImage={backgroundImage}
+        onSignInButtonClick={onSignInButtonClick}
+        isSignedIn={isSignedIn}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -26,7 +35,7 @@ const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
             title={title}
             genre={genre}
             releaseDate={releaseDate}
-            isLogged={false}
+            isSignedIn={isSignedIn}
             onPlayButtonClick={onPlayButtonClick}
           />
         </div>
@@ -38,6 +47,8 @@ const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
 MovieCardBig.propTypes = {
   promoMovie: promoMovieType.isRequired,
   onPlayButtonClick: func.isRequired,
+  onSignInButtonClick: func.isRequired,
+  authorizationStatus: string.isRequired,
 };
 
 const mapStateToProps = (store) => ({
@@ -47,6 +58,9 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
     dispatch(PlayerActionCreator.openFullScreenPlayer());
+  },
+  onSignInButtonClick() {
+    dispatch(UserActionCreator.isAuthorizing());
   }
 });
 

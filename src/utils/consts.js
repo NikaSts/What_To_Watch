@@ -39,6 +39,8 @@ export const ActionType = {
   GET_PROMO_MOVIE: `getPromoMovie`,
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
+  IS_AUTHORIZING: `isAuthorizing`,
+  IS_NOT_AUTHORIZING: `isNotAuthorizing`,
 };
 
 export const AuthorizationStatus = {

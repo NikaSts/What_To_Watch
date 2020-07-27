@@ -2,14 +2,17 @@ import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
+import SignInPage from '../sign-in-page/sign-in-page';
 import {connect} from 'react-redux';
 import {movieType} from '../../types';
-import {bool, func} from 'prop-types';
+import {bool, func, string} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
 import {PlayerActionCreator} from '../../store/reduсers/player/player';
 import {changeActiveMovie, getPromoMovie} from '../../store/reduсers/data/selectors';
 import {checkPlayerStatus} from '../../store/reduсers/player/selectors';
+import {UserOperation} from '../../store/reduсers/user/user';
+import {getAuthorizationStatus} from '../../store/reduсers/user/selectors';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -20,7 +23,10 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {activeMovie, isVideoPlayer} = this.props;
+    const {activeMovie, isVideoPlayer, isAuthorizing} = this.props;
+    if (isAuthorizing) {
+      return this._renderSignInPage();
+    }
     if (isVideoPlayer) {
       return this._renderVideoPlayer();
     }
@@ -31,7 +37,10 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
-    return <Main />;
+    const {authorizationStatus} = this.props;
+    return <Main
+      authorizationStatus={authorizationStatus}
+    />;
   }
 
   _renderMoviePage() {
@@ -56,6 +65,14 @@ class App extends PureComponent {
     />;
   }
 
+  _renderSignInPage() {
+    const {login} = this.props;
+    return <SignInPage
+      onSubmit={login}
+    />;
+  }
+
+
   render() {
     return (
       <BrowserRouter>
@@ -65,6 +82,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/movie">
             {this._renderMoviePage()}
+          </Route>
+          <Route exact path="/auth">
+            {this._renderSignInPage()}
           </Route>
         </Switch>
       </BrowserRouter>
@@ -77,18 +97,26 @@ App.propTypes = {
   promoMovie: movieType.isRequired,
   isVideoPlayer: bool.isRequired,
   onExitButtonClick: func.isRequired,
+  login: func.isRequired,
+  authorizationStatus: string.isRequired,
+  isAuthorizing: bool.isRequired,
 };
 
 const mapStateToProps = (store) => ({
   activeMovie: changeActiveMovie(store),
   promoMovie: getPromoMovie(store),
   isVideoPlayer: checkPlayerStatus(store),
+  authorizationStatus: getAuthorizationStatus(store),
+  isAuthorizing: store.USER.isAuthorizing,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onExitButtonClick(activeMovie) {
     dispatch(PlayerActionCreator.closeFullScreenPlayer(activeMovie));
-  }
+  },
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
 });
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {bool, func} from 'prop-types';
 
-const Controls = ({isLogged, onPlayButtonClick}) => {
-  const reviewLink = isLogged && <a href="add-review.html" className="btn movie-card__button">
+const Controls = ({isSignedIn, onPlayButtonClick}) => {
+  const reviewLink = isSignedIn && <a href="add-review.html" className="btn movie-card__button">
     Add review</a>;
 
   return (
@@ -28,7 +28,7 @@ const Controls = ({isLogged, onPlayButtonClick}) => {
 };
 
 Controls.propTypes = {
-  isLogged: bool.isRequired,
+  isSignedIn: bool.isRequired,
   onPlayButtonClick: func.isRequired,
 };
 
