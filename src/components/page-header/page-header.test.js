@@ -9,7 +9,7 @@ it(`PageHeader should render correctly`, () => {
   const tree = renderer
     .create(
         <PageHeader
-          imagePath={url}
+          backgroundImage={url}
           title={title}
         />)
     .toJSON();

@@ -4,6 +4,11 @@ exports[`MoviePage should render correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": "",
+      }
+    }
   >
     <div
       className="movie-card__hero"
@@ -12,8 +17,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Once Upon a Time in Hollywood"
-          src="img/the-grand-budapest-hotel.jpg"
+          alt="Active Movie"
+          src=""
         />
       </div>
       <h1
@@ -71,7 +76,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Once Upon a Time in Hollywood
+            Active Movie
           </h2>
           <p
             className="movie-card__meta"
@@ -79,12 +84,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              
             </span>
             <span
               className="movie-card__year"
             >
-              2014
+              1
             </span>
           </p>
           <div
@@ -145,9 +150,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Once Upon a Time in Hollywood"
+            alt="Active Movie"
             height="327"
-            src="img/the-grand-budapest-hotel.jpg"
+            src=""
             width="218"
           />
         </div>
@@ -201,7 +206,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8,9
+              1
             </div>
             <p
               className="movie-rating__meta"
@@ -209,12 +214,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Bad
               </span>
               <span
                 className="movie-rating__count"
               >
-                240
+                1
                  ratings
               </span>
             </p>
@@ -222,19 +227,13 @@ Array [
           <div
             className="movie-card__text"
           >
-            <p>
-              Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
-  where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
-  stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
-  anymore. The ninth film from the writer-director features a large ensemble cast and multiple
-  storylines in a tribute to the final moments of Hollywood's golden age.
-            </p>
+            
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Quentin Tarantino
+                
               </strong>
             </p>
             <p
@@ -242,7 +241,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Leonardo DiCaprio, Brad Pitt, Margot Robbie
+                
                  and other
               </strong>
             </p>
@@ -287,7 +286,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Once Upon a Time in Hollywood
+              First Movie
             </a>
           </h3>
         </article>
@@ -313,7 +312,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Kill Bill
+              Second Movie
             </a>
           </h3>
         </article>

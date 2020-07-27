@@ -10,7 +10,6 @@ import {string, func, arrayOf, number, shape} from 'prop-types';
 import {getRatingLevel} from '../../utils/funcs';
 
 const renderActiveTab = (activeTab, activeMovie, reviews) => {
-  console.log(reviews);
   const {runTime, genre, releaseDate, ratingScore, ratingCount,
     description, director, stars} = activeMovie;
   const ratingLevel = getRatingLevel(ratingScore);

@@ -1,15 +1,9 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
-import Main from './main';
+import reducer from './data';
+import {ActionType} from '../../../utils/consts';
 
-const mockStore = configureStore([]);
-
-const activeGenre = `All genres`;
-const promoMovie = {
+const movie = {
   id: 1,
-  title: `Promo Movie`,
+  title: `First Movie`,
   runTime: 1,
   genre: ``,
   releaseDate: 1,
@@ -67,30 +61,34 @@ const movies = [
   },
 ];
 
-
-it(`Main should render correctly`, () => {
-  const store = mockStore({
-    DATA: {
-      promoMovie,
-      movies,
-    },
+it(`Data Reducer without additional parameters should return initialState`, () => {
+  expect(reducer(void 0, {})).toEqual({
+    movies: [],
+    promoMovie: {},
+    activeMovie: null,
   });
+});
 
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <Main
-            activeGenre={activeGenre}
-            onGenreClick={() => {}}
-            onMovieTitleClick={() => { }}
-            onShowMoreButtonClick={() => {}}
-          />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-      .toJSON();
+it(`Data Reducer should update activeMovie`, () => {
+  expect(reducer(
+      {activeMovie: {}},
+      {
+        type: ActionType.CHANGE_ACTIVE_MOVIE,
+        payload: {activeMovie: movie},
+      }
+  ))
+    .toEqual({
+      activeMovie: movie,
+    });
+});
 
-  expect(tree).toMatchSnapshot();
+it(`Data Reducer should update movies`, () => {
+  expect(reducer({
+    movies: [],
+  }, {
+    type: ActionType.GET_MOVIES,
+    payload: movies
+  })).toEqual({
+    movies,
+  });
 });
