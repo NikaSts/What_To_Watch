@@ -13,7 +13,7 @@ it(`MovieInfo should render correctly`, () => {
         title={title}
         genre={genre}
         releaseDate={releaseDate}
-        isLogged={true}
+        isSignedIn={true}
         onPlayButtonClick={() => {}}
       />
   ).toJSON();

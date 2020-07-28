@@ -1,4 +1,4 @@
-import reducer from './data';
+import {reducer} from './data';
 import {ActionType} from '../../../utils/consts';
 
 const movie = {
@@ -66,6 +66,7 @@ it(`Data Reducer without additional parameters should return initialState`, () =
     movies: [],
     promoMovie: {},
     activeMovie: null,
+    reviews: [],
   });
 });
 
@@ -87,7 +88,7 @@ it(`Data Reducer should update movies`, () => {
     movies: [],
   }, {
     type: ActionType.GET_MOVIES,
-    payload: movies
+    payload: {movies}
   })).toEqual({
     movies,
   });

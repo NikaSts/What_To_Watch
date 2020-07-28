@@ -94,6 +94,10 @@ it(`App should render Main`, () => {
     },
     PLAYER: {
       isVideoPlayer: false,
+    },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
     }
   });
 
@@ -101,7 +105,7 @@ it(`App should render Main`, () => {
     .create(
         <Provider store={store}>
           <App
-            onMovieTitleClick={() => { }}
+            isMain={true}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -123,15 +127,17 @@ it(`App should render MoviePage`, () => {
     },
     PLAYER: {
       isVideoPlayer: false,
+    },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
     }
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            onMovieTitleClick={() => { }}
-          />
+          <App />
         </Provider>, {
           createNodeMock: () => {
             return {};

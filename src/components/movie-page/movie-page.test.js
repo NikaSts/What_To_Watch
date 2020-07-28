@@ -113,6 +113,10 @@ it(`MoviePage should render correctly`, () => {
       activeMovie,
       movies,
     },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
+    }
   });
 
   const tree = renderer

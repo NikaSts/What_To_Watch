@@ -9,6 +9,10 @@ it(`SignInPage component render correctly`, () => {
   const tree = renderer.create(
       <SignInPage
         onSubmit={noop}
+        isMain={false}
+        isSignedIn={false}
+        isSignInPage={true}
+        onSignInButtonClick={noop}
       />
   ).toJSON();
 
