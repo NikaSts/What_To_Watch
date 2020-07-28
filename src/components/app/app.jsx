@@ -49,14 +49,14 @@ class App extends PureComponent {
       return <WrappedPlayer
         title={activeMovie.title}
         src={activeMovie.video}
-        poster={activeMovie.poster}
+        previewImage={activeMovie.previewImage}
         onExitButtonClick={onExitButtonClick}
       />;
     }
     return <WrappedPlayer
       title={promoMovie.title}
       src={promoMovie.video}
-      poster={promoMovie.poster}
+      previewImage={promoMovie.previewImage}
       onExitButtonClick={onExitButtonClick}
     />;
   }

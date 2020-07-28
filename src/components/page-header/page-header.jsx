@@ -1,36 +1,45 @@
 import React, {Fragment} from 'react';
+import cn from 'classnames';
 import {bool, func} from 'prop-types';
 
-const PageHeader = ({isMain, isSignedIn, isSignInPage, onSignInButtonClick}) => (
-  <Fragment>
-    <header className="page-header movie-card__head">
-      <div className="logo">
-        <a
-          className="logo__link"
-          href={isMain ? undefined : `main.html`}>
-          <span className="logo__letter logo__letter--1">W</span>
-          <span className="logo__letter logo__letter--2">T</span>
-          <span className="logo__letter logo__letter--3">W</span>
-        </a>
-      </div>
+const PageHeader = ({isMain, isSignedIn, isSignInPage, onSignInButtonClick}) => {
+  const pageHeaderClass = cn({
+    'page-header': true,
+    'movie-card__head': !isSignInPage,
+    'user-page__head': isSignInPage,
+  });
 
-      {isSignInPage && <h1 className="page-title user-page__title">Sign in</h1>}
+  return (
+    <Fragment>
+      <header className={pageHeaderClass}>
+        <div className="logo">
+          <a
+            className="logo__link"
+            href={isMain ? undefined : `main.html`}>
+            <span className="logo__letter logo__letter--1">W</span>
+            <span className="logo__letter logo__letter--2">T</span>
+            <span className="logo__letter logo__letter--3">W</span>
+          </a>
+        </div>
 
-      {!isSignInPage && <div className="user-block">
-        {isSignedIn
-          ? <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-          : <a href="sign-in.html" className="user-block__link"
-            onClick={(evt) => {
-              evt.preventDefault();
-              onSignInButtonClick();
-            }
-            }>Sign in</a>}
-      </div>}
-    </header>
-  </Fragment>
-);
+        {isSignInPage && <h1 className="page-title user-page__title">Sign in</h1>}
+
+        {!isSignInPage && <div className="user-block">
+          {isSignedIn
+            ? <div className="user-block__avatar">
+              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            </div>
+            : <a href="sign-in.html" className="user-block__link"
+              onClick={(evt) => {
+                evt.preventDefault();
+                onSignInButtonClick();
+              }
+              }>Sign in</a>}
+        </div>}
+      </header>
+    </Fragment>
+  );
+};
 
 PageHeader.defaultProps = {
   isMain: false,
