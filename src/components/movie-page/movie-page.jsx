@@ -8,10 +8,10 @@ import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType} from '../../types';
 import Catalog from '../catalog/catalog';
-import {PlayerActionCreator} from '../../store/reduсers/player/player';
-import {getMovies, changeActiveMovie, getReviews} from '../../store/reduсers/data/selectors';
-import {UserActionCreator} from '../../store/reduсers/user/user';
-import {getAuthorizationStatus} from '../../store/reduсers/user/selectors';
+import {PlayerActionCreator} from '../../store/player/player';
+import {getMovies, getActiveMovie, getReviews} from '../../store/data/selectors';
+import {UserActionCreator} from '../../store/user/user';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
 
 const WrappedTabs = withActiveItem(Tabs);
@@ -90,7 +90,7 @@ MoviePage.propTypes = {
 
 const mapStateToProps = (store) => ({
   movies: getMovies(store),
-  activeMovie: changeActiveMovie(store),
+  activeMovie: getActiveMovie(store),
   reviews: getReviews(store),
   authorizationStatus: getAuthorizationStatus(store),
 });

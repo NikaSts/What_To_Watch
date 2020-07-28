@@ -1,5 +1,5 @@
 import {reducer} from './data';
-import {ActionType} from '../../../utils/consts';
+import {ActionType} from '../../utils/consts';
 
 const movie = {
   id: 1,

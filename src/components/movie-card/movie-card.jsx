@@ -5,14 +5,14 @@ import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import {promoMovieType} from '../../types';
 import {func, string, bool} from 'prop-types';
-import {getPromoMovie} from '../../store/reduсers/data/selectors';
-import {PlayerActionCreator} from '../../store/reduсers/player/player';
-import {UserActionCreator} from '../../store/reduсers/user/user';
+import {getPromoMovie} from '../../store/data/selectors';
+import {PlayerActionCreator} from '../../store/player/player';
+import {UserActionCreator} from '../../store/user/user';
 import {AuthorizationStatus} from '../../utils/consts';
-import {getAuthorizationStatus} from '../../store/reduсers/user/selectors';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 
 
-const MovieCardBig = ({
+const MovieCard = ({
   promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus, isMain
 }) => {
   const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
@@ -46,7 +46,7 @@ const MovieCardBig = ({
   );
 };
 
-MovieCardBig.propTypes = {
+MovieCard.propTypes = {
   promoMovie: promoMovieType.isRequired,
   onPlayButtonClick: func.isRequired,
   onSignInButtonClick: func.isRequired,
@@ -69,5 +69,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export {MovieCardBig};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCardBig);
+export {MovieCard};
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

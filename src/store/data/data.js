@@ -1,6 +1,6 @@
-import {ActionType, EntryPoint} from '../../../utils/consts';
-import {extend} from '../../../utils/funcs';
-import {movieAdapter} from '../../../adapter/movie-adapter';
+import {ActionType, EntryPoint} from '../../utils/consts';
+import {extend} from '../../utils/funcs';
+import {movieAdapter} from '../../adapter/movie-adapter';
 
 const initialState = {
   movies: [],

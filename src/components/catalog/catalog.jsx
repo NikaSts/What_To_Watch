@@ -6,10 +6,10 @@ import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {func, arrayOf, string, bool} from 'prop-types';
 import {movieType} from '../../types';
-import {DataActionCreator, DataOperation} from '../../store/reduсers/data/data';
+import {DataActionCreator, DataOperation} from '../../store/data/data';
 import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
-import {getMovies, getGenres} from '../../store/reduсers/data/selectors';
+import {getMovies, getGenres} from '../../store/data/selectors';
 
 const WrappedCatalogList = withShowMoreButton(CatalogList);
 

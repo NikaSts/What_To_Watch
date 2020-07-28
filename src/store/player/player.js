@@ -1,5 +1,5 @@
-import {extend} from '../../../utils/funcs';
-import {ActionType} from '../../../utils/consts';
+import {extend} from '../../utils/funcs';
+import {ActionType} from '../../utils/consts';
 
 const initialState = {
   isVideoPlayer: false,

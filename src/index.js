@@ -5,10 +5,10 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import App from './components/app/app';
-import {rootReducer} from './store/reduсers/reducer';
+import {rootReducer} from './store/reducer';
 import {createAPI} from './api';
-import {UserActionCreator, UserOperation} from './store/reduсers/user/user';
-import {DataOperation} from './store/reduсers/data/data';
+import {UserActionCreator, UserOperation} from './store/user/user';
+import {DataOperation} from './store/data/data';
 import {AuthorizationStatus} from './utils/consts';
 
 

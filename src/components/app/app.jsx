@@ -8,10 +8,10 @@ import {movieType} from '../../types';
 import {bool, func} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
-import {PlayerActionCreator} from '../../store/reduсers/player/player';
-import {changeActiveMovie, getPromoMovie} from '../../store/reduсers/data/selectors';
-import {checkPlayerStatus} from '../../store/reduсers/player/selectors';
-import {UserOperation} from '../../store/reduсers/user/user';
+import {PlayerActionCreator} from '../../store/player/player';
+import {getActiveMovie, getPromoMovie} from '../../store/data/selectors';
+import {checkPlayerStatus} from '../../store/player/selectors';
+import {UserOperation} from '../../store/user/user';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -98,7 +98,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (store) => ({
-  activeMovie: changeActiveMovie(store),
+  activeMovie: getActiveMovie(store),
   promoMovie: getPromoMovie(store),
   isVideoPlayer: checkPlayerStatus(store),
   isAuthorizing: store.USER.isAuthorizing,

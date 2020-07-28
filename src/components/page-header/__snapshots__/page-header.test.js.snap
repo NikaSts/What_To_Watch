@@ -87,7 +87,7 @@ exports[`PageHeader MainPage, not authtorized should render correctly 1`] = `
 
 exports[`PageHeader SignInPage should render correctly 1`] = `
 <header
-  className="page-header movie-card__head"
+  className="page-header user-page__head"
 >
   <div
     className="logo"

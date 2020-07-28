@@ -28,9 +28,9 @@ exports[`Reviews should render correctly 1`] = `
           </cite>
           <time
             className="review__date"
-            dateTime="2016-12-24"
+            dateTime="Invalid date"
           >
-            
+            Invalid date
           </time>
         </footer>
       </blockquote>
