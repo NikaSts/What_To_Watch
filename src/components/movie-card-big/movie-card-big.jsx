@@ -4,15 +4,16 @@ import {connect} from 'react-redux';
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import {promoMovieType} from '../../types';
-import {func, string} from 'prop-types';
+import {func, string, bool} from 'prop-types';
 import {getPromoMovie} from '../../store/reduсers/data/selectors';
 import {PlayerActionCreator} from '../../store/reduсers/player/player';
 import {UserActionCreator} from '../../store/reduсers/user/user';
 import {AuthorizationStatus} from '../../utils/consts';
+import {getAuthorizationStatus} from '../../store/reduсers/user/selectors';
 
 
 const MovieCardBig = ({
-  promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus
+  promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus, isMain
 }) => {
   const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
   const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
@@ -25,6 +26,7 @@ const MovieCardBig = ({
       <PageHeader
         onSignInButtonClick={onSignInButtonClick}
         isSignedIn={isSignedIn}
+        isMain={isMain}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -49,10 +51,12 @@ MovieCardBig.propTypes = {
   onPlayButtonClick: func.isRequired,
   onSignInButtonClick: func.isRequired,
   authorizationStatus: string.isRequired,
+  isMain: bool.isRequired,
 };
 
 const mapStateToProps = (store) => ({
   promoMovie: getPromoMovie(store),
+  authorizationStatus: getAuthorizationStatus(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -39,9 +39,9 @@ PageHeader.defaultProps = {
 
 PageHeader.propTypes = {
   isMain: bool.isRequired,
-  isSignedIn: bool.isRequired,
+  isSignedIn: bool,
   isSignInPage: bool.isRequired,
-  onSignInButtonClick: func.isRequired,
+  onSignInButtonClick: func,
 };
 
 export default PageHeader;

@@ -5,14 +5,13 @@ import MoviePage from '../movie-page/movie-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import {connect} from 'react-redux';
 import {movieType} from '../../types';
-import {bool, func, string} from 'prop-types';
+import {bool, func} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
 import {PlayerActionCreator} from '../../store/reduсers/player/player';
 import {changeActiveMovie, getPromoMovie} from '../../store/reduсers/data/selectors';
 import {checkPlayerStatus} from '../../store/reduсers/player/selectors';
 import {UserOperation} from '../../store/reduсers/user/user';
-import {getAuthorizationStatus} from '../../store/reduсers/user/selectors';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -37,10 +36,7 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
-    const {authorizationStatus} = this.props;
-    return <Main
-      authorizationStatus={authorizationStatus}
-    />;
+    return <Main />;
   }
 
   _renderMoviePage() {
@@ -98,7 +94,6 @@ App.propTypes = {
   isVideoPlayer: bool.isRequired,
   onExitButtonClick: func.isRequired,
   login: func.isRequired,
-  authorizationStatus: string.isRequired,
   isAuthorizing: bool.isRequired,
 };
 
@@ -106,7 +101,6 @@ const mapStateToProps = (store) => ({
   activeMovie: changeActiveMovie(store),
   promoMovie: getPromoMovie(store),
   isVideoPlayer: checkPlayerStatus(store),
-  authorizationStatus: getAuthorizationStatus(store),
   isAuthorizing: store.USER.isAuthorizing,
 });
 
