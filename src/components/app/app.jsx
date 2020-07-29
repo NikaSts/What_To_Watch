@@ -12,6 +12,7 @@ import {PlayerActionCreator} from '../../store/player/player';
 import {getActiveMovie, getPromoMovie} from '../../store/data/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
 import {UserOperation} from '../../store/user/user';
+import LoadingPage from '../loading-page/loading-page';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
@@ -19,6 +20,16 @@ const PlayerWithFullScreen = withFullScreen(VideoPlayer);
 class App extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isLoading: true,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({isLoading: false});
+    }
   }
 
   _renderApp() {
@@ -68,8 +79,12 @@ class App extends PureComponent {
     />;
   }
 
-
   render() {
+    const {isLoading} = this.state;
+    if (isLoading) {
+      return <LoadingPage />;
+    }
+
     return (
       <BrowserRouter>
         <Switch>
@@ -90,7 +105,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   activeMovie: movieType,
-  promoMovie: movieType.isRequired,
+  promoMovie: movieType,
   isVideoPlayer: bool.isRequired,
   onExitButtonClick: func.isRequired,
   login: func.isRequired,
