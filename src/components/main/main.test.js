@@ -66,7 +66,13 @@ const movies = [
     video: ``
   },
 ];
-const noop = () => {};
+const noop = () => { };
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`Main should render correctly`, () => {
   const store = mockStore({
@@ -77,6 +83,7 @@ it(`Main should render correctly`, () => {
     USER: {
       authorizationStatus: `AUTH`,
       isAuthorizing: false,
+      userData,
     }
   });
 

@@ -84,6 +84,12 @@ const movies = [
     video: ``
   },
 ];
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`App should render Main`, () => {
   const store = mockStore({
@@ -98,6 +104,8 @@ it(`App should render Main`, () => {
     USER: {
       authorizationStatus: `AUTH`,
       isAuthorizing: false,
+      isAuthorizationError: false,
+      userData,
     }
   });
 
@@ -131,6 +139,8 @@ it(`App should render MoviePage`, () => {
     USER: {
       authorizationStatus: `AUTH`,
       isAuthorizing: false,
+      isAuthorizationError: false,
+      userData,
     }
   });
 

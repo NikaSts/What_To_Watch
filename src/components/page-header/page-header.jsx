@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import cn from 'classnames';
-import {bool, func} from 'prop-types';
+import {bool, func, number, string, shape} from 'prop-types';
 
-const PageHeader = ({isMain, isSignedIn, isSignInPage, onSignInButtonClick}) => {
+const PageHeader = ({isMain, isSignedIn, isSignInPage, onSignInButtonClick, userData}) => {
   const pageHeaderClass = cn({
     'page-header': true,
     'movie-card__head': !isSignInPage,
@@ -25,9 +25,9 @@ const PageHeader = ({isMain, isSignedIn, isSignInPage, onSignInButtonClick}) => 
         {isSignInPage && <h1 className="page-title user-page__title">Sign in</h1>}
 
         {!isSignInPage && <div className="user-block">
-          {isSignedIn
+          {isSignedIn && userData
             ? <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" />
             </div>
             : <a href="sign-in.html" className="user-block__link"
               onClick={(evt) => {
@@ -51,6 +51,12 @@ PageHeader.propTypes = {
   isSignedIn: bool,
   isSignInPage: bool.isRequired,
   onSignInButtonClick: func,
+  userData: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    email: string.isRequired,
+    avatar: string.isRequired,
+  })
 };
 
 export default PageHeader;

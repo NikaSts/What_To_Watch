@@ -17,7 +17,7 @@ import {AuthorizationStatus} from '../../utils/consts';
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MoviePage = ({
-  activeMovie, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus
+  activeMovie, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
 }) => {
   const {id, title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
   const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
@@ -36,6 +36,7 @@ const MoviePage = ({
           <PageHeader
             onSignInButtonClick={onSignInButtonClick}
             isSignedIn={isSignedIn}
+            userData={userData}
           />
           <div className="movie-card__wrap">
             <MovieInfo
@@ -85,7 +86,13 @@ MoviePage.propTypes = {
       comment: string.isRequired,
       date: string.isRequired,
     })),
-  ])
+  ]),
+  userData: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    email: string.isRequired,
+    avatar: string.isRequired,
+  })
 };
 
 const mapStateToProps = (store) => ({
@@ -93,6 +100,7 @@ const mapStateToProps = (store) => ({
   activeMovie: getActiveMovie(store),
   reviews: getReviews(store),
   authorizationStatus: getAuthorizationStatus(store),
+  userData: store.USER.userData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

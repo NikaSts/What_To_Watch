@@ -105,7 +105,12 @@ const moviesToShow = [
     video: ``
   },
 ];
-
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`MoviePage should render correctly`, () => {
   const store = mockStore({
@@ -116,6 +121,7 @@ it(`MoviePage should render correctly`, () => {
     USER: {
       authorizationStatus: `AUTH`,
       isAuthorizing: false,
+      userData,
     }
   });
 

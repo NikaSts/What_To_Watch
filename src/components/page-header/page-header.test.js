@@ -2,7 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PageHeader from './page-header';
 
-const noop = () => {};
+const noop = () => { };
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`PageHeader not MainPage, not SignInPage, not authtorized should render correctly`, () => {
   const tree = renderer
@@ -12,6 +18,7 @@ it(`PageHeader not MainPage, not SignInPage, not authtorized should render corre
           isSignedIn={false}
           isSignInPage={false}
           onSignInButtonClick={noop}
+          userData={userData}
         />)
     .toJSON();
 
@@ -26,6 +33,7 @@ it(`PageHeader not MainPage, not SignInPage, authtorized should render correctly
           isSignedIn={true}
           isSignInPage={false}
           onSignInButtonClick={noop}
+          userData={userData}
         />)
     .toJSON();
 
@@ -40,6 +48,7 @@ it(`PageHeader MainPage, not authtorized should render correctly`, () => {
           isSignedIn={false}
           isSignInPage={false}
           onSignInButtonClick={noop}
+          userData={userData}
         />)
     .toJSON();
 
@@ -54,6 +63,7 @@ it(`PageHeader MainPage, authtorized should render correctly`, () => {
           isSignedIn={true}
           isSignInPage={false}
           onSignInButtonClick={noop}
+          userData={userData}
         />)
     .toJSON();
 
@@ -68,6 +78,7 @@ it(`PageHeader SignInPage should render correctly`, () => {
           isSignedIn={false}
           isSignInPage={true}
           onSignInButtonClick={noop}
+          userData={userData}
         />)
     .toJSON();
 
