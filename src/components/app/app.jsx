@@ -14,7 +14,7 @@ import {checkPlayerStatus} from '../../store/player/selectors';
 import {UserOperation} from '../../store/user/user';
 
 
-const WrappedPlayer = withFullScreen(VideoPlayer);
+const PlayerWithFullScreen = withFullScreen(VideoPlayer);
 
 class App extends PureComponent {
   constructor(props) {
@@ -46,14 +46,14 @@ class App extends PureComponent {
   _renderVideoPlayer() {
     const {activeMovie, promoMovie, onExitButtonClick} = this.props;
     if (activeMovie) {
-      return <WrappedPlayer
+      return <PlayerWithFullScreen
         title={activeMovie.title}
         src={activeMovie.video}
         previewImage={activeMovie.previewImage}
         onExitButtonClick={onExitButtonClick}
       />;
     }
-    return <WrappedPlayer
+    return <PlayerWithFullScreen
       title={promoMovie.title}
       src={promoMovie.video}
       previewImage={promoMovie.previewImage}

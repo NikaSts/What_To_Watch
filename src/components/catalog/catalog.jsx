@@ -11,7 +11,7 @@ import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
 import {getMovies, getGenres} from '../../store/data/selectors';
 
-const WrappedCatalogList = withShowMoreButton(CatalogList);
+const CatalogListWithShowMoreButton = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
@@ -40,7 +40,7 @@ const Catalog = (props) => {
         onGenreClick={onItemClick}
       />}
       {isMain
-        ? <WrappedCatalogList
+        ? <CatalogListWithShowMoreButton
           movies={moviesByGenre}
           onCatalogCardClick={onCatalogCardClick}
         />

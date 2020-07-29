@@ -5,7 +5,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import MovieCard from '../movie-card/movie-card';
 
 
-const WrappedCatalog = withActiveItem(Catalog);
+const CatalogWithActiveItem = withActiveItem(Catalog);
 
 const Main = () => (
   <Fragment>
@@ -14,7 +14,7 @@ const Main = () => (
     />
 
     <div className="page-content">
-      <WrappedCatalog
+      <CatalogWithActiveItem
         isMain={true}
       />
       <PageFooter

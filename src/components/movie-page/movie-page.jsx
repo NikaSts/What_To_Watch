@@ -14,7 +14,7 @@ import {UserActionCreator} from '../../store/user/user';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
 
-const WrappedTabs = withActiveItem(Tabs);
+const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MoviePage = ({
   activeMovie, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus
@@ -53,7 +53,7 @@ const MoviePage = ({
             <div className="movie-card__poster movie-card__poster--big">
               <img src={poster} alt={title} width="218" height="327" />
             </div>
-            <WrappedTabs
+            <TabsWithActiveItem
               activeMovie={activeMovie}
               reviews={reviews}
             />

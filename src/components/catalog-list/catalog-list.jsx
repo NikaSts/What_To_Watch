@@ -5,14 +5,14 @@ import {cardMovieType} from '../../types';
 import withVideo from '../../hocs/with-video/with-video';
 
 
-const WrappedCatalogCard = withVideo(CatalogCard);
+const CatalogCardWithVideo = withVideo(CatalogCard);
 
 const CatalogList = ({movies, onCatalogCardClick}) => (
   <div className="catalog__movies-list">
     {movies.map((movie) => {
       const {id, title, previewImage, preview} = movie;
       return (
-        <WrappedCatalogCard
+        <CatalogCardWithVideo
           key={id}
           title={title}
           src={preview}
