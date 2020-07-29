@@ -65,7 +65,7 @@ it(`Data Reducer without additional parameters should return initialState`, () =
   expect(reducer(void 0, {})).toEqual({
     movies: [],
     promoMovie: {
-      title: `Loading`,
+      title: `Loading...`,
       genre: ``,
       releaseDate: 0,
       poster: ``,

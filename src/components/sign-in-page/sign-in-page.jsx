@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
-import {func} from 'prop-types';
+import {func, bool} from 'prop-types';
 
 
 export default class SignInPage extends PureComponent {
@@ -23,10 +23,18 @@ export default class SignInPage extends PureComponent {
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
+  }
 
+  _showAuthorizationError() {
+    return (
+      <div className="sign-in__message">
+        <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
+      </div>
+    );
   }
 
   render() {
+    const {isAuthorizationError} = this.props;
     return (
       <div className="user-page">
         <PageHeader
@@ -39,6 +47,7 @@ export default class SignInPage extends PureComponent {
             className="sign-in__form"
             action=""
             onSubmit={this._handleSubmit}>
+            {isAuthorizationError && this._showAuthorizationError()}
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address"
@@ -72,4 +81,5 @@ export default class SignInPage extends PureComponent {
 
 SignInPage.propTypes = {
   onSubmit: func.isRequired,
+  isAuthorizationError: bool.isRequired,
 };

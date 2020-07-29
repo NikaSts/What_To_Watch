@@ -5,6 +5,7 @@ import {extend} from '../../utils/funcs';
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   isAuthorizing: false,
+  isAuthorizationError: false,
 };
 
 export const UserActionCreator = {
@@ -18,7 +19,9 @@ export const UserActionCreator = {
   isNotAuthorizing: () => ({
     type: ActionType.IS_NOT_AUTHORIZING,
   }),
-
+  isAuthorizationError: () => ({
+    type: ActionType.IS_AUTHORIZATION_ERROR,
+  })
 };
 
 export const UserOperation = {
@@ -43,6 +46,7 @@ export const UserOperation = {
       })
       .catch(() => {
         dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        dispatch(UserActionCreator.isAuthorizationError());
       });
 
   },
@@ -61,6 +65,11 @@ export const reducer = (state = initialState, action) => {
     case ActionType.IS_NOT_AUTHORIZING:
       return extend(state, {
         isAuthorizing: false,
+        isAuthorizationError: false,
+      });
+    case ActionType.IS_AUTHORIZATION_ERROR:
+      return extend(state, {
+        isAuthorizationError: true,
       });
     default:
       return state;

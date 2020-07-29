@@ -41,6 +41,7 @@ export const ActionType = {
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
   IS_AUTHORIZING: `isAuthorizing`,
   IS_NOT_AUTHORIZING: `isNotAuthorizing`,
+  IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
 };
 
 export const AuthorizationStatus = {

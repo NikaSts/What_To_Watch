@@ -5,7 +5,7 @@ import {movieAdapter} from '../../adapter/movie-adapter';
 const initialState = {
   movies: [],
   promoMovie: {
-    title: `Loading`,
+    title: `Loading...`,
     genre: ``,
     releaseDate: 0,
     poster: ``,

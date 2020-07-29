@@ -13,6 +13,7 @@ it(`SignInPage component render correctly`, () => {
         isSignedIn={false}
         isSignInPage={true}
         onSignInButtonClick={noop}
+        isAuthorizationError={false}
       />
   ).toJSON();
 

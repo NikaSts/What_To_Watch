@@ -62,9 +62,10 @@ class App extends PureComponent {
   }
 
   _renderSignInPage() {
-    const {login} = this.props;
+    const {login, isAuthorizationError} = this.props;
     return <SignInPage
       onSubmit={login}
+      isAuthorizationError={isAuthorizationError}
     />;
   }
 
@@ -94,6 +95,7 @@ App.propTypes = {
   onExitButtonClick: func.isRequired,
   login: func.isRequired,
   isAuthorizing: bool.isRequired,
+  isAuthorizationError: bool.isRequired,
 };
 
 const mapStateToProps = (store) => ({
@@ -101,6 +103,7 @@ const mapStateToProps = (store) => ({
   promoMovie: getPromoMovie(store),
   isVideoPlayer: checkPlayerStatus(store),
   isAuthorizing: store.USER.isAuthorizing,
+  isAuthorizationError: store.USER.isAuthorizationError,
 });
 
 const mapDispatchToProps = (dispatch) => ({
