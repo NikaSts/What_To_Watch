@@ -4,7 +4,14 @@ import {movieAdapter} from '../../adapter/movie-adapter';
 
 const initialState = {
   movies: [],
-  promoMovie: {},
+  promoMovie: {
+    title: `Loading`,
+    genre: ``,
+    releaseDate: 0,
+    poster: ``,
+    backgroundImage: ``,
+    backgroundColor: ``,
+  },
   activeMovie: null,
   reviews: [],
 };
