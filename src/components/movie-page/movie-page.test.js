@@ -114,7 +114,7 @@ const userData = {
 
 it(`MoviePage should render correctly`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       activeMovie,
       movies,
     },

@@ -1,4 +1,4 @@
-import {reducer} from './data';
+import {reducer} from './reducer';
 import {ActionType} from '../../utils/consts';
 
 const movie = {
@@ -61,7 +61,7 @@ const movies = [
   },
 ];
 
-it(`Data Reducer without additional parameters should return initialState`, () => {
+it(`Movies Reducer without additional parameters should return initialState`, () => {
   expect(reducer(void 0, {})).toEqual({
     movies: [],
     promoMovie: {
@@ -77,7 +77,7 @@ it(`Data Reducer without additional parameters should return initialState`, () =
   });
 });
 
-it(`Data Reducer should update activeMovie`, () => {
+it(`Movies Reducer should update activeMovie`, () => {
   expect(reducer(
       {activeMovie: {}},
       {
@@ -90,7 +90,7 @@ it(`Data Reducer should update activeMovie`, () => {
     });
 });
 
-it(`Data Reducer should update movies`, () => {
+it(`Movies Reducer should update movies`, () => {
   expect(reducer({
     movies: [],
   }, {

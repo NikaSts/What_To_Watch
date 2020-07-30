@@ -76,7 +76,7 @@ const userData = {
 
 it(`Main should render correctly`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       promoMovie,
       movies,
     },

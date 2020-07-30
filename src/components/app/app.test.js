@@ -93,7 +93,7 @@ const userData = {
 
 it(`App should render Main`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       activeMovie: null,
       promoMovie,
       movies,
@@ -128,7 +128,7 @@ it(`App should render Main`, () => {
 
 it(`App should render MoviePage`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       activeMovie,
       promoMovie,
       movies,
