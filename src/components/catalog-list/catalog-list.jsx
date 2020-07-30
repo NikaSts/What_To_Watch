@@ -25,7 +25,7 @@ const CatalogList = ({movies, onCatalogCardClick}) => (
 );
 
 CatalogList.propTypes = {
-  movies: arrayOf(cardMovieType.isRequired).isRequired,
+  movies: arrayOf(cardMovieType).isRequired,
   onCatalogCardClick: func.isRequired,
 };
 

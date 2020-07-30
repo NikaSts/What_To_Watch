@@ -1,5 +1,5 @@
 const NameSpace = {
-  DATA: `DATA`,
+  MOVIES: `MOVIES`,
   PLAYER: `PLAYER`,
   USER: `USER`,
 };

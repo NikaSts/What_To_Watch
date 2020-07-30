@@ -1,4 +1,4 @@
 import NameSpace from '../name-space';
 
-
-export const checkPlayerStatus = (store) => store[NameSpace.PLAYER].isVideoPlayer;
+const getPlayerState = (state) => state[NameSpace.PLAYER];
+export const checkPlayerStatus = (state) => getPlayerState(state).isVideoPlayer;

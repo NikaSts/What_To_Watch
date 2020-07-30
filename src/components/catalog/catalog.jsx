@@ -1,15 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import cn from 'classnames';
+import {func, arrayOf, string, bool} from 'prop-types';
+
 import CatalogList from '../catalog-list/catalog-list';
 import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
-import {func, arrayOf, string, bool} from 'prop-types';
 import {movieType} from '../../types';
-import {DataActionCreator, DataOperation} from '../../store/data/data';
+import {
+  ActionCreator as DataActionCreator,
+  Operation as DataOperation
+} from '../../store/movies/actions';
+import {getMovies, getGenres} from '../../store/movies/selectors';
 import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
-import {getMovies, getGenres} from '../../store/data/selectors';
 
 const CatalogListWithShowMoreButton = withShowMoreButton(CatalogList);
 
@@ -59,16 +63,16 @@ Catalog.defaultProps = {
 
 Catalog.propTypes = {
   isMain: bool.isRequired,
-  movies: arrayOf(movieType.isRequired).isRequired,
+  movies: arrayOf(movieType).isRequired,
   genres: arrayOf(string.isRequired).isRequired,
   onCatalogCardClick: func.isRequired,
   activeItem: string,
   onItemClick: func,
 };
 
-const mapStateToProps = (store) => ({
-  movies: getMovies(store),
-  genres: getGenres(store),
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  genres: getGenres(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

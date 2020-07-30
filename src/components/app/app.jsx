@@ -1,17 +1,19 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bool, func} from 'prop-types';
+
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import SignInPage from '../sign-in-page/sign-in-page';
-import {connect} from 'react-redux';
-import {movieType, promoMovieType} from '../../types';
-import {bool, func} from 'prop-types';
-import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
-import {PlayerActionCreator} from '../../store/player/player';
-import {getActiveMovie, getPromoMovie} from '../../store/data/selectors';
+import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
+import {movieType, promoMovieType} from '../../types';
+import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
+import {Operation as UserOperation} from '../../store/user/actions';
+import {getActiveMovie, getPromoMovie} from '../../store/movies/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
-import {UserOperation} from '../../store/user/user';
+import {getIsAuthorizing, getIsAuthorizationError} from '../../store/user/selectors';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
@@ -98,12 +100,12 @@ App.propTypes = {
   isAuthorizationError: bool.isRequired,
 };
 
-const mapStateToProps = (store) => ({
-  activeMovie: getActiveMovie(store),
-  promoMovie: getPromoMovie(store),
-  isVideoPlayer: checkPlayerStatus(store),
-  isAuthorizing: store.USER.isAuthorizing,
-  isAuthorizationError: store.USER.isAuthorizationError,
+const mapStateToProps = (state) => ({
+  activeMovie: getActiveMovie(state),
+  promoMovie: getPromoMovie(state),
+  isVideoPlayer: checkPlayerStatus(state),
+  isAuthorizing: getIsAuthorizing(state),
+  isAuthorizationError: getIsAuthorizationError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

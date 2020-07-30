@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {func, string, bool, shape, number} from 'prop-types';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import {promoMovieType} from '../../types';
-import {func, string, bool, shape, number} from 'prop-types';
-import {getPromoMovie} from '../../store/data/selectors';
-import {PlayerActionCreator} from '../../store/player/player';
-import {UserActionCreator} from '../../store/user/user';
+import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
+import {ActionCreator as UserActionCreator} from '../../store/user/actions';
+import {getPromoMovie} from '../../store/movies/selectors';
+import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
-import {getAuthorizationStatus} from '../../store/user/selectors';
 
 
 const MovieCard = ({
@@ -61,10 +61,10 @@ MovieCard.propTypes = {
   })
 };
 
-const mapStateToProps = (store) => ({
-  promoMovie: getPromoMovie(store),
-  authorizationStatus: getAuthorizationStatus(store),
-  userData: store.USER.userData,
+const mapStateToProps = (state) => ({
+  promoMovie: getPromoMovie(state),
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

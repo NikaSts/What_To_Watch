@@ -6,12 +6,12 @@ import PageHeader from '../page-header/page-header';
 import PageFooter from '../page-footer/page-footer';
 import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {movieType} from '../../types';
 import Catalog from '../catalog/catalog';
-import {PlayerActionCreator} from '../../store/player/player';
-import {getMovies, getActiveMovie, getReviews} from '../../store/data/selectors';
-import {UserActionCreator} from '../../store/user/user';
-import {getAuthorizationStatus} from '../../store/user/selectors';
+import {movieType} from '../../types';
+import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
+import {ActionCreator as UserActionCreator} from '../../store/user/actions';
+import {getMovies, getActiveMovie, getReviews} from '../../store/movies/selectors';
+import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
 
 const TabsWithActiveItem = withActiveItem(Tabs);
@@ -95,12 +95,12 @@ MoviePage.propTypes = {
   })
 };
 
-const mapStateToProps = (store) => ({
-  movies: getMovies(store),
-  activeMovie: getActiveMovie(store),
-  reviews: getReviews(store),
-  authorizationStatus: getAuthorizationStatus(store),
-  userData: store.USER.userData,
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  activeMovie: getActiveMovie(state),
+  reviews: getReviews(state),
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
-import {reducer as data} from './data/data';
-import {reducer as player} from './player/player';
-import {reducer as user} from './user/user';
+import {reducer as movies} from './movies/reducer';
+import {reducer as player} from './player/reducer';
+import {reducer as user} from './user/reducer';
 import NameSpace from './name-space';
 
 export const rootReducer = combineReducers({
-  [NameSpace.DATA]: data,
+  [NameSpace.MOVIES]: movies,
   [NameSpace.PLAYER]: player,
   [NameSpace.USER]: user,
 });
