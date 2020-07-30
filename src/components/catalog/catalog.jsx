@@ -1,24 +1,25 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import cn from 'classnames';
-import MovieList from '../movie-list/movie-list';
-import GenreList from '../genre-list/genre-list';
+import CatalogList from '../catalog-list/catalog-list';
+import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {func, arrayOf, string, bool} from 'prop-types';
 import {movieType} from '../../types';
-import {changeActiveMovie} from '../../store/actions';
-import {getGenres, filterMovies} from '../../utils/funcs';
+import {DataActionCreator, DataOperation} from '../../store/reduсers/data/data';
+import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
+import {getMovies, getGenres} from '../../store/reduсers/data/selectors';
 
-const WrappedMovieList = withShowMoreButton(MovieList);
+const WrappedCatalogList = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
-    isMain, movies, onMovieTitleClick, activeItem, onItemClick,
+    isMain, movies, genres, onCatalogCardClick, activeItem, onItemClick,
   } = props;
-  const genres = getGenres(movies);
   const moviesByGenre = filterMovies(movies, activeItem);
   const moviesToShow = [...moviesByGenre].splice(0, MAX_SIMILAR_MOVIES);
+
   const catalogClass = cn({
     'catalog': true,
     'catalog--like-this': !isMain,
@@ -33,24 +34,23 @@ const Catalog = (props) => {
       <h2 className={catalogTitleClass}>
         {isMain ? `Catalog` : `More like this`}
       </h2>
-      {isMain && <GenreList
+      {isMain && <CatalogFilter
         genres={genres}
         activeGenre={activeItem}
         onGenreClick={onItemClick}
       />}
       {isMain
-        ? <WrappedMovieList
+        ? <WrappedCatalogList
           movies={moviesByGenre}
-          onMovieTitleClick={onMovieTitleClick}
+          onCatalogCardClick={onCatalogCardClick}
         />
-        : <MovieList
+        : <CatalogList
           movies={moviesToShow}
-          onMovieTitleClick={onMovieTitleClick}
+          onCatalogCardClick={onCatalogCardClick}
         />}
     </section>
   );
 };
-
 
 Catalog.defaultProps = {
   isMain: false,
@@ -60,19 +60,23 @@ Catalog.defaultProps = {
 Catalog.propTypes = {
   isMain: bool.isRequired,
   movies: arrayOf(movieType.isRequired).isRequired,
-  onMovieTitleClick: func.isRequired,
+  genres: arrayOf(string.isRequired).isRequired,
+  onCatalogCardClick: func.isRequired,
   activeItem: string,
   onItemClick: func,
 };
 
-const mapStateToProps = ({movies}) => ({movies});
-
-const mapDispatchToProps = (dispatch) => ({
-  onMovieTitleClick(activeMovie) {
-    dispatch(changeActiveMovie(activeMovie));
-  }
+const mapStateToProps = (store) => ({
+  movies: getMovies(store),
+  genres: getGenres(store),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onCatalogCardClick(activeMovie) {
+    dispatch(DataActionCreator.changeActiveMovie(activeMovie));
+    dispatch(DataOperation.loadReviews(activeMovie.id));
+  }
+});
 
 export {Catalog};
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

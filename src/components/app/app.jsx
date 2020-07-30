@@ -7,7 +7,9 @@ import {movieType} from '../../types';
 import {bool, func} from 'prop-types';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import VideoPlayer from '../video-player/video-player';
-import {closeFullScreenPlayer} from '../../store/actions';
+import {PlayerActionCreator} from '../../store/reduсers/player/player';
+import {changeActiveMovie, getPromoMovie} from '../../store/reduсers/data/selectors';
+import {checkPlayerStatus} from '../../store/reduсers/player/selectors';
 
 
 const WrappedPlayer = withFullScreen(VideoPlayer);
@@ -41,15 +43,15 @@ class App extends PureComponent {
     if (activeMovie) {
       return <WrappedPlayer
         title={activeMovie.title}
-        src={activeMovie.preview}
-        poster={`img/bg-${activeMovie.image}.jpg`}
+        src={activeMovie.video}
+        poster={activeMovie.poster}
         onExitButtonClick={onExitButtonClick}
       />;
     }
     return <WrappedPlayer
       title={promoMovie.title}
-      src={promoMovie.preview}
-      poster={`img/bg-${promoMovie.image}.jpg`}
+      src={promoMovie.video}
+      poster={promoMovie.poster}
       onExitButtonClick={onExitButtonClick}
     />;
   }
@@ -77,15 +79,15 @@ App.propTypes = {
   onExitButtonClick: func.isRequired,
 };
 
-const mapStateToProps = ({
-  activeMovie, promoMovie, isVideoPlayer
-}) => ({
-  activeMovie, promoMovie, isVideoPlayer
+const mapStateToProps = (store) => ({
+  activeMovie: changeActiveMovie(store),
+  promoMovie: getPromoMovie(store),
+  isVideoPlayer: checkPlayerStatus(store),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onExitButtonClick(activeMovie) {
-    dispatch(closeFullScreenPlayer(activeMovie));
+    dispatch(PlayerActionCreator.closeFullScreenPlayer(activeMovie));
   }
 });
 

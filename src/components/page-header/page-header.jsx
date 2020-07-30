@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react';
 import {string} from 'prop-types';
 
-const PageHeader = ({imagePath, title}) => (
+const PageHeader = ({title, backgroundImage}) => (
   <Fragment>
     <div className="movie-card__bg">
-      <img src={imagePath} alt={title} />
+      <img src={backgroundImage} alt={title} />
     </div>
     <h1 className="visually-hidden">WTW</h1>
 
@@ -27,8 +27,8 @@ const PageHeader = ({imagePath, title}) => (
 );
 
 PageHeader.propTypes = {
-  imagePath: string.isRequired,
   title: string.isRequired,
+  backgroundImage: string.isRequired,
 };
 
 export default PageHeader;

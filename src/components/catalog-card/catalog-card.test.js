@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MovieCard from './movie-card';
+import CatalogCard from './catalog-card';
 
 const title = `Harry Potter`;
 const children = <video />;
@@ -8,14 +8,14 @@ const children = <video />;
 it(`MovieCard should render correctly`, () => {
   const tree = renderer
     .create(
-        <MovieCard
+        <CatalogCard
           title={title}
-          onMovieTitleClick={() => {}}
+          onCatalogCardClick={() => {}}
           onMouseEnter={() => {}}
           onMouseLeave={() => { }}
         >
           {children}
-        </MovieCard>)
+        </CatalogCard>)
       .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -3,22 +3,24 @@ import {connect} from 'react-redux';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
-import {openFullScreenPlayer} from '../../store/actions';
 import {promoMovieType} from '../../types';
 import {func} from 'prop-types';
+import {getPromoMovie} from '../../store/reduсers/data/selectors';
+import {PlayerActionCreator} from '../../store/reduсers/player/player';
+
 
 const MovieCardBig = ({promoMovie, onPlayButtonClick}) => {
-  const {image, title, genre, releaseDate} = promoMovie;
+  const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
   return (
     <section className="movie-card">
       <PageHeader
-        imagePath={`img/bg-${image}.jpg`}
         title={title}
+        backgroundImage={backgroundImage}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={`img/${image}-poster.jpg`} alt={title} width="218" height="327" />
+            <img src={poster} alt={title} width="218" height="327" />
           </div>
           <MovieInfo
             title={title}
@@ -38,11 +40,13 @@ MovieCardBig.propTypes = {
   onPlayButtonClick: func.isRequired,
 };
 
-const mapStateToProps = ({promoMovie}) => ({promoMovie});
+const mapStateToProps = (store) => ({
+  promoMovie: getPromoMovie(store),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onPlayButtonClick() {
-    dispatch(openFullScreenPlayer());
+    dispatch(PlayerActionCreator.openFullScreenPlayer());
   }
 });
 

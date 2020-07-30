@@ -17,11 +17,11 @@ const withActivePlayer = (Component) => {
     }
 
     componentDidMount() {
-      const {src, poster} = this.props;
+      const {src, previewImage} = this.props;
       const video = this._videoRef.current;
       if (video) {
         video.src = src;
-        video.poster = poster;
+        video.poster = previewImage;
         video.muted = true;
       }
     }
@@ -79,7 +79,7 @@ const withActivePlayer = (Component) => {
   }
   Wrapper.propTypes = {
     src: string.isRequired,
-    poster: string.isRequired,
+    previewImage: string.isRequired,
   };
 
   return Wrapper;

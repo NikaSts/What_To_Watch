@@ -34,5 +34,21 @@ export const DELAY = 1000;
 export const ActionType = {
   CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
   OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
-  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`
+  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
+  GET_MOVIES: `getMovies`,
+  GET_PROMO_MOVIE: `getPromoMovie`,
+  GET_REVIEWS: `getReviews`,
+  REQUIRE_AUTHORIZATION: `requireAuthorization`,
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export const EntryPoint = {
+  REVIEWS: `/comments`,
+  FAVORITE: `/favorite`,
+  MOVIES: `/films`,
+  PROMO: `/films/promo`,
 };

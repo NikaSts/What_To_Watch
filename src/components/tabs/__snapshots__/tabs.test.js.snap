@@ -51,7 +51,7 @@ exports[`Tabs should render correctly 1`] = `
     <div
       className="movie-rating__score"
     >
-      8,9
+      1
     </div>
     <p
       className="movie-rating__meta"
@@ -59,12 +59,12 @@ exports[`Tabs should render correctly 1`] = `
       <span
         className="movie-rating__level"
       >
-        Very good
+        Bad
       </span>
       <span
         className="movie-rating__count"
       >
-        240
+        1
          ratings
       </span>
     </p>
@@ -72,19 +72,13 @@ exports[`Tabs should render correctly 1`] = `
   <div
     className="movie-card__text"
   >
-    <p>
-      Quentin Tarantino's Once Upon a Time... in Hollywood visits 1969 Los Angeles,
-  where everything is changing, as TV star Rick Dalton (Leonardo DiCaprio) and his longtime
-  stunt double Cliff Booth (Brad Pitt) make their way around an industry they hardly recognize
-  anymore. The ninth film from the writer-director features a large ensemble cast and multiple
-  storylines in a tribute to the final moments of Hollywood's golden age.
-    </p>
+    
     <p
       className="movie-card__director"
     >
       <strong>
         Director: 
-        Quentin Tarantino
+        
       </strong>
     </p>
     <p
@@ -92,7 +86,7 @@ exports[`Tabs should render correctly 1`] = `
     >
       <strong>
         Starring: 
-        Leonardo DiCaprio, Brad Pitt, Margot Robbie
+        
          and other
       </strong>
     </p>

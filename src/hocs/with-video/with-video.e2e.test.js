@@ -29,7 +29,7 @@ it(`withActiveVideo should start playing video after timer onMouseEnter`, () => 
         onMouseEnter={() => {}}
         onMouseLeave={() => { }}
         src={``}
-        poster={``}
+        previewImage={``}
       />);
 
   jest.useFakeTimers();
@@ -51,7 +51,7 @@ it(`withActiveVideo should clear timer onMouseLeave`, () => {
         onMouseEnter={() => {}}
         onMouseLeave={() => { }}
         src={``}
-        poster={``}
+        previewImage={``}
       />);
 
   jest.useFakeTimers();
@@ -69,7 +69,7 @@ it(`withActiveVideo should clear timer on componentWillUnmount`, () => {
         onMouseEnter={() => {}}
         onMouseLeave={() => { }}
         src={``}
-        poster={``}
+        previewImage={``}
       />);
 
   jest.useFakeTimers();
@@ -97,7 +97,7 @@ it(`VideoPlayer should play`, () => {
   const player = mount(
       <VideoPlayer
         src={``}
-        poster={``}
+        previewImage={``}
         muted={true}
         isPlaying={isPlaying}
         onMouseEnter={() => {}}
@@ -119,7 +119,7 @@ it(`VideoPlayer should stop playing and start loading`, () => {
   const player = mount(
       <VideoPlayer
         src={``}
-        poster={``}
+        previewImage={``}
         muted={true}
         isPlaying={isPlaying}
         onMouseEnter={() => {}}

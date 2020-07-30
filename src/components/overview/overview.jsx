@@ -3,7 +3,7 @@ import {string, number, arrayOf} from 'prop-types';
 import {MAX_ACTORS_TO_SHOW} from '../../utils/consts';
 
 
-const Overview = ({ratingScore, ratingLevel, ratingCount, paragraphs, director, stars}) => {
+const Overview = ({ratingScore, ratingLevel, ratingCount, description, director, stars}) => {
   const shownActors = stars.slice(0, MAX_ACTORS_TO_SHOW).join(`, `);
 
   return (
@@ -17,7 +17,7 @@ const Overview = ({ratingScore, ratingLevel, ratingCount, paragraphs, director, 
       </div>
 
       <div className="movie-card__text">
-        {paragraphs.map((paragraph, i) => <Fragment key={i}><p>{paragraph}</p></Fragment>)}
+        {description}
         <p className="movie-card__director"><strong>Director: {director}</strong></p>
         <p className="movie-card__starring"><strong>Starring: {shownActors} and other</strong></p>
       </div>
@@ -26,10 +26,10 @@ const Overview = ({ratingScore, ratingLevel, ratingCount, paragraphs, director, 
 };
 
 Overview.propTypes = {
-  ratingScore: string.isRequired,
+  ratingScore: number.isRequired,
   ratingLevel: string.isRequired,
   ratingCount: number.isRequired,
-  paragraphs: arrayOf(string).isRequired,
+  description: string.isRequired,
   director: string.isRequired,
   stars: arrayOf(string).isRequired,
 };

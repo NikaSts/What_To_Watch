@@ -1,24 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
-import App from './components/app/app';
-import {reducer} from './store/reduсers/reducer';
-import {movies} from './mocks/movies';
-import {promoMovie} from './mocks/promoMovie';
+import thunk from 'redux-thunk';
 
-const initialState = {
-  promoMovie,
-  activeMovie: null,
-  movies,
-  isVideoPlayer: false,
-};
+import App from './components/app/app';
+import {rootReducer} from './store/reduсers/reducer';
+import {createAPI} from './api';
+
+import {UserActionCreator} from './store/reduсers/user/user';
+import {DataOperation} from './store/reduсers/data/data';
+import {AuthorizationStatus} from './utils/consts';
+
+
+const api = createAPI(() => {
+  store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+});
 
 const store = createStore(
-    reducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    rootReducer,
+    compose(
+        applyMiddleware(thunk.withExtraArgument(api)),
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    )
 );
+
+store.dispatch(DataOperation.loadMovies());
+store.dispatch(DataOperation.loadPromoMovie());
+// store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>

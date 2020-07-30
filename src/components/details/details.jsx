@@ -36,7 +36,7 @@ const Details = ({runTime, genre, releaseDate, director, stars}) => {
 };
 
 Details.propTypes = {
-  runTime: string.isRequired,
+  runTime: number.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,
   director: string.isRequired,
