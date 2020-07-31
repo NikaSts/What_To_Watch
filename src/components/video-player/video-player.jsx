@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {bool, string, func, node, number} from 'prop-types';
-import {formatTime} from '../../utils/funcs';
+import {formatTimeWithSeconds} from '../../utils/funcs';
 
 export default class VideoPlayer extends PureComponent {
   constructor(props) {
@@ -81,7 +81,7 @@ export default class VideoPlayer extends PureComponent {
               <progress className="player__progress" value={progress} max={duration}></progress>
               <div className="player__toggler" style={{left: toggler + `%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">{formatTime(timeLeft)}</div>
+            <div className="player__time-value">{formatTimeWithSeconds(timeLeft)}</div>
           </div>
 
           <div className="player__controls-row">

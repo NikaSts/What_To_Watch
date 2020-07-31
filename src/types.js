@@ -11,7 +11,6 @@ export const movieType = shape({
   backgroundImage: string.isRequired,
   backgroundColor: string.isRequired,
   ratingScore: number.isRequired,
-  ratingLevel: string.isRequired,
   ratingCount: number.isRequired,
   description: string.isRequired,
   director: string.isRequired,
@@ -21,7 +20,6 @@ export const movieType = shape({
 });
 
 export const promoMovieType = shape({
-  id: number.isRequired,
   title: string.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,

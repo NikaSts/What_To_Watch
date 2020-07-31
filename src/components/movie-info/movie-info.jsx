@@ -3,7 +3,7 @@ import {bool, string, number, func} from 'prop-types';
 import Controls from '../controls/controls';
 
 
-const MovieInfo = ({title, genre, releaseDate, isLogged, onPlayButtonClick}) => {
+const MovieInfo = ({title, genre, releaseDate, isSignedIn, onPlayButtonClick}) => {
   return (
     <div className="movie-card__desc">
       <h2 className="movie-card__title">{title}</h2>
@@ -13,7 +13,7 @@ const MovieInfo = ({title, genre, releaseDate, isLogged, onPlayButtonClick}) => 
       </p>
 
       <Controls
-        isLogged={isLogged}
+        isSignedIn={isSignedIn}
         onPlayButtonClick={onPlayButtonClick}
       />
     </div>
@@ -24,7 +24,7 @@ MovieInfo.propTypes = {
   title: string.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,
-  isLogged: bool.isRequired,
+  isSignedIn: bool.isRequired,
   onPlayButtonClick: func.isRequired,
 };
 

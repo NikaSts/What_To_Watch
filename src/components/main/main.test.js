@@ -66,14 +66,25 @@ const movies = [
     video: ``
   },
 ];
-
+const noop = () => { };
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`Main should render correctly`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       promoMovie,
       movies,
     },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
+      userData,
+    }
   });
 
   const tree = renderer
@@ -81,9 +92,12 @@ it(`Main should render correctly`, () => {
         <Provider store={store}>
           <Main
             activeGenre={activeGenre}
-            onGenreClick={() => {}}
-            onMovieTitleClick={() => { }}
-            onShowMoreButtonClick={() => {}}
+            onGenreClick={noop}
+            onMovieTitleClick={noop}
+            onShowMoreButtonClick={noop}
+            onSignInButtonClick={noop}
+            isMain={true}
+            authorizationStatus={`AUTH`}
           />
         </Provider>, {
           createNodeMock: () => {

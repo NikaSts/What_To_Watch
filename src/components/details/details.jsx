@@ -1,5 +1,7 @@
 import React, {Fragment} from 'react';
 import {string, number, arrayOf} from 'prop-types';
+import {formatTime} from '../../utils/funcs';
+
 
 const Details = ({runTime, genre, releaseDate, director, stars}) => {
   return (
@@ -20,7 +22,7 @@ const Details = ({runTime, genre, releaseDate, director, stars}) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{runTime}</span>
+          <span className="movie-card__details-value">{formatTime(runTime)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>

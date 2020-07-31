@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from 'react';
 import {string} from 'prop-types';
 import {DELAY} from '../../utils/consts';
 
-const withActivePlayer = (Component) => {
+const withVideo = (Component) => {
   class Wrapper extends PureComponent {
     constructor(props) {
       super(props);
@@ -85,4 +85,4 @@ const withActivePlayer = (Component) => {
   return Wrapper;
 };
 
-export default withActivePlayer;
+export default withVideo;

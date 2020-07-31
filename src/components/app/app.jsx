@@ -1,18 +1,22 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bool, func} from 'prop-types';
+
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
-import {connect} from 'react-redux';
-import {movieType} from '../../types';
-import {bool, func} from 'prop-types';
-import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
+import SignInPage from '../sign-in-page/sign-in-page';
 import VideoPlayer from '../video-player/video-player';
-import {PlayerActionCreator} from '../../store/reduсers/player/player';
-import {changeActiveMovie, getPromoMovie} from '../../store/reduсers/data/selectors';
-import {checkPlayerStatus} from '../../store/reduсers/player/selectors';
+import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
+import {movieType, promoMovieType} from '../../types';
+import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
+import {Operation as UserOperation} from '../../store/user/actions';
+import {getActiveMovie, getPromoMovie} from '../../store/movies/selectors';
+import {checkPlayerStatus} from '../../store/player/selectors';
+import {getIsAuthorizing, getIsAuthorizationError} from '../../store/user/selectors';
 
 
-const WrappedPlayer = withFullScreen(VideoPlayer);
+const PlayerWithFullScreen = withFullScreen(VideoPlayer);
 
 class App extends PureComponent {
   constructor(props) {
@@ -20,7 +24,10 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {activeMovie, isVideoPlayer} = this.props;
+    const {activeMovie, isVideoPlayer, isAuthorizing} = this.props;
+    if (isAuthorizing) {
+      return this._renderSignInPage();
+    }
     if (isVideoPlayer) {
       return this._renderVideoPlayer();
     }
@@ -41,18 +48,26 @@ class App extends PureComponent {
   _renderVideoPlayer() {
     const {activeMovie, promoMovie, onExitButtonClick} = this.props;
     if (activeMovie) {
-      return <WrappedPlayer
+      return <PlayerWithFullScreen
         title={activeMovie.title}
         src={activeMovie.video}
-        poster={activeMovie.poster}
+        previewImage={activeMovie.previewImage}
         onExitButtonClick={onExitButtonClick}
       />;
     }
-    return <WrappedPlayer
+    return <PlayerWithFullScreen
       title={promoMovie.title}
       src={promoMovie.video}
-      poster={promoMovie.poster}
+      previewImage={promoMovie.previewImage}
       onExitButtonClick={onExitButtonClick}
+    />;
+  }
+
+  _renderSignInPage() {
+    const {login, isAuthorizationError} = this.props;
+    return <SignInPage
+      onSubmit={login}
+      isAuthorizationError={isAuthorizationError}
     />;
   }
 
@@ -66,6 +81,9 @@ class App extends PureComponent {
           <Route exact path="/movie">
             {this._renderMoviePage()}
           </Route>
+          <Route exact path="/auth">
+            {this._renderSignInPage()}
+          </Route>
         </Switch>
       </BrowserRouter>
     );
@@ -74,21 +92,29 @@ class App extends PureComponent {
 
 App.propTypes = {
   activeMovie: movieType,
-  promoMovie: movieType.isRequired,
+  promoMovie: promoMovieType,
   isVideoPlayer: bool.isRequired,
   onExitButtonClick: func.isRequired,
+  login: func.isRequired,
+  isAuthorizing: bool.isRequired,
+  isAuthorizationError: bool.isRequired,
 };
 
-const mapStateToProps = (store) => ({
-  activeMovie: changeActiveMovie(store),
-  promoMovie: getPromoMovie(store),
-  isVideoPlayer: checkPlayerStatus(store),
+const mapStateToProps = (state) => ({
+  activeMovie: getActiveMovie(state),
+  promoMovie: getPromoMovie(state),
+  isVideoPlayer: checkPlayerStatus(state),
+  isAuthorizing: getIsAuthorizing(state),
+  isAuthorizationError: getIsAuthorizationError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onExitButtonClick(activeMovie) {
     dispatch(PlayerActionCreator.closeFullScreenPlayer(activeMovie));
-  }
+  },
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
 });
 
 

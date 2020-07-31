@@ -56,11 +56,11 @@ export const getRatingLevel = (score) => {
   return Rating.AWESOME;
 };
 
-export const filterMovies = (movies, activeGenre, movieTitle) => {
+export const filterMovies = (movies, activeGenre) => {
   if (activeGenre === DEFAULT_GENRE) {
     return [...movies];
   }
-  return [...movies].filter((movie) => movie.genre === activeGenre && movie.title !== movieTitle);
+  return [...movies].filter((movie) => movie.genre === activeGenre);
 };
 
 export const getGenresFromMovies = (movies) => {
@@ -71,7 +71,7 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export const formatTime = (time) => {
+export const formatTimeWithSeconds = (time) => {
   const minutes = Math.trunc(time / 60);
   const seconds = Math.trunc(time % 60);
   const hours = Math.trunc(minutes / 60);
@@ -81,4 +81,14 @@ export const formatTime = (time) => {
     (`0` + minutes).slice(-2),
     (`0` + seconds).slice(-2)
   ].join(`:`);
+};
+
+export const formatTime = (time) => {
+  const hours = Math.trunc(time / 60);
+  const minutes = time % 60;
+
+  if (hours) {
+    return `${hours}h ${minutes}m`;
+  }
+  return `${minutes}m`;
 };

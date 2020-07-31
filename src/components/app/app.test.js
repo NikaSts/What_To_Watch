@@ -84,16 +84,28 @@ const movies = [
     video: ``
   },
 ];
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`App should render Main`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       activeMovie: null,
       promoMovie,
       movies,
     },
     PLAYER: {
       isVideoPlayer: false,
+    },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
+      isAuthorizationError: false,
+      userData,
     }
   });
 
@@ -101,7 +113,7 @@ it(`App should render Main`, () => {
     .create(
         <Provider store={store}>
           <App
-            onMovieTitleClick={() => { }}
+            isMain={true}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -116,22 +128,26 @@ it(`App should render Main`, () => {
 
 it(`App should render MoviePage`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       activeMovie,
       promoMovie,
       movies,
     },
     PLAYER: {
       isVideoPlayer: false,
+    },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
+      isAuthorizationError: false,
+      userData,
     }
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            onMovieTitleClick={() => { }}
-          />
+          <App />
         </Provider>, {
           createNodeMock: () => {
             return {};

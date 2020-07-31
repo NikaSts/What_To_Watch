@@ -2,17 +2,19 @@ import React, {Fragment} from 'react';
 import PageFooter from '../page-footer/page-footer';
 import Catalog from '../catalog/catalog';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import MovieCardBig from '../movie-card-big/movie-card-big';
+import MovieCard from '../movie-card/movie-card';
 
 
-const WrappedCatalog = withActiveItem(Catalog);
+const CatalogWithActiveItem = withActiveItem(Catalog);
 
 const Main = () => (
   <Fragment>
-    <MovieCardBig />
+    <MovieCard
+      isMain={true}
+    />
 
     <div className="page-content">
-      <WrappedCatalog
+      <CatalogWithActiveItem
         isMain={true}
       />
       <PageFooter

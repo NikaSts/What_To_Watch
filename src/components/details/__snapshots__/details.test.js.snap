@@ -61,7 +61,7 @@ exports[`Overview should render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        11
+        11m
       </span>
     </p>
     <p

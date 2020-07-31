@@ -2,25 +2,26 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Controls from './controls';
 
+const noop = () => {};
 
-it(`Controls should render correctly if user is logged in`, () => {
+it(`Controls should render correctly if user is signed in`, () => {
   const tree = renderer
   .create(
       <Controls
-        isLogged={true}
-        onPlayButtonClick={() => {}}
+        isSignedIn={true}
+        onPlayButtonClick={noop}
       />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-it(`Controls should render correctly if user is not logged in`, () => {
+it(`Controls should render correctly if user is not signed in`, () => {
   const tree = renderer
   .create(
       <Controls
-        isLogged={false}
-        onPlayButtonClick={() => {}}
+        isSignedIn={false}
+        onPlayButtonClick={noop}
       />
   ).toJSON();
 

@@ -1,17 +1,9 @@
-import {extend} from '../../../utils/funcs';
-import {ActionType} from '../../../utils/consts';
+import {extend} from '../../utils/funcs';
+import {ActionType} from '../../utils/consts';
+
 
 const initialState = {
   isVideoPlayer: false,
-};
-
-export const PlayerActionCreator = {
-  openFullScreenPlayer: () => ({
-    type: ActionType.OPEN_FULL_SCREEN_PLAYER,
-  }),
-  closeFullScreenPlayer: () => ({
-    type: ActionType.CLOSE_FULL_SCREEN_PLAYER,
-  })
 };
 
 export const reducer = (state = initialState, action) => {

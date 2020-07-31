@@ -39,6 +39,10 @@ export const ActionType = {
   GET_PROMO_MOVIE: `getPromoMovie`,
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
+  IS_AUTHORIZING: `isAuthorizing`,
+  IS_NOT_AUTHORIZING: `isNotAuthorizing`,
+  IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
+  LOAD_USER_DATA: `loadUserData`,
 };
 
 export const AuthorizationStatus = {
@@ -51,4 +55,13 @@ export const EntryPoint = {
   FAVORITE: `/favorite`,
   MOVIES: `/films`,
   PROMO: `/films/promo`,
+  LOGIN: `/login`,
 };
+
+export const TIMER = 5000;
+
+export const Error = {
+  UNAUTHORIZED: 401,
+};
+
+export const URL = `https://4.react.pages.academy/wtw`;

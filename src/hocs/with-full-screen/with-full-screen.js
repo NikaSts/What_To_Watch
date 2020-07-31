@@ -66,7 +66,7 @@ const withFullScreen = (Component) => {
 
     render() {
       const {isPlaying, progress, duration} = this.state;
-      const {title, poster, src, onExitButtonClick} = this.props;
+      const {title, previewImage, src, onExitButtonClick} = this.props;
 
       return (
         <Component
@@ -80,11 +80,11 @@ const withFullScreen = (Component) => {
         >
           <video
             ref={this._videoRef}
-            poster={poster}
+            poster={previewImage}
             src={src}
             preload="metadata"
-            width="100%"
-            height="auto"
+            width="auto"
+            height="100%"
           />
         </Component>
       );
@@ -94,7 +94,7 @@ const withFullScreen = (Component) => {
   Wrapper.propTypes = {
     title: string.isRequired,
     src: string.isRequired,
-    poster: string.isRequired,
+    previewImage: string.isRequired,
     onExitButtonClick: func.isRequired,
   };
 

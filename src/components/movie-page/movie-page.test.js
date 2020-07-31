@@ -105,14 +105,24 @@ const moviesToShow = [
     video: ``
   },
 ];
-
+const userData = {
+  id: 1,
+  name: ``,
+  email: ``,
+  avatar: ``,
+};
 
 it(`MoviePage should render correctly`, () => {
   const store = mockStore({
-    DATA: {
+    MOVIES: {
       activeMovie,
       movies,
     },
+    USER: {
+      authorizationStatus: `AUTH`,
+      isAuthorizing: false,
+      userData,
+    }
   });
 
   const tree = renderer

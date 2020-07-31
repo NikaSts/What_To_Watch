@@ -53,7 +53,7 @@ Array [
           <img
             alt="User avatar"
             height="63"
-            src="img/avatar.jpg"
+            src="https://4.react.pages.academy"
             width="63"
           />
         </div>
@@ -135,6 +135,12 @@ Array [
                 My list
               </span>
             </button>
+            <a
+              className="btn movie-card__button"
+              href="add-review.html"
+            >
+              Add review
+            </a>
           </div>
         </div>
       </div>
@@ -306,6 +312,7 @@ Array [
         >
           <a
             className="logo__link"
+            href="main.html"
           >
             <span
               className="logo__letter logo__letter--1"
@@ -333,7 +340,7 @@ Array [
             <img
               alt="User avatar"
               height="63"
-              src="img/avatar.jpg"
+              src="https://4.react.pages.academy"
               width="63"
             />
           </div>

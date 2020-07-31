@@ -1,6 +1,6 @@
 import React from 'react';
 import {shape, number, string} from 'prop-types';
-
+import moment from 'moment';
 
 const ReviewsItem = ({review: {user, rating, comment, date}}) => (
   <div className="review">
@@ -9,7 +9,9 @@ const ReviewsItem = ({review: {user, rating, comment, date}}) => (
 
       <footer className="review__details">
         <cite className="review__author">{user.name}</cite>
-        <time className="review__date" dateTime="2016-12-24">{date}</time>
+        <time className="review__date" dateTime={moment(date).format(`YYYY-MM-DD`)}>
+          {moment(date).format(`LL`)}
+        </time>
       </footer>
     </blockquote>
 

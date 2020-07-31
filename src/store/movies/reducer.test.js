@@ -1,5 +1,5 @@
-import reducer from './data';
-import {ActionType} from '../../../utils/consts';
+import {reducer} from './reducer';
+import {ActionType} from '../../utils/consts';
 
 const movie = {
   id: 1,
@@ -61,15 +61,23 @@ const movies = [
   },
 ];
 
-it(`Data Reducer without additional parameters should return initialState`, () => {
+it(`Movies Reducer without additional parameters should return initialState`, () => {
   expect(reducer(void 0, {})).toEqual({
     movies: [],
-    promoMovie: {},
+    promoMovie: {
+      title: `Loading...`,
+      genre: ``,
+      releaseDate: 0,
+      poster: ``,
+      backgroundImage: ``,
+      backgroundColor: ``,
+    },
     activeMovie: null,
+    reviews: [],
   });
 });
 
-it(`Data Reducer should update activeMovie`, () => {
+it(`Movies Reducer should update activeMovie`, () => {
   expect(reducer(
       {activeMovie: {}},
       {
@@ -82,12 +90,12 @@ it(`Data Reducer should update activeMovie`, () => {
     });
 });
 
-it(`Data Reducer should update movies`, () => {
+it(`Movies Reducer should update movies`, () => {
   expect(reducer({
     movies: [],
   }, {
     type: ActionType.GET_MOVIES,
-    payload: movies
+    payload: {movies}
   })).toEqual({
     movies,
   });
