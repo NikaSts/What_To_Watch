@@ -1,10 +1,11 @@
 import React from 'react';
-import {string, number, func, bool} from 'prop-types';
+import {string, number, bool} from 'prop-types';
 import {Link} from 'react-router-dom';
+import history from '../../history';
 import {AppRoute} from '../../utils/consts';
 
 
-const MovieInfo = ({isMain, id, title, genre, releaseDate, onPlayButtonClick}) => {
+const MovieInfo = ({isMain, id, title, genre, releaseDate}) => {
 
   return (
     <div className="movie-card__desc">
@@ -16,7 +17,9 @@ const MovieInfo = ({isMain, id, title, genre, releaseDate, onPlayButtonClick}) =
 
       <div className="movie-card__buttons">
         <button
-          onClick={onPlayButtonClick}
+          onClick={() => {
+            history.push(`${AppRoute.PLAYER}/${id}`);
+          }}
           className="btn btn--play movie-card__button"
           type="button">
           <svg viewBox="0 0 19 19" width="19" height="19">
@@ -49,7 +52,6 @@ MovieInfo.propTypes = {
   title: string.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,
-  onPlayButtonClick: func.isRequired,
 };
 
 export default MovieInfo;

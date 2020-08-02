@@ -15,6 +15,7 @@ import {getPromoMovie} from '../../store/movies/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
 import {AppRoute} from '../../utils/consts';
 import AddReview from '../add-review/add-review';
+import MyListPage from '../my-list-page/my-list-page';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
@@ -24,7 +25,7 @@ class App extends PureComponent {
     super(props);
   }
 
-   _renderVideoPlayer() {
+  /*   _renderVideoPlayer() {
     const {activeMovie, promoMovie, onExitButtonClick} = this.props;
     if (activeMovie) {
       return <PlayerWithFullScreen
@@ -41,6 +42,7 @@ class App extends PureComponent {
       onExitButtonClick={onExitButtonClick}
     />;
   }
+ */
 
   render() {
     return (
@@ -53,6 +55,17 @@ class App extends PureComponent {
           <Route
             exact path={AppRoute.LOGIN}
             render={() => <SignInPage />}
+          />
+          <Route
+            path={`${AppRoute.PLAYER}/:id`}
+            render={({match}) => {
+              const id = Number(match.params.id);
+              return <PlayerWithFullScreen id={id} />;
+            }}
+          />
+          <Route
+            exact path={AppRoute.MY_LIST}
+            render={() => <MyListPage />}
           />
           <Route
             exact path={`${AppRoute.MOVIE_PAGE}/:id`}

@@ -117,4 +117,5 @@ const mapStateToProps = (state, props) => ({
   userData: getUserData(state),
 });
 
+export {AddReview};
 export default connect(mapStateToProps)(AddReview);

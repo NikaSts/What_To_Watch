@@ -70,6 +70,7 @@ export const AppRoute = {
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
   MOVIE_PAGE: `/films`,
+  PLAYER: `/player`,
 };
 
 export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;
