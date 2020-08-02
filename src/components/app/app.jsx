@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bool, func} from 'prop-types';
+import history from '../../history';
 
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
@@ -11,7 +12,7 @@ import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import {movieType, promoMovieType} from '../../types';
 import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
 import {Operation as UserOperation} from '../../store/user/actions';
-import {getActiveMovie, getPromoMovie} from '../../store/movies/selectors';
+import {getPromoMovie} from '../../store/movies/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
 import {getIsAuthorizationError} from '../../store/user/selectors';
 import {AppRoute} from '../../utils/consts';
@@ -46,7 +47,7 @@ class App extends PureComponent {
   render() {
     const {login, isAuthorizationError} = this.props;
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route
             exact path={AppRoute.ROOT}
@@ -77,7 +78,7 @@ class App extends PureComponent {
             render={() => <h2>Page not found</h2>}
           />
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
@@ -92,7 +93,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  activeMovie: getActiveMovie(state),
   promoMovie: getPromoMovie(state),
   isVideoPlayer: checkPlayerStatus(state),
   isAuthorizationError: getIsAuthorizationError(state),

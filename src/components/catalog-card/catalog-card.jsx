@@ -1,12 +1,12 @@
 import React from 'react';
 import {func, string, node, number, shape} from 'prop-types';
 import {Link} from 'react-router-dom';
+import history from '../../history';
 import {AppRoute} from '../../utils/consts';
-import {withRouter} from 'react-router-dom';
 
 
 const CatalogCard = ({
-  id, title, onCatalogCardClick, onMouseEnter, onMouseLeave, children, history
+  id, title, onCatalogCardClick, onMouseEnter, onMouseLeave, children
 }) => (
   <article
     className="small-movie-card catalog__movies-card"
@@ -41,4 +41,4 @@ CatalogCard.propTypes = {
   history: shape(),
 };
 
-export default withRouter(CatalogCard);
+export default CatalogCard;
