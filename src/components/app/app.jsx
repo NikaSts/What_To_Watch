@@ -54,14 +54,16 @@ class App extends PureComponent {
           />
           <Route
             exact path={AppRoute.LOGIN}
-            render={() => (
-              <SignInPage
-                onSubmit={login}
-                isAuthorizationError={isAuthorizationError} />
-            )} />
+            render={() => <SignInPage
+              onSubmit={login}
+              isAuthorizationError={isAuthorizationError} />}
+          />
           <Route
-            path={`${AppRoute.MOVIE_PAGE}:id`}
-            render={() => <MoviePage />}
+            path={`${AppRoute.MOVIE_PAGE}/:id`}
+            render={({match}) => {
+              const id = Number(match.params.id);
+              return <MoviePage id={id} />;
+            }}
           />
           <Route
             render={() => <h2>Page not found</h2>}

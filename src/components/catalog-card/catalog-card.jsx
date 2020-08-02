@@ -13,13 +13,13 @@ const CatalogCard = ({
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
   >
-    <Link to={AppRoute.MOVIE_PAGE}>
+    <Link to={`${AppRoute.MOVIE_PAGE}/${id}`}>
       <div className="small-movie-card__image">
         {children}
       </div>
     </Link>
     <h3 className="small-movie-card__title">
-      <Link to={AppRoute.MOVIE_PAGE}
+      <Link to={`${AppRoute.MOVIE_PAGE}/${id}`}
         className="small-movie-card__link">
         {title}
       </Link>

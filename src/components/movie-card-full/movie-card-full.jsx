@@ -19,9 +19,7 @@ const TabsWithActiveItem = withActiveItem(Tabs);
 const MovieCardFull = ({
   movieId, movies, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
 }) => {
-  console.log(movies, movieId);
-
-  const activeMovie = movies.find((movie) => movie.id === Number(movieId));
+  const activeMovie = movies.find((movie) => movie.id === movieId);
   const {id, title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
   const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
 
