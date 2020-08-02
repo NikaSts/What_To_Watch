@@ -11,10 +11,8 @@ import VideoPlayer from '../video-player/video-player';
 import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
 import {movieType, promoMovieType} from '../../types';
 import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
-import {Operation as UserOperation} from '../../store/user/actions';
 import {getPromoMovie} from '../../store/movies/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
-import {getIsAuthorizationError} from '../../store/user/selectors';
 import {AppRoute} from '../../utils/consts';
 import AddReview from '../add-review/add-review';
 
@@ -26,7 +24,7 @@ class App extends PureComponent {
     super(props);
   }
 
-  _renderVideoPlayer() {
+   _renderVideoPlayer() {
     const {activeMovie, promoMovie, onExitButtonClick} = this.props;
     if (activeMovie) {
       return <PlayerWithFullScreen
@@ -45,7 +43,6 @@ class App extends PureComponent {
   }
 
   render() {
-    const {login, isAuthorizationError} = this.props;
     return (
       <Router history={history}>
         <Switch>
@@ -55,9 +52,7 @@ class App extends PureComponent {
           />
           <Route
             exact path={AppRoute.LOGIN}
-            render={() => <SignInPage
-              onSubmit={login}
-              isAuthorizationError={isAuthorizationError} />}
+            render={() => <SignInPage />}
           />
           <Route
             exact path={`${AppRoute.MOVIE_PAGE}/:id`}
@@ -88,22 +83,16 @@ App.propTypes = {
   promoMovie: promoMovieType,
   isVideoPlayer: bool.isRequired,
   onExitButtonClick: func.isRequired,
-  login: func.isRequired,
-  isAuthorizationError: bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   promoMovie: getPromoMovie(state),
   isVideoPlayer: checkPlayerStatus(state),
-  isAuthorizationError: getIsAuthorizationError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onExitButtonClick(activeMovie) {
     dispatch(PlayerActionCreator.closeFullScreenPlayer(activeMovie));
-  },
-  login(authData) {
-    dispatch(UserOperation.login(authData));
   },
 });
 

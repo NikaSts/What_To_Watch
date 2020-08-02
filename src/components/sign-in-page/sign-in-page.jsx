@@ -1,10 +1,17 @@
 import React, {PureComponent, createRef} from 'react';
+import {connect} from 'react-redux';
+import {func, bool, string} from 'prop-types';
+
 import PageFooter from '../page-footer/page-footer';
 import PageHeader from '../page-header/page-header';
-import {func, bool} from 'prop-types';
+import {Operation as UserOperation} from '../../store/user/actions';
+import {getAuthorizationStatus, getIsAuthorizationError} from '../../store/user/selectors';
+
+import {AuthorizationStatus, AppRoute} from '../../utils/consts';
+import {Redirect} from 'react-router-dom';
 
 
-export default class SignInPage extends PureComponent {
+class SignInPage extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -34,7 +41,11 @@ export default class SignInPage extends PureComponent {
   }
 
   render() {
-    const {isAuthorizationError} = this.props;
+    const {authorizationStatus, isAuthorizationError} = this.props;
+    const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+    if (isAuth) {
+      return <Redirect to={AppRoute.ROOT} />;
+    }
     return (
       <div className="user-page">
         <PageHeader
@@ -82,4 +93,20 @@ export default class SignInPage extends PureComponent {
 SignInPage.propTypes = {
   onSubmit: func.isRequired,
   isAuthorizationError: bool.isRequired,
+  authorizationStatus: string.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  isAuthorizationError: getIsAuthorizationError(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+});
+
+
+export {SignInPage};
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
