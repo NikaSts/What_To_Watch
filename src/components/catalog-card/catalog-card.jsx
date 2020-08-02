@@ -2,6 +2,7 @@ import React from 'react';
 import {func, string, node, number} from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../utils/consts';
+import {withRouter} from 'react-router-dom';
 
 
 const CatalogCard = ({
@@ -9,7 +10,10 @@ const CatalogCard = ({
 }) => (
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={() => onCatalogCardClick(id)}
+    onClick={() => {
+      onCatalogCardClick(id);
+      history.push(`${AppRoute.MOVIE_PAGE}/${id}`);
+    }}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
   >
@@ -36,4 +40,4 @@ CatalogCard.propTypes = {
   children: node.isRequired,
 };
 
-export default CatalogCard;
+export default withRouter(CatalogCard);
