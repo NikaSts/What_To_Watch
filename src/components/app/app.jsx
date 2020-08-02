@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {bool, func} from 'prop-types';
+import {bool, func, string, shape, number} from 'prop-types';
 
 import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
@@ -13,8 +13,11 @@ import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
 import {Operation as UserOperation} from '../../store/user/actions';
 import {getActiveMovie, getPromoMovie} from '../../store/movies/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
-import {getIsAuthorizing, getIsAuthorizationError} from '../../store/user/selectors';
-import {AppRoute} from '../../utils/consts';
+import {
+  getIsAuthorizing, getIsAuthorizationError, getAuthorizationStatus, getUserData
+} from '../../store/user/selectors';
+import {AppRoute, AuthorizationStatus} from '../../utils/consts';
+import AddReview from '../add-review/add-review';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
@@ -43,8 +46,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const {login, isAuthorizationError} = this.props;
-
+    const {login, isAuthorizationError, authorizationStatus, userData} = this.props;
+    const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
     return (
       <BrowserRouter>
         <Switch>
@@ -59,11 +62,21 @@ class App extends PureComponent {
               isAuthorizationError={isAuthorizationError} />}
           />
           <Route
-            path={`${AppRoute.MOVIE_PAGE}/:id`}
+            exact path={`${AppRoute.MOVIE_PAGE}/:id`}
             render={({match}) => {
               const id = Number(match.params.id);
               return <MoviePage id={id} />;
             }}
+          />
+          <Route
+            path={`${AppRoute.MOVIE_PAGE}/:id/review`}
+            render={({match}) => {
+              const id = Number(match.params.id);
+              return <AddReview
+                isAuth={isAuth}
+                id={id}
+                userData={userData}/>;
+            } }
           />
           <Route
             render={() => <h2>Page not found</h2>}
@@ -82,6 +95,14 @@ App.propTypes = {
   login: func.isRequired,
   isAuthorizing: bool.isRequired,
   isAuthorizationError: bool.isRequired,
+  authorizationStatus: string.isRequired,
+  userData: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    email: string.isRequired,
+    avatar: string.isRequired,
+  })
+
 };
 
 const mapStateToProps = (state) => ({
@@ -90,6 +111,8 @@ const mapStateToProps = (state) => ({
   isVideoPlayer: checkPlayerStatus(state),
   isAuthorizing: getIsAuthorizing(state),
   isAuthorizationError: getIsAuthorizationError(state),
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

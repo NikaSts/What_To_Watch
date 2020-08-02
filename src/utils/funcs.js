@@ -67,6 +67,10 @@ export const getGenresFromMovies = (movies) => {
   return [DEFAULT_GENRE, ...new Set(movies.map((movie) => movie.genre))];
 };
 
+export const getMovieById = (movies, id) => {
+  return movies.find((movie) => movie.id === id);
+};
+
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };

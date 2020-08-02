@@ -17,11 +17,11 @@ import {AuthorizationStatus} from '../../utils/consts';
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MovieCardFull = ({
-  movieId, movies, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
+  id, movies, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
 }) => {
-  const activeMovie = movies.find((movie) => movie.id === movieId);
-  const {id, title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
-  const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
+  const activeMovie = movies.find((movie) => movie.id === id);
+  const {title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
+  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <section
@@ -36,15 +36,15 @@ const MovieCardFull = ({
 
         <PageHeader
           onSignInButtonClick={onSignInButtonClick}
-          isSignedIn={isSignedIn}
+          isAuth={isAuth}
           userData={userData}
         />
         <div className="movie-card__wrap">
           <MovieInfo
+            id={id}
             title={title}
             genre={genre}
             releaseDate={releaseDate}
-            isSignedIn={isSignedIn}
             onPlayButtonClick={onPlayButtonClick}
           />
         </div>
@@ -66,7 +66,7 @@ const MovieCardFull = ({
 };
 
 MovieCardFull.propTypes = {
-  movieId: number.isRequired,
+  id: number.isRequired,
   movies: arrayOf(movieType).isRequired,
   onPlayButtonClick: func.isRequired,
   onSignInButtonClick: func.isRequired,

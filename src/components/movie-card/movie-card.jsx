@@ -16,7 +16,7 @@ const MovieCard = ({
   promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus, isMain, userData
 }) => {
   const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
-  const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
+  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -25,7 +25,7 @@ const MovieCard = ({
       <h1 className="visually-hidden">WTW</h1>
       <PageHeader
         onSignInButtonClick={onSignInButtonClick}
-        isSignedIn={isSignedIn}
+        isAuth={isAuth}
         isMain={isMain}
         userData={userData}
       />
@@ -35,10 +35,10 @@ const MovieCard = ({
             <img src={poster} alt={title} width="218" height="327" />
           </div>
           <MovieInfo
+            isMain={isMain}
             title={title}
             genre={genre}
             releaseDate={releaseDate}
-            isSignedIn={isSignedIn}
             onPlayButtonClick={onPlayButtonClick}
           />
         </div>
@@ -75,7 +75,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UserActionCreator.isAuthorizing());
   }
 });
-
 
 export {MovieCard};
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

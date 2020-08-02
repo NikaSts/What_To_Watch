@@ -71,3 +71,5 @@ export const AppRoute = {
   MY_LIST: `/mylist`,
   MOVIE_PAGE: `/films`,
 };
+
+export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;

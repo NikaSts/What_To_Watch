@@ -9,7 +9,7 @@ const MoviePage = ({id}) => {
   return (
     <Fragment>
       <MovieCardFull
-        movieId={id}
+        id={id}
       />
       <div className="page-content">
         <Catalog />
