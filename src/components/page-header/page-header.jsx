@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import cn from 'classnames';
 import {bool, func, number, string, shape} from 'prop-types';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../utils/consts';
+import {AppRoute, URL} from '../../utils/consts';
 
 const PageHeader = ({isAuth, isSignInPage, onSignInButtonClick, userData}) => {
   const pageHeaderClass = cn({
@@ -29,7 +29,7 @@ const PageHeader = ({isAuth, isSignInPage, onSignInButtonClick, userData}) => {
           {isAuth && userData
             ? <Link to={AppRoute.MY_LIST}>
               <div className="user-block__avatar">
-                <img src={`https://4.react.pages.academy${userData.avatar}`} alt="User avatar" width="63" height="63" />
+                <img src={`${URL}${userData.avatar}`} alt="User avatar" width="63" height="63" />
               </div>
             </Link>
             : <Link to={AppRoute.LOGIN}

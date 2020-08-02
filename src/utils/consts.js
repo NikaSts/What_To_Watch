@@ -50,11 +50,11 @@ export const AuthorizationStatus = {
 };
 
 export const EntryPoint = {
-  REVIEWS: `/comments`,
-  FAVORITE: `/favorite`,
-  MOVIES: `/films`,
-  PROMO: `/films/promo`,
-  LOGIN: `/login`,
+  REVIEWS: `/wtw/comments`,
+  FAVORITE: `/wtw/favorite`,
+  MOVIES: `/wtw/films`,
+  PROMO: `/wtw/films/promo`,
+  LOGIN: `/wtw/login`,
 };
 
 export const TIMER = 5000;
@@ -63,7 +63,7 @@ export const Error = {
   UNAUTHORIZED: 401,
 };
 
-export const URL = `https://4.react.pages.academy/wtw`;
+export const URL = `https://4.react.pages.academy`;
 
 export const AppRoute = {
   ROOT: `/`,

@@ -45,7 +45,7 @@ MovieInfo.defaultProps = {
 
 MovieInfo.propTypes = {
   isMain: bool.isRequired,
-  id: number.isRequired,
+  id: number,
   title: string.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,
