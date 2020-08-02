@@ -7,10 +7,6 @@ import CatalogList from '../catalog-list/catalog-list';
 import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {movieType} from '../../types';
-import {
-  ActionCreator as DataActionCreator,
-  Operation as DataOperation
-} from '../../store/movies/actions';
 import {getMovies, getGenres} from '../../store/movies/selectors';
 import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
@@ -21,6 +17,7 @@ const Catalog = (props) => {
   const {
     isMain, movies, genres, onCatalogCardClick, activeItem, onItemClick,
   } = props;
+  console.log(activeItem);
   const moviesByGenre = filterMovies(movies, activeItem);
   const moviesToShow = [...moviesByGenre].splice(0, MAX_SIMILAR_MOVIES);
 
@@ -75,12 +72,11 @@ const mapStateToProps = (state) => ({
   genres: getGenres(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onCatalogCardClick(activeMovie) {
-    dispatch(DataActionCreator.changeActiveMovie(activeMovie));
-    dispatch(DataOperation.loadReviews(activeMovie.id));
+/* const mapDispatchToProps = (dispatch) => ({
+  onCatalogCardClick(movieId) {
+    dispatch(DataOperation.loadReviews(movieId));
   }
 });
-
+ */
 export {Catalog};
-export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
+export default connect(mapStateToProps)(Catalog);

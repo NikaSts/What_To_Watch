@@ -11,7 +11,6 @@ const initialState = {
     backgroundImage: ``,
     backgroundColor: ``,
   },
-  activeMovie: null,
   reviews: [],
 };
 
@@ -25,10 +24,6 @@ export const reducer = (state = initialState, action) => {
     case ActionType.GET_PROMO_MOVIE:
       return extend(state, {
         promoMovie: action.payload.promoMovie,
-      });
-    case ActionType.CHANGE_ACTIVE_MOVIE:
-      return extend(state, {
-        activeMovie: action.payload.activeMovie,
       });
     case ActionType.GET_REVIEWS:
       return extend(state, {

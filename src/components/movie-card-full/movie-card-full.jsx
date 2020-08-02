@@ -9,7 +9,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType} from '../../types';
 import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
 import {ActionCreator as UserActionCreator} from '../../store/user/actions';
-import {getMovies, getActiveMovie, getReviews} from '../../store/movies/selectors';
+import {getMovies, getReviews} from '../../store/movies/selectors';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
 
@@ -17,8 +17,11 @@ import {AuthorizationStatus} from '../../utils/consts';
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MovieCardFull = ({
-  activeMovie, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
+  movieId, movies, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
 }) => {
+  console.log(movies, movieId);
+
+  const activeMovie = movies.find((movie) => movie.id === Number(movieId));
   const {id, title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
   const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -65,7 +68,8 @@ const MovieCardFull = ({
 };
 
 MovieCardFull.propTypes = {
-  activeMovie: movieType,
+  movieId: number.isRequired,
+  movies: arrayOf(movieType).isRequired,
   onPlayButtonClick: func.isRequired,
   onSignInButtonClick: func.isRequired,
   authorizationStatus: string.isRequired,
@@ -91,7 +95,6 @@ MovieCardFull.propTypes = {
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state),
-  activeMovie: getActiveMovie(state),
   reviews: getReviews(state),
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),

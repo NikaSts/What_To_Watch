@@ -32,7 +32,6 @@ export const Score = {
 export const DELAY = 1000;
 
 export const ActionType = {
-  CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
   OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
   CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
   GET_MOVIES: `getMovies`,
@@ -65,3 +64,10 @@ export const Error = {
 };
 
 export const URL = `https://4.react.pages.academy/wtw`;
+
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE_PAGE: `/films/`,
+};

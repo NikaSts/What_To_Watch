@@ -11,10 +11,6 @@ export const ActionCreator = {
     type: ActionType.GET_PROMO_MOVIE,
     payload: {promoMovie},
   }),
-  changeActiveMovie: (activeMovie) => ({
-    type: ActionType.CHANGE_ACTIVE_MOVIE,
-    payload: {activeMovie},
-  }),
   getReviews: (reviews) => ({
     type: ActionType.GET_REVIEWS,
     payload: {reviews},

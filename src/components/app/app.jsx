@@ -14,6 +14,7 @@ import {Operation as UserOperation} from '../../store/user/actions';
 import {getActiveMovie, getPromoMovie} from '../../store/movies/selectors';
 import {checkPlayerStatus} from '../../store/player/selectors';
 import {getIsAuthorizing, getIsAuthorizationError} from '../../store/user/selectors';
+import {AppRoute} from '../../utils/consts';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
@@ -21,28 +22,6 @@ const PlayerWithFullScreen = withFullScreen(VideoPlayer);
 class App extends PureComponent {
   constructor(props) {
     super(props);
-  }
-
-  _renderApp() {
-    const {activeMovie, isVideoPlayer, isAuthorizing} = this.props;
-    if (isAuthorizing) {
-      return this._renderSignInPage();
-    }
-    if (isVideoPlayer) {
-      return this._renderVideoPlayer();
-    }
-    if (activeMovie) {
-      return this._renderMoviePage();
-    }
-    return this._renderMainPage();
-  }
-
-  _renderMainPage() {
-    return <Main />;
-  }
-
-  _renderMoviePage() {
-    return <MoviePage />;
   }
 
   _renderVideoPlayer() {
@@ -63,27 +42,30 @@ class App extends PureComponent {
     />;
   }
 
-  _renderSignInPage() {
-    const {login, isAuthorizationError} = this.props;
-    return <SignInPage
-      onSubmit={login}
-      isAuthorizationError={isAuthorizationError}
-    />;
-  }
-
   render() {
+    const {login, isAuthorizationError} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/movie">
-            {this._renderMoviePage()}
-          </Route>
-          <Route exact path="/auth">
-            {this._renderSignInPage()}
-          </Route>
+          <Route
+            exact path={AppRoute.ROOT}
+            render={() => <Main />}
+          />
+          <Route
+            exact path={AppRoute.LOGIN}
+            render={() => (
+              <SignInPage
+                onSubmit={login}
+                isAuthorizationError={isAuthorizationError} />
+            )} />
+          <Route
+            path={`${AppRoute.MOVIE_PAGE}:id`}
+            render={() => <MoviePage />}
+          />
+          <Route
+            render={() => <h2>Page not found</h2>}
+          />
         </Switch>
       </BrowserRouter>
     );
