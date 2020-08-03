@@ -61,6 +61,8 @@ export const Operation = {
     })
     .then(() => {
       dispatch(ActionCreator.setMovieFavoriteStatus());
+      dispatch(Operation.loadMovies());
+      dispatch(Operation.loadPromoMovie());
     });
   }
 };

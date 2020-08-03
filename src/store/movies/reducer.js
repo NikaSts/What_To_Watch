@@ -12,7 +12,7 @@ const initialState = {
     poster: ``,
     backgroundImage: ``,
     backgroundColor: ``,
-    isFavorite: ``,
+    isFavorite: false,
   },
   reviews: [],
 };

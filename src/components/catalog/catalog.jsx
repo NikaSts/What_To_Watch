@@ -8,7 +8,7 @@ import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {movieType} from '../../types';
 import {Operation as MovieOperation} from '../../store/movies/actions';
-import {getMovies, getGenres, getMovie} from '../../store/movies/selectors';
+import {getMovies, getGenres} from '../../store/movies/selectors';
 import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES, Page} from '../../utils/consts';
 
@@ -17,7 +17,7 @@ const CatalogListWithShowMoreButton = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
-    currentPage, movies, favoriteMovies, movie, genres,
+    currentPage, movies, favoriteMovies, genres,
     onCatalogCardClick, activeItem, onItemClick,
   } = props;
   const isMainPage = currentPage === Page.MAIN;
@@ -25,7 +25,7 @@ const Catalog = (props) => {
   const isMyListPage = currentPage === Page.MY_LIST;
 
   const moviesByGenre = isMainPage && filterMovies(movies, activeItem);
-  const similarMovies = isMoviePage && filterMovies(movies, movie.genre)
+  const similarMovies = isMoviePage && filterMovies(movies, activeItem)
     .splice(0, MAX_SIMILAR_MOVIES);
   const hasFavoriteMovies = favoriteMovies && favoriteMovies.length > 0;
 
@@ -78,16 +78,14 @@ Catalog.propTypes = {
   movies: arrayOf(movieType),
   genres: arrayOf(string),
   onCatalogCardClick: func.isRequired,
-  movie: movieType,
   activeItem: string,
   onItemClick: func,
   favoriteMovies: arrayOf(movieType),
 };
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state) => ({
   movies: getMovies(state),
   genres: getGenres(state),
-  movie: getMovie(state, props.id),
 });
 
 const mapDispatchToProps = (dispatch) => ({

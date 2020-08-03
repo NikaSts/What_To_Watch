@@ -6,7 +6,7 @@ import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {getReviews, getMovie, getIsFavoriteStatus} from '../../store/movies/selectors';
+import {getReviews} from '../../store/movies/selectors';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {movieType} from '../../types';
@@ -93,12 +93,10 @@ MovieCardFull.propTypes = {
   onIsFavoriteButtonClick: func.isRequired,
 };
 
-const mapStateToProps = (state, props) => ({
-  activeMovie: getMovie(state, props.id),
+const mapStateToProps = (state) => ({
   reviews: getReviews(state),
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
-  isFavorite: getIsFavoriteStatus(state),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
