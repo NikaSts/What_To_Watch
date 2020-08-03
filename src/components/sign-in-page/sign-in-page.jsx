@@ -7,7 +7,7 @@ import PageHeader from '../page-header/page-header';
 import {Operation as UserOperation} from '../../store/user/actions';
 import {getAuthorizationStatus, getIsAuthorizationError} from '../../store/user/selectors';
 
-import {AuthorizationStatus, AppRoute} from '../../utils/consts';
+import {AuthorizationStatus, AppRoute, Page} from '../../utils/consts';
 import {Redirect} from 'react-router-dom';
 
 
@@ -49,7 +49,7 @@ class SignInPage extends PureComponent {
     return (
       <div className="user-page">
         <PageHeader
-          isSignInPage={true}
+          currentPage={Page.SIGN_IN}
         />
 
         <div className="sign-in user-page__content">

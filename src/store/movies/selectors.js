@@ -3,6 +3,7 @@ import {getGenresFromMovies, getMovieById} from '../../utils/funcs';
 
 const getMoviesState = (state) => state[NameSpace.MOVIES];
 export const getMovies = (state) => getMoviesState(state).movies;
+export const getFavouriteMovies = (state) => getMoviesState(state).favouriteMovies;
 export const getPromoMovie = (state) => getMoviesState(state).promoMovie;
 export const getActiveMovie = (state) => getMoviesState(state).activeMovie;
 export const getReviews = (state) => getMoviesState(state).reviews;

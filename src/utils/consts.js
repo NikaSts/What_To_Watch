@@ -33,6 +33,7 @@ export const DELAY = 1000;
 
 export const ActionType = {
   GET_MOVIES: `getMovies`,
+  GET_FAVOURITE_MOVIES: `getFavouriteMovies`,
   GET_PROMO_MOVIE: `getPromoMovie`,
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
@@ -47,7 +48,7 @@ export const AuthorizationStatus = {
 
 export const EntryPoint = {
   REVIEWS: `/wtw/comments`,
-  FAVORITE: `/wtw/favorite`,
+  FAVORITES: `/wtw/favorite`,
   MOVIES: `/wtw/films`,
   PROMO: `/wtw/films/promo`,
   LOGIN: `/wtw/login`,

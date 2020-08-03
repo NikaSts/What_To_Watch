@@ -56,7 +56,7 @@ export const getRatingLevel = (score) => {
   return Rating.AWESOME;
 };
 
-export const filterMovies = (movies, activeGenre) => {
+export const filterMovies = (movies, activeGenre = DEFAULT_GENRE) => {
   if (activeGenre === DEFAULT_GENRE) {
     return [...movies];
   }

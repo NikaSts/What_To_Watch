@@ -7,6 +7,10 @@ export const ActionCreator = {
     type: ActionType.GET_MOVIES,
     payload: {movies},
   }),
+  getFavouriteMovies: (favouriteMovies) => ({
+    type: ActionType.GET_FAVOURITE_MOVIES,
+    payload: {favouriteMovies},
+  }),
   getPromoMovie: (promoMovie) => ({
     type: ActionType.GET_PROMO_MOVIE,
     payload: {promoMovie},
@@ -21,8 +25,18 @@ export const Operation = {
   loadMovies: () => (dispatch, getState, api) => (
     api.get(EntryPoint.MOVIES)
       .then((response) => {
-        dispatch(ActionCreator.getMovies(response.data.map((movie) => movieAdapter(movie))
+        dispatch(ActionCreator.getMovies(response.data
+          .map((movie) => movieAdapter(movie))
         ));
+      })
+  ),
+  loadFavouriteMovies: () => (dispatch, getState, api) => (
+    api.get(EntryPoint.FAVORITES)
+      .then((response) => {
+        if (response.data) {
+          dispatch(ActionCreator.getFavouriteMovies(response.data
+          .map((movie) => movieAdapter(movie))));
+        }
       })
   ),
   loadPromoMovie: () => (dispatch, getState, api) => (

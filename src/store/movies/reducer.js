@@ -3,6 +3,7 @@ import {extend} from '../../utils/funcs';
 
 const initialState = {
   movies: [],
+  favouriteMovies: [],
   promoMovie: {
     id: 0,
     title: `Loading...`,
@@ -21,6 +22,10 @@ export const reducer = (state = initialState, action) => {
     case ActionType.GET_MOVIES:
       return extend(state, {
         movies: action.payload.movies,
+      });
+    case ActionType.GET_FAVOURITE_MOVIES:
+      return extend(state, {
+        favouriteMovies: action.payload.favouriteMovies,
       });
     case ActionType.GET_PROMO_MOVIE:
       return extend(state, {

@@ -1,89 +1,53 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {number, string, shape} from 'prop-types';
+import {number, string, shape, arrayOf, func} from 'prop-types';
 
 import PageHeader from '../page-header/page-header';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {getFavouriteMovies} from '../../store/movies/selectors';
+
+import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {AppRoute, AuthorizationStatus, Page} from '../../utils/consts';
 import PageFooter from '../page-footer/page-footer';
+import {Catalog} from '../catalog/catalog';
+import {movieType} from '../../types';
 
 
-const MyListPage = ({authorizationStatus, userData}) => {
-  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
-  if (!isAuth) {
-    return <Redirect to={AppRoute.LOGIN} />;
+class MyListPage extends PureComponent {
+  constructor(props) {
+    super(props);
   }
 
-  return (
-    <div className="user-page">
-      <PageHeader
-        currentPage={Page.MY_LIST}
-        isAuth={isAuth}
-        userData={userData}
-      />
+  componentDidMount() {
+    const {loadFavouriteMovies} = this.props;
+    loadFavouriteMovies();
+  }
 
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
+  render() {
+    const {authorizationStatus, userData, favouriteMovies} = this.props;
+    const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+    if (!isAuth) {
+      return <Redirect to={AppRoute.LOGIN} />;
+    }
 
-        <div className="catalog__movies-list">
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                Fantastic Beasts: The Crimes of Grindelwald</a>
-            </h3>
-          </article>
+    return (
+      <div className="user-page">
+        <PageHeader
+          currentPage={Page.MY_LIST}
+          isAuth={isAuth}
+          userData={userData}
+        />
+        <Catalog
+          currentPage={Page.MY_LIST}
+          favouriteMovies={favouriteMovies}
+        />
+        <PageFooter />
+      </div>
+    );
+  }
+}
 
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody"
-                width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                Bohemian Rhapsody</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/we-need-to-talk-about-kevin.jpg"
-                alt="We need to talk about Kevin" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">
-                We need to talk about Kevin</a>
-            </h3>
-          </article>
-        </div>
-      </section>
-
-      <PageFooter />
-    </div>
-  );
-};
 
 MyListPage.propTypes = {
   authorizationStatus: string.isRequired,
@@ -93,12 +57,22 @@ MyListPage.propTypes = {
     email: string.isRequired,
     avatar: string.isRequired,
   }),
+  loadFavouriteMovies: func.isRequired,
+  favouriteMovies: arrayOf(movieType).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  favouriteMovies: getFavouriteMovies(state),
   userData: getUserData(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadFavouriteMovies() {
+    dispatch(MoviesOperation.loadFavouriteMovies());
+  },
+});
+
+
 export {MyListPage};
-export default connect(mapStateToProps)(MyListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MyListPage);
