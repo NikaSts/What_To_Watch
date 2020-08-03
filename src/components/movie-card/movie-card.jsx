@@ -15,7 +15,7 @@ import {AuthorizationStatus} from '../../utils/consts';
 const MovieCard = ({
   promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus, isMain, userData
 }) => {
-  const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
+  const {id, poster, backgroundImage, title, genre, releaseDate} = promoMovie;
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
   return (
     <section className="movie-card">
@@ -36,6 +36,7 @@ const MovieCard = ({
           </div>
           <MovieInfo
             isMain={isMain}
+            id={id}
             title={title}
             genre={genre}
             releaseDate={releaseDate}
@@ -48,6 +49,7 @@ const MovieCard = ({
 };
 
 MovieCard.propTypes = {
+  id: number.isRequired,
   promoMovie: promoMovieType.isRequired,
   onPlayButtonClick: func.isRequired,
   onSignInButtonClick: func.isRequired,

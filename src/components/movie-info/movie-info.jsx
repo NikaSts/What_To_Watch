@@ -18,7 +18,7 @@ const MovieInfo = ({isMain, id, title, genre, releaseDate}) => {
       <div className="movie-card__buttons">
         <button
           onClick={() => {
-            history.push(`${AppRoute.PLAYER}/${id}`);
+            history.push(`${AppRoute.MOVIE_PAGE}${id}${AppRoute.PLAYER}`);
           }}
           className="btn btn--play movie-card__button"
           type="button">
@@ -33,7 +33,7 @@ const MovieInfo = ({isMain, id, title, genre, releaseDate}) => {
           </svg>
           <span>My list</span>
         </button>
-        {!isMain && <Link to={`${AppRoute.MOVIE_PAGE}/${id}/review`}
+        {!isMain && <Link to={`${AppRoute.MOVIE_PAGE}${id}${AppRoute.REVIEW}`}
           className="btn btn--review movie-card__button">
             Add review
         </Link>}

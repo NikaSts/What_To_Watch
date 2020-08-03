@@ -4,6 +4,7 @@ import {extend} from '../../utils/funcs';
 const initialState = {
   movies: [],
   promoMovie: {
+    id: 0,
     title: `Loading...`,
     genre: ``,
     releaseDate: 0,
