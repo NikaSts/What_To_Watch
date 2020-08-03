@@ -66,7 +66,12 @@ const withFullScreen = (Component) => {
 
     render() {
       const {isPlaying, progress, duration} = this.state;
-      const {title, previewImage, src} = this.props.movie;
+      const {movie} = this.props;
+      if (!movie) {
+        return <h2>Loading...</h2>;
+      }
+
+      const {title, previewImage, src} = movie;
 
       return (
         <Component

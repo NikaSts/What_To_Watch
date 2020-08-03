@@ -11,6 +11,9 @@ import {Page} from '../../utils/consts';
 
 
 const MoviePage = ({id, activeMovie}) => {
+  if (!activeMovie) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <Fragment>
       <MovieCardFull
