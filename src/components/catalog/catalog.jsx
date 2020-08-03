@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import cn from 'classnames';
-import {func, arrayOf, string, bool} from 'prop-types';
+import {func, arrayOf, string} from 'prop-types';
 
 import CatalogList from '../catalog-list/catalog-list';
 import CatalogFilter from '../catalog-filter/catalog-filter';
@@ -10,37 +10,38 @@ import {movieType} from '../../types';
 import {Operation as MovieOperation} from '../../store/movies/actions';
 import {getMovies, getGenres} from '../../store/movies/selectors';
 import {filterMovies} from '../../utils/funcs';
-import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES} from '../../utils/consts';
+import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES, Page} from '../../utils/consts';
 
 const CatalogListWithShowMoreButton = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
-    isMain, movies, genres, onCatalogCardClick, activeItem, onItemClick,
+    currentPage, movies, genres, onCatalogCardClick, activeItem, onItemClick,
   } = props;
   const moviesByGenre = filterMovies(movies, activeItem);
   const moviesToShow = [...moviesByGenre].splice(0, MAX_SIMILAR_MOVIES);
+  const isMainPage = currentPage === Page.MAIN;
 
   const catalogClass = cn({
     'catalog': true,
-    'catalog--like-this': !isMain,
+    'catalog--like-this': !isMainPage,
   });
   const catalogTitleClass = cn({
     'catalog__title': true,
-    'visually-hidden': isMain,
+    'visually-hidden': isMainPage,
   });
 
   return (
     <section className={catalogClass}>
       <h2 className={catalogTitleClass}>
-        {isMain ? `Catalog` : `More like this`}
+        {isMainPage ? `Catalog` : `More like this`}
       </h2>
-      {isMain && <CatalogFilter
+      {isMainPage && <CatalogFilter
         genres={genres}
         activeGenre={activeItem}
         onGenreClick={onItemClick}
       />}
-      {isMain
+      {isMainPage
         ? <CatalogListWithShowMoreButton
           movies={moviesByGenre}
           onCatalogCardClick={onCatalogCardClick}
@@ -54,12 +55,11 @@ const Catalog = (props) => {
 };
 
 Catalog.defaultProps = {
-  isMain: false,
   activeItem: DEFAULT_GENRE,
 };
 
 Catalog.propTypes = {
-  isMain: bool.isRequired,
+  currentPage: string.isRequired,
   movies: arrayOf(movieType).isRequired,
   genres: arrayOf(string.isRequired).isRequired,
   onCatalogCardClick: func.isRequired,

@@ -6,11 +6,26 @@ import {number, string, shape} from 'prop-types';
 import {getMovie} from '../../store/movies/selectors';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {promoMovieType} from '../../types';
-import {AppRoute, TEXTAREA_COLOR, AuthorizationStatus, URL} from '../../utils/consts';
+import {AppRoute, TEXTAREA_COLOR, AuthorizationStatus, Page} from '../../utils/consts';
+import PageHeader from '../page-header/page-header';
 
+const renderBreadCrumbs = (id, title) => (
+  <nav className="breadcrumbs">
+    <ul className="breadcrumbs__list">
+      <li className="breadcrumbs__item">
+        <Link to={`${AppRoute.MOVIE_PAGE}${id}`} className="breadcrumbs__link">
+          {title}
+        </Link>
+      </li>
+      <li className="breadcrumbs__item">
+        <a className="breadcrumbs__link">Add review</a>
+      </li>
+    </ul>
+  </nav>
+);
 
 const AddReview = ({authorizationStatus, id, movie, userData}) => {
-  const isAuth = authorizationStatus === AuthorizationStatus .AUTH;
+  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
 
   if (!isAuth) {
     return <Redirect to={AppRoute.LOGIN} />;
@@ -26,34 +41,12 @@ const AddReview = ({authorizationStatus, id, movie, userData}) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header">
-          <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.MOVIE_PAGE}${id}`} className="breadcrumbs__link">
-                  {title}
-                </Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src={`${URL}${userData.avatar}`} alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <PageHeader
+          currentPage={Page.REVIEW}
+          isAuth={isAuth}
+          userData={userData}>
+          {renderBreadCrumbs(id, title)}
+        </PageHeader>
 
         <div className="movie-card__poster movie-card__poster--small">
           <img src={poster} alt={`${title} poster`}

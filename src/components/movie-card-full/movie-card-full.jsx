@@ -15,7 +15,7 @@ import {AuthorizationStatus} from '../../utils/consts';
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MovieCardFull = ({
-  id, movies, reviews, authorizationStatus, userData
+  currentPage, id, movies, reviews, authorizationStatus, userData
 }) => {
   const activeMovie = movies.find((movie) => movie.id === id);
   const {title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
@@ -34,10 +34,12 @@ const MovieCardFull = ({
 
         <PageHeader
           isAuth={isAuth}
+          currentPage={currentPage}
           userData={userData}
         />
         <div className="movie-card__wrap">
           <MovieInfo
+            currentPage={currentPage}
             id={id}
             title={title}
             genre={genre}
@@ -62,6 +64,7 @@ const MovieCardFull = ({
 };
 
 MovieCardFull.propTypes = {
+  currentPage: string.isRequired,
   id: number.isRequired,
   movies: arrayOf(movieType).isRequired,
   authorizationStatus: string.isRequired,

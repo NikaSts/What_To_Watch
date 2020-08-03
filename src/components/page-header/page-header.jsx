@@ -1,14 +1,20 @@
 import React, {Fragment} from 'react';
 import cn from 'classnames';
-import {bool, number, string, shape} from 'prop-types';
+import {bool, number, string, shape, element} from 'prop-types';
 import {Link} from 'react-router-dom';
-import {AppRoute, URL} from '../../utils/consts';
+import {AppRoute, URL, Page} from '../../utils/consts';
 
-const PageHeader = ({isAuth, isSignInPage, userData}) => {
+const PageHeader = ({children, isAuth, currentPage, userData}) => {
+
+  const isMainPage = currentPage === Page.MAIN;
+  const isSignInPage = currentPage === Page.SIGN_IN;
+  const isMyListPage = currentPage === Page.MY_LIST;
+  const isReviewPage = currentPage === Page.REVIEW;
+
   const pageHeaderClass = cn({
     'page-header': true,
-    'movie-card__head': !isSignInPage,
-    'user-page__head': isSignInPage,
+    'movie-card__head': isReviewPage || isMainPage,
+    'user-page__head': isSignInPage || isMyListPage,
   });
 
   return (
@@ -23,7 +29,10 @@ const PageHeader = ({isAuth, isSignInPage, userData}) => {
           </Link>
         </div>
 
+        {isReviewPage && children}
+
         {isSignInPage && <h1 className="page-title user-page__title">Sign in</h1>}
+        {isMyListPage && <h1 className="page-title user-page__title">My list</h1>}
 
         {!isSignInPage && <div className="user-block">
           {isAuth && userData
@@ -42,21 +51,17 @@ const PageHeader = ({isAuth, isSignInPage, userData}) => {
   );
 };
 
-PageHeader.defaultProps = {
-  isMain: false,
-  isSignInPage: false,
-};
 
 PageHeader.propTypes = {
-  isMain: bool.isRequired,
+  currentPage: string.isRequired,
   isAuth: bool,
-  isSignInPage: bool.isRequired,
   userData: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,
     avatar: string.isRequired,
-  })
+  }),
+  children: element,
 };
 
 export default PageHeader;

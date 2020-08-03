@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {string, bool, shape, number} from 'prop-types';
+import {string, shape, number} from 'prop-types';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
@@ -11,7 +11,7 @@ import {AuthorizationStatus} from '../../utils/consts';
 
 
 const MovieCard = ({
-  promoMovie, authorizationStatus, isMain, userData
+  currentPage, promoMovie, authorizationStatus, userData
 }) => {
   const {id, poster, backgroundImage, title, genre, releaseDate} = promoMovie;
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
@@ -23,7 +23,7 @@ const MovieCard = ({
       <h1 className="visually-hidden">WTW</h1>
       <PageHeader
         isAuth={isAuth}
-        isMain={isMain}
+        currentPage={currentPage}
         userData={userData}
       />
       <div className="movie-card__wrap">
@@ -32,7 +32,7 @@ const MovieCard = ({
             <img src={poster} alt={title} width="218" height="327" />
           </div>
           <MovieInfo
-            isMain={isMain}
+            currentPage={currentPage}
             id={id}
             title={title}
             genre={genre}
@@ -45,10 +45,9 @@ const MovieCard = ({
 };
 
 MovieCard.propTypes = {
-  id: number.isRequired,
+  currentPage: string.isRequired,
   promoMovie: promoMovieType.isRequired,
   authorizationStatus: string.isRequired,
-  isMain: bool.isRequired,
   userData: shape({
     id: number.isRequired,
     name: string.isRequired,

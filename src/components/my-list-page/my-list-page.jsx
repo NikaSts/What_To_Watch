@@ -1,26 +1,27 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {number, string, shape} from 'prop-types';
+
+import PageHeader from '../page-header/page-header';
+import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {AppRoute, AuthorizationStatus, Page} from '../../utils/consts';
+import PageFooter from '../page-footer/page-footer';
 
 
-const MyListPage = () => {
+const MyListPage = ({authorizationStatus, userData}) => {
+  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
+  if (!isAuth) {
+    return <Redirect to={AppRoute.LOGIN} />;
+  }
+
   return (
     <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <h1 className="page-title user-page__title">My list</h1>
-
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
-      </header>
+      <PageHeader
+        currentPage={Page.MY_LIST}
+        isAuth={isAuth}
+        userData={userData}
+      />
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -79,21 +80,25 @@ const MyListPage = () => {
         </div>
       </section>
 
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <PageFooter />
     </div>
   );
 };
 
-export default MyListPage;
+MyListPage.propTypes = {
+  authorizationStatus: string.isRequired,
+  userData: shape({
+    id: number.isRequired,
+    name: string.isRequired,
+    email: string.isRequired,
+    avatar: string.isRequired,
+  }),
+};
+
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
+});
+
+export {MyListPage};
+export default connect(mapStateToProps)(MyListPage);

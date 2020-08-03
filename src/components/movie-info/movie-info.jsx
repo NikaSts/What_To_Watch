@@ -1,12 +1,12 @@
 import React from 'react';
-import {string, number, bool} from 'prop-types';
+import {string, number} from 'prop-types';
 import {Link} from 'react-router-dom';
 import history from '../../history';
-import {AppRoute} from '../../utils/consts';
+import {AppRoute, Page} from '../../utils/consts';
 
 
-const MovieInfo = ({isMain, id, title, genre, releaseDate}) => {
-
+const MovieInfo = ({currentPage, id, title, genre, releaseDate}) => {
+  const isMainPage = currentPage === Page.MAIN;
   return (
     <div className="movie-card__desc">
       <h2 className="movie-card__title">{title}</h2>
@@ -33,7 +33,7 @@ const MovieInfo = ({isMain, id, title, genre, releaseDate}) => {
           </svg>
           <span>My list</span>
         </button>
-        {!isMain && <Link to={`${AppRoute.MOVIE_PAGE}${id}${AppRoute.REVIEW}`}
+        {!isMainPage && <Link to={`${AppRoute.MOVIE_PAGE}${id}${AppRoute.REVIEW}`}
           className="btn btn--review movie-card__button">
             Add review
         </Link>}
@@ -42,12 +42,9 @@ const MovieInfo = ({isMain, id, title, genre, releaseDate}) => {
   );
 };
 
-MovieInfo.defaultProps = {
-  isMain: false,
-};
 
 MovieInfo.propTypes = {
-  isMain: bool.isRequired,
+  currentPage: string.isRequired,
   id: number,
   title: string.isRequired,
   genre: string.isRequired,

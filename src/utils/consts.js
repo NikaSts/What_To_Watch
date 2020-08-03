@@ -71,3 +71,12 @@ export const AppRoute = {
 };
 
 export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;
+
+export const Page = {
+  MAIN: `main`,
+  SIGN_IN: `login`,
+  MY_LIST: `myList`,
+  MOVIE_PAGE: `movie`,
+  PLAYER: `player`,
+  REVIEW: `review`,
+};
