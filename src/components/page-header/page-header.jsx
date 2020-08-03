@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react';
 import cn from 'classnames';
-import {bool, func, number, string, shape} from 'prop-types';
+import {bool, number, string, shape} from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute, URL} from '../../utils/consts';
 
-const PageHeader = ({isAuth, isSignInPage, onSignInButtonClick, userData}) => {
+const PageHeader = ({isAuth, isSignInPage, userData}) => {
   const pageHeaderClass = cn({
     'page-header': true,
     'movie-card__head': !isSignInPage,
@@ -33,8 +33,7 @@ const PageHeader = ({isAuth, isSignInPage, onSignInButtonClick, userData}) => {
               </div>
             </Link>
             : <Link to={AppRoute.LOGIN}
-              className="user-block__link"
-              onClick={onSignInButtonClick()}>
+              className="user-block__link">
               Sign in
             </Link>}
         </div>}
@@ -52,7 +51,6 @@ PageHeader.propTypes = {
   isMain: bool.isRequired,
   isAuth: bool,
   isSignInPage: bool.isRequired,
-  onSignInButtonClick: func,
   userData: shape({
     id: number.isRequired,
     name: string.isRequired,

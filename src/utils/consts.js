@@ -32,14 +32,10 @@ export const Score = {
 export const DELAY = 1000;
 
 export const ActionType = {
-  OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
-  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
   GET_MOVIES: `getMovies`,
   GET_PROMO_MOVIE: `getPromoMovie`,
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
-  IS_AUTHORIZING: `isAuthorizing`,
-  IS_NOT_AUTHORIZING: `isNotAuthorizing`,
   IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
   LOAD_USER_DATA: `loadUserData`,
 };

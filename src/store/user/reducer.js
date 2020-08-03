@@ -15,15 +15,6 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload.status,
       });
-    case ActionType.IS_AUTHORIZING:
-      return extend(state, {
-        isAuthorizing: true,
-      });
-    case ActionType.IS_NOT_AUTHORIZING:
-      return extend(state, {
-        isAuthorizing: false,
-        isAuthorizationError: false,
-      });
     case ActionType.IS_AUTHORIZATION_ERROR:
       return extend(state, {
         isAuthorizationError: true,

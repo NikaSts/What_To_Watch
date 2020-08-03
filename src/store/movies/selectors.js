@@ -10,6 +10,5 @@ export const getReviews = (state) => getMoviesState(state).reviews;
 export const getGenres = (state) => getGenresFromMovies(getMovies(state));
 
 export const getMovie = (state, id) => {
-  console.log(444);
   return getMovieById(getMovies(state), id);
 };

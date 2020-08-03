@@ -1,5 +1,5 @@
 import React from 'react';
-import {func, oneOfType, shape, arrayOf, number, string} from 'prop-types';
+import {oneOfType, shape, arrayOf, number, string} from 'prop-types';
 import {connect} from 'react-redux';
 
 import MovieInfo from '../movie-info/movie-info';
@@ -7,8 +7,6 @@ import PageHeader from '../page-header/page-header';
 import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {movieType} from '../../types';
-import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
-import {ActionCreator as UserActionCreator} from '../../store/user/actions';
 import {getMovies, getReviews} from '../../store/movies/selectors';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
@@ -17,7 +15,7 @@ import {AuthorizationStatus} from '../../utils/consts';
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MovieCardFull = ({
-  id, movies, reviews, onPlayButtonClick, onSignInButtonClick, authorizationStatus, userData
+  id, movies, reviews, authorizationStatus, userData
 }) => {
   const activeMovie = movies.find((movie) => movie.id === id);
   const {title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
@@ -35,7 +33,6 @@ const MovieCardFull = ({
         <h1 className="visually-hidden">WTW</h1>
 
         <PageHeader
-          onSignInButtonClick={onSignInButtonClick}
           isAuth={isAuth}
           userData={userData}
         />
@@ -45,7 +42,6 @@ const MovieCardFull = ({
             title={title}
             genre={genre}
             releaseDate={releaseDate}
-            onPlayButtonClick={onPlayButtonClick}
           />
         </div>
       </div>
@@ -68,8 +64,6 @@ const MovieCardFull = ({
 MovieCardFull.propTypes = {
   id: number.isRequired,
   movies: arrayOf(movieType).isRequired,
-  onPlayButtonClick: func.isRequired,
-  onSignInButtonClick: func.isRequired,
   authorizationStatus: string.isRequired,
   reviews: oneOfType([
     arrayOf(shape({
@@ -98,15 +92,6 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
-    dispatch(PlayerActionCreator.openFullScreenPlayer());
-  },
-  onSignInButtonClick() {
-    dispatch(UserActionCreator.isAuthorizing());
-  }
-});
-
 
 export {MovieCardFull};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCardFull);
+export default connect(mapStateToProps)(MovieCardFull);

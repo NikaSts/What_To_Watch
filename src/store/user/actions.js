@@ -8,12 +8,6 @@ export const ActionCreator = {
     type: ActionType.REQUIRE_AUTHORIZATION,
     payload: {status},
   }),
-  isAuthorizing: () => ({
-    type: ActionType.IS_AUTHORIZING,
-  }),
-  isNotAuthorizing: () => ({
-    type: ActionType.IS_NOT_AUTHORIZING,
-  }),
   isAuthorizationError: () => ({
     type: ActionType.IS_AUTHORIZATION_ERROR,
   }),
@@ -41,12 +35,10 @@ export const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.isNotAuthorizing());
         dispatch(ActionCreator.loadUserData(userAdapter(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-        dispatch(ActionCreator.isAuthorizationError());
       })
   )
 };
