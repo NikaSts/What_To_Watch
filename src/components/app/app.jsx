@@ -57,30 +57,30 @@ class App extends PureComponent {
             render={() => <SignInPage />}
           />
           <Route
-            path={`${AppRoute.PLAYER}/:id`}
-            render={({match}) => {
-              const id = Number(match.params.id);
-              return <PlayerWithFullScreen id={id} />;
-            }}
-          />
-          <Route
             exact path={AppRoute.MY_LIST}
             render={() => <MyListPage />}
           />
           <Route
-            exact path={`${AppRoute.MOVIE_PAGE}/:id`}
+            exact path={`${AppRoute.MOVIE_PAGE}:id`}
             render={({match}) => {
               const id = Number(match.params.id);
               return <MoviePage id={id} />;
             }}
           />
           <Route
-            path={`${AppRoute.MOVIE_PAGE}/:id/review`}
+            path={`${AppRoute.MOVIE_PAGE}:id${AppRoute.REVIEW}`}
             render={({match}) => {
               const id = Number(match.params.id);
               return <AddReview
                 id={id} />;
             } }
+          />
+          <Route
+            path={`${AppRoute.MOVIE_PAGE}:id${AppRoute.PLAYER}`}
+            render={({match}) => {
+              const id = Number(match.params.id);
+              return <PlayerWithFullScreen id={id} />;
+            }}
           />
           <Route
             render={() => <h2>Page not found</h2>}

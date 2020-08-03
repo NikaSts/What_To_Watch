@@ -69,8 +69,9 @@ export const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
-  MOVIE_PAGE: `/films`,
+  MOVIE_PAGE: `/films/`,
   PLAYER: `/player`,
+  REVIEW: `/review`,
 };
 
 export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;

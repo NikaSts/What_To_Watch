@@ -3,7 +3,7 @@ import {Redirect, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {number, string, shape} from 'prop-types';
 
-import {getMovieToReview} from '../../store/movies/selectors';
+import {getMovie} from '../../store/movies/selectors';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {promoMovieType} from '../../types';
 import {AppRoute, TEXTAREA_COLOR, AuthorizationStatus, URL} from '../../utils/consts';
@@ -38,7 +38,7 @@ const AddReview = ({authorizationStatus, id, movie, userData}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.MOVIE_PAGE}/${id}`} className="breadcrumbs__link">
+                <Link to={`${AppRoute.MOVIE_PAGE}${id}`} className="breadcrumbs__link">
                   {title}
                 </Link>
               </li>
@@ -112,7 +112,7 @@ AddReview.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  movie: getMovieToReview(state, props.id),
+  movie: getMovie(state, props.id),
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
 });
