@@ -23,11 +23,11 @@ const Catalog = (props) => {
   const isMainPage = currentPage === Page.MAIN;
   const isMoviePage = currentPage === Page.MOVIE_PAGE;
   const isMyListPage = currentPage === Page.MY_LIST;
-  const hasFavouriteMovies = favouriteMovies && favouriteMovies.length > 0;
 
   const moviesByGenre = isMainPage && filterMovies(movies, activeItem);
   const similarMovies = isMoviePage && filterMovies(movies, movie.genre)
     .splice(0, MAX_SIMILAR_MOVIES);
+  const hasFavouriteMovies = favouriteMovies && favouriteMovies.length > 0;
 
   const catalogClass = cn({
     'catalog': true,

@@ -79,7 +79,6 @@ VideoPlayer.propTypes = {
   duration: number.isRequired,
   onPlayButtonToggle: func.isRequired,
   onFullScreenButtonClick: func.isRequired,
-  onExitButtonClick: func.isRequired,
   children: node.isRequired,
 };
 
