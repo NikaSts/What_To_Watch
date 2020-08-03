@@ -1,11 +1,13 @@
 import React from 'react';
-import {string, number} from 'prop-types';
+import {string, number, bool, func} from 'prop-types';
 import {Link} from 'react-router-dom';
 import history from '../../history';
 import {AppRoute, Page} from '../../utils/consts';
 
 
-const MovieInfo = ({currentPage, id, title, genre, releaseDate}) => {
+const MovieInfo = ({
+  currentPage, id, title, genre, releaseDate, isFavorite, onIsFavoriteButtonClick
+}) => {
   const isMainPage = currentPage === Page.MAIN;
   return (
     <div className="movie-card__desc">
@@ -27,12 +29,20 @@ const MovieInfo = ({currentPage, id, title, genre, releaseDate}) => {
           </svg>
           <span>Play</span>
         </button>
-        <button className="btn btn--list movie-card__button" type="button">
-          <svg viewBox="0 0 19 20" width="19" height="20">
-            <use xlinkHref="#add"></use>
-          </svg>
+
+        <button
+          onClick={onIsFavoriteButtonClick}
+          className="btn btn--list movie-card__button" type="button">
+          {isFavorite
+            ? <svg viewBox="0 0 18 14" width="18" height="14">
+              <use xlinkHref="#in-list"></use>
+            </svg>
+            : <svg viewBox="0 0 19 20" width="19" height="20">
+              <use xlinkHref="#add"></use>
+            </svg>}
           <span>My list</span>
         </button>
+
         {!isMainPage && <Link to={`${AppRoute.MOVIE_PAGE}${id}${AppRoute.REVIEW}`}
           className="btn btn--review movie-card__button">
             Add review
@@ -49,6 +59,8 @@ MovieInfo.propTypes = {
   title: string.isRequired,
   genre: string.isRequired,
   releaseDate: number.isRequired,
+  isFavorite: bool.isRequired,
+  onIsFavoriteButtonClick: func.isFavorite,
 };
 
 export default MovieInfo;

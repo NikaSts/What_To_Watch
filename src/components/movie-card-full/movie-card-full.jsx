@@ -1,24 +1,26 @@
 import React from 'react';
-import {oneOfType, shape, arrayOf, number, string} from 'prop-types';
+import {oneOfType, shape, arrayOf, number, string, func} from 'prop-types';
 import {connect} from 'react-redux';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
 import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {movieType} from '../../types';
-import {getMovies, getReviews} from '../../store/movies/selectors';
+import {getReviews, getMovie, getIsFavoriteStatus} from '../../store/movies/selectors';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {Operation as MoviesOperation} from '../../store/movies/actions';
+import {movieType} from '../../types';
 import {AuthorizationStatus} from '../../utils/consts';
 
 
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MovieCardFull = ({
-  currentPage, id, movies, reviews, authorizationStatus, userData
+  currentPage, id, activeMovie, reviews, authorizationStatus, userData, onIsFavoriteButtonClick
 }) => {
-  const activeMovie = movies.find((movie) => movie.id === id);
-  const {title, genre, releaseDate, poster, backgroundImage, backgroundColor} = activeMovie;
+  const {
+    title, genre, releaseDate, poster, backgroundImage, backgroundColor, isFavorite
+  } = activeMovie;
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
@@ -44,6 +46,8 @@ const MovieCardFull = ({
             title={title}
             genre={genre}
             releaseDate={releaseDate}
+            isFavorite={isFavorite}
+            onIsFavoriteButtonClick={onIsFavoriteButtonClick}
           />
         </div>
       </div>
@@ -66,7 +70,7 @@ const MovieCardFull = ({
 MovieCardFull.propTypes = {
   currentPage: string.isRequired,
   id: number.isRequired,
-  movies: arrayOf(movieType).isRequired,
+  activeMovie: movieType.isRequired,
   authorizationStatus: string.isRequired,
   reviews: oneOfType([
     arrayOf(shape({
@@ -85,16 +89,25 @@ MovieCardFull.propTypes = {
     name: string.isRequired,
     email: string.isRequired,
     avatar: string.isRequired,
-  })
+  }),
+  onIsFavoriteButtonClick: func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
+const mapStateToProps = (state, props) => ({
+  activeMovie: getMovie(state, props.id),
   reviews: getReviews(state),
   authorizationStatus: getAuthorizationStatus(state),
   userData: getUserData(state),
+  isFavorite: getIsFavoriteStatus(state),
+});
+
+const mapDispatchToProps = (dispatch, props) => ({
+  onIsFavoriteButtonClick() {
+    const {id, isFavorite} = props.activeMovie;
+    dispatch(MoviesOperation.sendFavoriteMovie(id, isFavorite));
+  },
 });
 
 
 export {MovieCardFull};
-export default connect(mapStateToProps)(MovieCardFull);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCardFull);

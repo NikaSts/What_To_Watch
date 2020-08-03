@@ -33,12 +33,13 @@ export const DELAY = 1000;
 
 export const ActionType = {
   GET_MOVIES: `getMovies`,
-  GET_FAVOURITE_MOVIES: `getFavouriteMovies`,
+  GET_FAVORITE_MOVIES: `getFavoriteMovies`,
   GET_PROMO_MOVIE: `getPromoMovie`,
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
   IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
   LOAD_USER_DATA: `loadUserData`,
+  SET_MOVIE_FAVORITE_STATUS: `setMovieFavoriteStatus`,
 };
 
 export const AuthorizationStatus = {

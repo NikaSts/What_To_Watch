@@ -5,7 +5,7 @@ import {number, string, shape, arrayOf, func} from 'prop-types';
 
 import PageHeader from '../page-header/page-header';
 import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
-import {getFavouriteMovies} from '../../store/movies/selectors';
+import {getFavoriteMovies} from '../../store/movies/selectors';
 
 import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {AppRoute, AuthorizationStatus, Page} from '../../utils/consts';
@@ -20,12 +20,12 @@ class MyListPage extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadFavouriteMovies} = this.props;
-    loadFavouriteMovies();
+    const {loadFavoriteMovies} = this.props;
+    loadFavoriteMovies();
   }
 
   render() {
-    const {authorizationStatus, userData, favouriteMovies} = this.props;
+    const {authorizationStatus, userData, favoriteMovies} = this.props;
     const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
     if (!isAuth) {
       return <Redirect to={AppRoute.LOGIN} />;
@@ -40,7 +40,7 @@ class MyListPage extends PureComponent {
         />
         <Catalog
           currentPage={Page.MY_LIST}
-          favouriteMovies={favouriteMovies}
+          favoriteMovies={favoriteMovies}
         />
         <PageFooter />
       </div>
@@ -57,19 +57,19 @@ MyListPage.propTypes = {
     email: string.isRequired,
     avatar: string.isRequired,
   }),
-  loadFavouriteMovies: func.isRequired,
-  favouriteMovies: arrayOf(movieType).isRequired,
+  loadFavoriteMovies: func.isRequired,
+  favoriteMovies: arrayOf(movieType).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  favouriteMovies: getFavouriteMovies(state),
+  favoriteMovies: getFavoriteMovies(state),
   userData: getUserData(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavouriteMovies() {
-    dispatch(MoviesOperation.loadFavouriteMovies());
+  loadFavoriteMovies() {
+    dispatch(MoviesOperation.loadFavoriteMovies());
   },
 });
 

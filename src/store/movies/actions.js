@@ -7,9 +7,9 @@ export const ActionCreator = {
     type: ActionType.GET_MOVIES,
     payload: {movies},
   }),
-  getFavouriteMovies: (favouriteMovies) => ({
-    type: ActionType.GET_FAVOURITE_MOVIES,
-    payload: {favouriteMovies},
+  getFavoriteMovies: (favoriteMovies) => ({
+    type: ActionType.GET_FAVORITE_MOVIES,
+    payload: {favoriteMovies},
   }),
   getPromoMovie: (promoMovie) => ({
     type: ActionType.GET_PROMO_MOVIE,
@@ -19,6 +19,9 @@ export const ActionCreator = {
     type: ActionType.GET_REVIEWS,
     payload: {reviews},
   }),
+  setMovieFavoriteStatus: () => ({
+    type: ActionType.SET_MOVIE_FAVORITE_STATUS,
+  })
 };
 
 export const Operation = {
@@ -30,11 +33,11 @@ export const Operation = {
         ));
       })
   ),
-  loadFavouriteMovies: () => (dispatch, getState, api) => (
+  loadFavoriteMovies: () => (dispatch, getState, api) => (
     api.get(EntryPoint.FAVORITES)
       .then((response) => {
         if (response.data) {
-          dispatch(ActionCreator.getFavouriteMovies(response.data
+          dispatch(ActionCreator.getFavoriteMovies(response.data
           .map((movie) => movieAdapter(movie))));
         }
       })
@@ -51,4 +54,13 @@ export const Operation = {
         dispatch(ActionCreator.getReviews(response.data));
       })
   ),
+  sendFavoriteMovie: (movieId, isFavorite) => (dispatch, getState, api) => {
+    const status = isFavorite ? 0 : 1;
+    return api.post(`${EntryPoint.FAVORITES}/${movieId}/${status}`, {
+      [`is_favorite`]: isFavorite,
+    })
+    .then(() => {
+      dispatch(ActionCreator.setMovieFavoriteStatus());
+    });
+  }
 };

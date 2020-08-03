@@ -3,7 +3,7 @@ import {extend} from '../../utils/funcs';
 
 const initialState = {
   movies: [],
-  favouriteMovies: [],
+  favoriteMovies: [],
   promoMovie: {
     id: 0,
     title: `Loading...`,
@@ -12,6 +12,7 @@ const initialState = {
     poster: ``,
     backgroundImage: ``,
     backgroundColor: ``,
+    isFavorite: ``,
   },
   reviews: [],
 };
@@ -23,9 +24,9 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         movies: action.payload.movies,
       });
-    case ActionType.GET_FAVOURITE_MOVIES:
+    case ActionType.GET_FAVORITE_MOVIES:
       return extend(state, {
-        favouriteMovies: action.payload.favouriteMovies,
+        favoriteMovies: action.payload.favoriteMovies,
       });
     case ActionType.GET_PROMO_MOVIE:
       return extend(state, {
@@ -34,6 +35,10 @@ export const reducer = (state = initialState, action) => {
     case ActionType.GET_REVIEWS:
       return extend(state, {
         reviews: action.payload.reviews,
+      });
+    case ActionType.SET_MOVIE_FAVORITE_STATUS:
+      return extend(state, {
+        isFavorite: !state.isFavorite,
       });
     default:
       return state;

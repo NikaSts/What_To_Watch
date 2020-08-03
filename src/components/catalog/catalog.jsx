@@ -17,7 +17,7 @@ const CatalogListWithShowMoreButton = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
-    currentPage, movies, favouriteMovies, movie, genres,
+    currentPage, movies, favoriteMovies, movie, genres,
     onCatalogCardClick, activeItem, onItemClick,
   } = props;
   const isMainPage = currentPage === Page.MAIN;
@@ -27,7 +27,7 @@ const Catalog = (props) => {
   const moviesByGenre = isMainPage && filterMovies(movies, activeItem);
   const similarMovies = isMoviePage && filterMovies(movies, movie.genre)
     .splice(0, MAX_SIMILAR_MOVIES);
-  const hasFavouriteMovies = favouriteMovies && favouriteMovies.length > 0;
+  const hasFavoriteMovies = favoriteMovies && favoriteMovies.length > 0;
 
   const catalogClass = cn({
     'catalog': true,
@@ -61,8 +61,8 @@ const Catalog = (props) => {
         onCatalogCardClick={onCatalogCardClick}
       />}
 
-      {(isMyListPage && hasFavouriteMovies) && <CatalogList
-        movies={favouriteMovies}
+      {(isMyListPage && hasFavoriteMovies) && <CatalogList
+        movies={favoriteMovies}
         onCatalogCardClick={onCatalogCardClick}
       />}
     </section>
@@ -81,7 +81,7 @@ Catalog.propTypes = {
   movie: movieType,
   activeItem: string,
   onItemClick: func,
-  favouriteMovies: arrayOf(movieType),
+  favoriteMovies: arrayOf(movieType),
 };
 
 const mapStateToProps = (state, props) => ({
