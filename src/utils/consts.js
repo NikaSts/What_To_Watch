@@ -38,8 +38,7 @@ export const ActionType = {
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
   IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
-  LOAD_USER_DATA: `loadUserData`,
-  SET_MOVIE_FAVORITE_STATUS: `setMovieFavoriteStatus`,
+  LOAD_USER: `loadUser`,
   SET_LOADING_STATUS: `setLoadingStatus`,
   SET_LOADING_ERROR_STATUS: `setLoadingErrorStatus`,
 

@@ -19,7 +19,7 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         isAuthorizationError: true,
       });
-    case ActionType.LOAD_USER_DATA:
+    case ActionType.LOAD_USER:
       return extend(state, {
         user: action.payload.user,
       });

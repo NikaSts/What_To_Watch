@@ -29,10 +29,6 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         reviews: action.payload.reviews,
       });
-    case ActionType.SET_MOVIE_FAVORITE_STATUS:
-      return extend(state, {
-        isFavorite: !state.isFavorite,
-      });
     case ActionType.SET_LOADING_STATUS:
       return extend(state, {
         isLoading: Boolean(action.payload.isLoading),

@@ -19,9 +19,6 @@ export const ActionCreator = {
     type: ActionType.GET_REVIEWS,
     payload: {reviews},
   }),
-  setMovieFavoriteStatus: () => ({
-    type: ActionType.SET_MOVIE_FAVORITE_STATUS,
-  }),
   setLoadingStatus: (status) => ({
     type: ActionType.SET_LOADING_STATUS,
     payload: {status},
@@ -84,7 +81,6 @@ export const Operation = {
       [`is_favorite`]: isFavorite,
     })
     .then(() => {
-      dispatch(ActionCreator.setMovieFavoriteStatus());
       dispatch(Operation.loadMovies());
       dispatch(Operation.loadPromoMovie());
     });
