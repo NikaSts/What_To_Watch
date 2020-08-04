@@ -8,7 +8,7 @@ import App from './components/app/app';
 import {rootReducer} from './store/root-reducer';
 import {createAPI} from './api';
 import {ActionCreator as UserActionCreator, Operation as UserOperation} from './store/user/actions';
-import {Operation as DataOperation} from './store/movies/actions';
+import {Operation as MoviesOperation} from './store/movies/actions';
 import {AuthorizationStatus} from './utils/consts';
 
 
@@ -26,8 +26,8 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.loadMovies());
-store.dispatch(DataOperation.loadPromoMovie());
+store.dispatch(MoviesOperation.loadMovies());
+store.dispatch(MoviesOperation.loadPromoMovie());
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(

@@ -1,32 +1,43 @@
 import React from 'react';
-import {func, string, node} from 'prop-types';
+import {func, string, element, number} from 'prop-types';
+import {Link} from 'react-router-dom';
+import history from '../../history';
+import {AppRoute} from '../../utils/consts';
+
 
 const CatalogCard = ({
-  title, onCatalogCardClick, onMouseEnter, onMouseLeave, children
+  id, title, onCatalogCardClick, onMouseEnter, onMouseLeave, children
 }) => (
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={onCatalogCardClick}
+    onClick={() => {
+      onCatalogCardClick(id);
+      history.push(`${AppRoute.MOVIE_PAGE}${id}`);
+    }}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
   >
-    <div className="small-movie-card__image">
-      {children}
-    </div>
+    <Link to={`${AppRoute.MOVIE_PAGE}${id}`}>
+      <div className="small-movie-card__image">
+        {children}
+      </div>
+    </Link>
     <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href="movie-page.html">
+      <Link to={`${AppRoute.MOVIE_PAGE}${id}`}
+        className="small-movie-card__link">
         {title}
-      </a>
+      </Link>
     </h3>
   </article>
 );
 
 CatalogCard.propTypes = {
+  id: number.isRequired,
   title: string.isRequired,
   onCatalogCardClick: func.isRequired,
   onMouseEnter: func.isRequired,
   onMouseLeave: func.isRequired,
-  children: node.isRequired,
+  children: element.isRequired,
 };
 
 export default CatalogCard;

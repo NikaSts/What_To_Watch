@@ -8,18 +8,12 @@ export const ActionCreator = {
     type: ActionType.REQUIRE_AUTHORIZATION,
     payload: {status},
   }),
-  isAuthorizing: () => ({
-    type: ActionType.IS_AUTHORIZING,
-  }),
-  isNotAuthorizing: () => ({
-    type: ActionType.IS_NOT_AUTHORIZING,
-  }),
   isAuthorizationError: () => ({
     type: ActionType.IS_AUTHORIZATION_ERROR,
   }),
-  loadUserData: (userData) => ({
-    type: ActionType.LOAD_USER_DATA,
-    payload: {userData},
+  loadUser: (user) => ({
+    type: ActionType.LOAD_USER,
+    payload: {user},
   })
 };
 
@@ -28,7 +22,7 @@ export const Operation = {
     api.get(EntryPoint.LOGIN)
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.loadUserData(userAdapter(response.data)));
+        dispatch(ActionCreator.loadUser(userAdapter(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -41,12 +35,10 @@ export const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.isNotAuthorizing());
-        dispatch(ActionCreator.loadUserData(userAdapter(response.data)));
+        dispatch(ActionCreator.loadUser(userAdapter(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-        dispatch(ActionCreator.isAuthorizationError());
       })
   )
 };

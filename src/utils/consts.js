@@ -32,17 +32,16 @@ export const Score = {
 export const DELAY = 1000;
 
 export const ActionType = {
-  CHANGE_ACTIVE_MOVIE: `changeActiveMovie`,
-  OPEN_FULL_SCREEN_PLAYER: `openFullScreenPlayer`,
-  CLOSE_FULL_SCREEN_PLAYER: `closeFullScreenPlayer`,
   GET_MOVIES: `getMovies`,
+  GET_FAVORITE_MOVIES: `getFavoriteMovies`,
   GET_PROMO_MOVIE: `getPromoMovie`,
   GET_REVIEWS: `getReviews`,
   REQUIRE_AUTHORIZATION: `requireAuthorization`,
-  IS_AUTHORIZING: `isAuthorizing`,
-  IS_NOT_AUTHORIZING: `isNotAuthorizing`,
   IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
-  LOAD_USER_DATA: `loadUserData`,
+  LOAD_USER: `loadUser`,
+  SET_LOADING_STATUS: `setLoadingStatus`,
+  SET_LOADING_ERROR_STATUS: `setLoadingErrorStatus`,
+
 };
 
 export const AuthorizationStatus = {
@@ -51,11 +50,11 @@ export const AuthorizationStatus = {
 };
 
 export const EntryPoint = {
-  REVIEWS: `/comments`,
-  FAVORITE: `/favorite`,
-  MOVIES: `/films`,
-  PROMO: `/films/promo`,
-  LOGIN: `/login`,
+  REVIEWS: `/wtw/comments`,
+  FAVORITES: `/wtw/favorite`,
+  MOVIES: `/wtw/films`,
+  PROMO: `/wtw/films/promo`,
+  LOGIN: `/wtw/login`,
 };
 
 export const TIMER = 5000;
@@ -64,4 +63,25 @@ export const Error = {
   UNAUTHORIZED: 401,
 };
 
-export const URL = `https://4.react.pages.academy/wtw`;
+export const URL = `https://4.react.pages.academy`;
+
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE_PAGE: `/films/`,
+  PLAYER: `/player`,
+  REVIEW: `/review`,
+};
+
+export const TEXTAREA_COLOR = `rgba(255, 255, 255, 0.3)`;
+
+export const Page = {
+  MAIN: `main`,
+  SIGN_IN: `login`,
+  MY_LIST: `myList`,
+  MOVIE_PAGE: `movie`,
+  PLAYER: `player`,
+  REVIEW: `review`,
+  ERROR: `error`,
+};

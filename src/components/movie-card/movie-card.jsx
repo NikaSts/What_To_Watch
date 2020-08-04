@@ -1,22 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {func, string, bool, shape, number} from 'prop-types';
+import {string, shape, number, func} from 'prop-types';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
+import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
+import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {promoMovieType} from '../../types';
-import {ActionCreator as PlayerActionCreator} from '../../store/player/actions';
-import {ActionCreator as UserActionCreator} from '../../store/user/actions';
-import {getPromoMovie} from '../../store/movies/selectors';
-import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
 import {AuthorizationStatus} from '../../utils/consts';
 
 
 const MovieCard = ({
-  promoMovie, onPlayButtonClick, onSignInButtonClick, authorizationStatus, isMain, userData
+  currentPage, promoMovie, authorizationStatus, user, onIsFavoriteButtonClick
 }) => {
-  const {poster, backgroundImage, title, genre, releaseDate} = promoMovie;
-  const isSignedIn = authorizationStatus === AuthorizationStatus.AUTH;
+  const {id, poster, backgroundImage, title, genre, releaseDate, isFavorite} = promoMovie;
+  const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -24,10 +22,9 @@ const MovieCard = ({
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <PageHeader
-        onSignInButtonClick={onSignInButtonClick}
-        isSignedIn={isSignedIn}
-        isMain={isMain}
-        userData={userData}
+        isAuth={isAuth}
+        currentPage={currentPage}
+        user={user}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -35,11 +32,13 @@ const MovieCard = ({
             <img src={poster} alt={title} width="218" height="327" />
           </div>
           <MovieInfo
+            currentPage={currentPage}
+            id={id}
             title={title}
             genre={genre}
             releaseDate={releaseDate}
-            isSignedIn={isSignedIn}
-            onPlayButtonClick={onPlayButtonClick}
+            isFavorite={isFavorite}
+            onIsFavoriteButtonClick={onIsFavoriteButtonClick}
           />
         </div>
       </div>
@@ -48,32 +47,28 @@ const MovieCard = ({
 };
 
 MovieCard.propTypes = {
+  currentPage: string.isRequired,
   promoMovie: promoMovieType.isRequired,
-  onPlayButtonClick: func.isRequired,
-  onSignInButtonClick: func.isRequired,
   authorizationStatus: string.isRequired,
-  isMain: bool.isRequired,
-  userData: shape({
+  user: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,
     avatar: string.isRequired,
-  })
+  }),
+  onIsFavoriteButtonClick: func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  promoMovie: getPromoMovie(state),
   authorizationStatus: getAuthorizationStatus(state),
-  userData: getUserData(state),
+  user: getUser(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlayButtonClick() {
-    dispatch(PlayerActionCreator.openFullScreenPlayer());
+const mapDispatchToProps = (dispatch, props) => ({
+  onIsFavoriteButtonClick() {
+    const {id, isFavorite} = props.promoMovie;
+    dispatch(MoviesOperation.sendFavoriteMovie(id, isFavorite));
   },
-  onSignInButtonClick() {
-    dispatch(UserActionCreator.isAuthorizing());
-  }
 });
 
 

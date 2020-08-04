@@ -1,5 +1,8 @@
 import React, {PureComponent, createRef} from 'react';
-import {string, func} from 'prop-types';
+import {connect} from 'react-redux';
+import {getMovie} from '../../store/movies/selectors';
+import {movieType} from '../../types';
+import ErrorPage from '../../components/error-page/error-page';
 
 
 const withFullScreen = (Component) => {
@@ -12,16 +15,14 @@ const withFullScreen = (Component) => {
         progress: 0,
         duration: 0,
       };
-
       this._handlePlayButtonToggle = this._handlePlayButtonToggle.bind(this);
       this._handleFullScreenButtonClick = this._handleFullScreenButtonClick.bind(this);
     }
 
     componentDidMount() {
-      const {src} = this.props;
       const video = this._videoRef.current;
       if (video) {
-        video.src = src;
+        video.src = this.props.movie.video;
         video.play();
         video.ontimeupdate = () => this.setState({
           progress: Math.floor(video.currentTime),
@@ -66,7 +67,12 @@ const withFullScreen = (Component) => {
 
     render() {
       const {isPlaying, progress, duration} = this.state;
-      const {title, previewImage, src, onExitButtonClick} = this.props;
+      const {movie} = this.props;
+      if (!movie) {
+        return <ErrorPage />;
+      }
+
+      const {title, previewImage, src} = movie;
 
       return (
         <Component
@@ -76,7 +82,6 @@ const withFullScreen = (Component) => {
           duration={duration}
           onPlayButtonToggle={this._handlePlayButtonToggle}
           onFullScreenButtonClick={this._handleFullScreenButtonClick}
-          onExitButtonClick={onExitButtonClick}
         >
           <video
             ref={this._videoRef}
@@ -92,14 +97,14 @@ const withFullScreen = (Component) => {
   }
 
   Wrapper.propTypes = {
-    title: string.isRequired,
-    src: string.isRequired,
-    previewImage: string.isRequired,
-    onExitButtonClick: func.isRequired,
+    movie: movieType,
   };
 
-  return Wrapper;
-};
+  const mapStateToProps = (state, props) => ({
+    movie: getMovie(state, props.id),
+  });
 
+  return connect(mapStateToProps)(Wrapper);
+};
 
 export default withFullScreen;
