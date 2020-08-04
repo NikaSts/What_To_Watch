@@ -12,6 +12,7 @@ import {AppRoute, AuthorizationStatus, Page} from '../../utils/consts';
 import PageFooter from '../page-footer/page-footer';
 import {Catalog} from '../catalog/catalog';
 import {movieType} from '../../types';
+import ErrorPage from '../error-page/error-page';
 
 
 class MyListPage extends PureComponent {
@@ -29,6 +30,9 @@ class MyListPage extends PureComponent {
     const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
     if (!isAuth) {
       return <Redirect to={AppRoute.LOGIN} />;
+    }
+    if (!favoriteMovies) {
+      return <ErrorPage />;
     }
 
     return (

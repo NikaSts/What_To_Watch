@@ -10,11 +10,12 @@ const PageHeader = ({children, isAuth, currentPage, userData}) => {
   const isSignInPage = currentPage === Page.SIGN_IN;
   const isMyListPage = currentPage === Page.MY_LIST;
   const isReviewPage = currentPage === Page.REVIEW;
+  const isErrorPage = currentPage === Page.ERROR;
 
   const pageHeaderClass = cn({
     'page-header': true,
     'movie-card__head': isReviewPage || isMainPage,
-    'user-page__head': isSignInPage || isMyListPage,
+    'user-page__head': isSignInPage || isMyListPage || isErrorPage,
   });
 
   return (
@@ -33,8 +34,9 @@ const PageHeader = ({children, isAuth, currentPage, userData}) => {
 
         {isSignInPage && <h1 className="page-title user-page__title">Sign in</h1>}
         {isMyListPage && <h1 className="page-title user-page__title">My list</h1>}
+        {isErrorPage && <h1 className="page-title user-page__title">Error</h1>}
 
-        {!isSignInPage && <div className="user-block">
+        {!isSignInPage && !isErrorPage && <div className="user-block">
           {isAuth && userData
             ? <Link to={AppRoute.MY_LIST}>
               <div className="user-block__avatar">

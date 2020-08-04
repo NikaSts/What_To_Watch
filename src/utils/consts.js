@@ -40,6 +40,9 @@ export const ActionType = {
   IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
   LOAD_USER_DATA: `loadUserData`,
   SET_MOVIE_FAVORITE_STATUS: `setMovieFavoriteStatus`,
+  SET_LOADING_STATUS: `setLoadingStatus`,
+  SET_LOADING_ERROR_STATUS: `setLoadingErrorStatus`,
+
 };
 
 export const AuthorizationStatus = {
@@ -81,4 +84,5 @@ export const Page = {
   MOVIE_PAGE: `movie`,
   PLAYER: `player`,
   REVIEW: `review`,
+  ERROR: `error`,
 };

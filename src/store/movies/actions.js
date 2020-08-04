@@ -21,7 +21,11 @@ export const ActionCreator = {
   }),
   setMovieFavoriteStatus: () => ({
     type: ActionType.SET_MOVIE_FAVORITE_STATUS,
-  })
+  }),
+  setLoadingStatus: (status) => ({
+    type: ActionType.SET_LOADING_STATUS,
+    payload: {status},
+  }),
 };
 
 export const Operation = {
@@ -31,6 +35,11 @@ export const Operation = {
         dispatch(ActionCreator.getMovies(response.data
           .map((movie) => movieAdapter(movie))
         ));
+        dispatch(ActionCreator.setLoadingStatus(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setLoadingErrorStatus(true));
+        dispatch(ActionCreator.setLoadingStatus(false));
       })
   ),
   loadFavoriteMovies: () => (dispatch, getState, api) => (
@@ -38,20 +47,35 @@ export const Operation = {
       .then((response) => {
         if (response.data) {
           dispatch(ActionCreator.getFavoriteMovies(response.data
-          .map((movie) => movieAdapter(movie))));
+            .map((movie) => movieAdapter(movie))));
+          dispatch(ActionCreator.setLoadingStatus(false));
         }
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setLoadingErrorStatus(true));
+        dispatch(ActionCreator.setLoadingStatus(false));
       })
   ),
   loadPromoMovie: () => (dispatch, getState, api) => (
     api.get(EntryPoint.PROMO)
       .then((response) => {
         dispatch(ActionCreator.getPromoMovie(movieAdapter(response.data)));
+        dispatch(ActionCreator.setLoadingStatus(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setLoadingErrorStatus(true));
+        dispatch(ActionCreator.setLoadingStatus(false));
       })
   ),
   loadReviews: (movieId) => (dispatch, getState, api) => (
     api.get(`${EntryPoint.REVIEWS}/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.getReviews(response.data));
+        dispatch(ActionCreator.setLoadingStatus(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setLoadingErrorStatus(true));
+        dispatch(ActionCreator.setLoadingStatus(false));
       })
   ),
   sendFavoriteMovie: (movieId, isFavorite) => (dispatch, getState, api) => {

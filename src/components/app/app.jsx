@@ -6,15 +6,23 @@ import Main from '../main/main';
 import MoviePage from '../movie-page/movie-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import VideoPlayer from '../video-player/video-player';
-import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
-import {AppRoute} from '../../utils/consts';
 import AddReview from '../add-review/add-review';
 import MyListPage from '../my-list-page/my-list-page';
+import LoadingPage from '../loading-page/loading-page';
+import withFullScreen from '../../hocs/with-full-screen/with-full-screen';
+import {AppRoute} from '../../utils/consts';
+import {bool} from 'prop-types';
+import {getLoadingStatus} from '../../store/movies/selectors';
+import {connect} from 'react-redux';
+import ErrorPage from '../error-page/error-page';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
 
-const App = () => {
+const App = ({isLoading}) => {
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Router history={history}>
@@ -54,12 +62,22 @@ const App = () => {
           }}
         />
         <Route
-          render={() => <h2>Page not found</h2>}
+          render={() => <ErrorPage />}
         />
       </Switch>
     </Router>
   );
 };
 
+App.propTypes = {
+  isLoading: bool.isRequired,
+};
 
-export default App;
+
+const mapStateToProps = (state) => ({
+  isLoading: getLoadingStatus(state),
+});
+
+
+export {App};
+export default connect(mapStateToProps)(App);

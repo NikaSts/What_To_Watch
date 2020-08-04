@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from 'react';
 import {connect} from 'react-redux';
 import {getMovie} from '../../store/movies/selectors';
 import {movieType} from '../../types';
+import ErrorPage from '../../components/error-page/error-page';
 
 
 const withFullScreen = (Component) => {
@@ -68,7 +69,7 @@ const withFullScreen = (Component) => {
       const {isPlaying, progress, duration} = this.state;
       const {movie} = this.props;
       if (!movie) {
-        return <h2>Loading...</h2>;
+        return <ErrorPage />;
       }
 
       const {title, previewImage, src} = movie;

@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import PageFooter from '../page-footer/page-footer';
 import Catalog from '../catalog/catalog';
 import MovieCard from '../movie-card/movie-card';
+import ErrorPage from '../error-page/error-page';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-
 import {getPromoMovie} from '../../store/movies/selectors';
 import {Page} from '../../utils/consts';
 import {promoMovieType} from '../../types';
@@ -14,6 +14,10 @@ import {promoMovieType} from '../../types';
 const CatalogWithActiveItem = withActiveItem(Catalog);
 
 const Main = ({promoMovie}) => {
+  if (Object.keys(promoMovie).length === 0) {
+    return <ErrorPage />;
+  }
+
   return (
     <Fragment>
       <MovieCard

@@ -5,6 +5,7 @@ import {number} from 'prop-types';
 import PageFooter from '../page-footer/page-footer';
 import MovieCardFull from '../movie-card-full/movie-card-full';
 import Catalog from '../catalog/catalog';
+import ErrorPage from '../error-page/error-page';
 import {getMovie} from '../../store/movies/selectors';
 import {movieType} from '../../types';
 import {Page} from '../../utils/consts';
@@ -12,7 +13,7 @@ import {Page} from '../../utils/consts';
 
 const MoviePage = ({id, activeMovie}) => {
   if (!activeMovie) {
-    return <h2>Loading...</h2>;
+    return <ErrorPage />;
   }
   return (
     <Fragment>
