@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {number, string, shape} from 'prop-types';
 
 import {getMovie} from '../../store/movies/selectors';
-import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 import {promoMovieType} from '../../types';
 import {AppRoute, TEXTAREA_COLOR, AuthorizationStatus, Page} from '../../utils/consts';
 import PageHeader from '../page-header/page-header';
@@ -24,7 +24,7 @@ const renderBreadCrumbs = (id, title) => (
   </nav>
 );
 
-const AddReview = ({authorizationStatus, id, movie, userData}) => {
+const AddReview = ({authorizationStatus, id, movie, user}) => {
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
 
   if (!isAuth) {
@@ -44,7 +44,7 @@ const AddReview = ({authorizationStatus, id, movie, userData}) => {
         <PageHeader
           currentPage={Page.REVIEW}
           isAuth={isAuth}
-          userData={userData}>
+          user={user}>
           {renderBreadCrumbs(id, title)}
         </PageHeader>
 
@@ -95,7 +95,7 @@ const AddReview = ({authorizationStatus, id, movie, userData}) => {
 AddReview.propTypes = {
   authorizationStatus: string.isRequired,
   id: number,
-  userData: shape({
+  user: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,
@@ -107,7 +107,7 @@ AddReview.propTypes = {
 const mapStateToProps = (state, props) => ({
   movie: getMovie(state, props.id),
   authorizationStatus: getAuthorizationStatus(state),
-  userData: getUserData(state),
+  user: getUser(state),
 });
 
 export {AddReview};

@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 import {number, string, shape, arrayOf, func} from 'prop-types';
 
 import PageHeader from '../page-header/page-header';
-import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 import {getFavoriteMovies} from '../../store/movies/selectors';
 
 import {Operation as MoviesOperation} from '../../store/movies/actions';
@@ -26,7 +26,7 @@ class MyListPage extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, userData, favoriteMovies} = this.props;
+    const {authorizationStatus, user, favoriteMovies} = this.props;
     const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
     if (!isAuth) {
       return <Redirect to={AppRoute.LOGIN} />;
@@ -40,7 +40,7 @@ class MyListPage extends PureComponent {
         <PageHeader
           currentPage={Page.MY_LIST}
           isAuth={isAuth}
-          userData={userData}
+          user={user}
         />
         <Catalog
           currentPage={Page.MY_LIST}
@@ -55,7 +55,7 @@ class MyListPage extends PureComponent {
 
 MyListPage.propTypes = {
   authorizationStatus: string.isRequired,
-  userData: shape({
+  user: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,
@@ -68,7 +68,7 @@ MyListPage.propTypes = {
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   favoriteMovies: getFavoriteMovies(state),
-  userData: getUserData(state),
+  user: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

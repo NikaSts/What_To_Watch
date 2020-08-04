@@ -1,5 +1,5 @@
 import React from 'react';
-import {func, string, node, number} from 'prop-types';
+import {func, string, element, number} from 'prop-types';
 import {Link} from 'react-router-dom';
 import history from '../../history';
 import {AppRoute} from '../../utils/consts';
@@ -37,7 +37,7 @@ CatalogCard.propTypes = {
   onCatalogCardClick: func.isRequired,
   onMouseEnter: func.isRequired,
   onMouseLeave: func.isRequired,
-  children: node.isRequired,
+  children: element.isRequired,
 };
 
 export default CatalogCard;

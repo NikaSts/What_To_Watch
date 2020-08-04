@@ -4,7 +4,7 @@ import {bool, number, string, shape, element} from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute, URL, Page} from '../../utils/consts';
 
-const PageHeader = ({children, isAuth, currentPage, userData}) => {
+const PageHeader = ({children, isAuth, currentPage, user}) => {
 
   const isMainPage = currentPage === Page.MAIN;
   const isSignInPage = currentPage === Page.SIGN_IN;
@@ -37,10 +37,10 @@ const PageHeader = ({children, isAuth, currentPage, userData}) => {
         {isErrorPage && <h1 className="page-title user-page__title">Error</h1>}
 
         {!isSignInPage && !isErrorPage && <div className="user-block">
-          {isAuth && userData
+          {isAuth && user
             ? <Link to={AppRoute.MY_LIST}>
               <div className="user-block__avatar">
-                <img src={`${URL}${userData.avatar}`} alt="User avatar" width="63" height="63" />
+                <img src={`${URL}${user.avatar}`} alt="User avatar" width="63" height="63" />
               </div>
             </Link>
             : <Link to={AppRoute.LOGIN}
@@ -57,7 +57,7 @@ const PageHeader = ({children, isAuth, currentPage, userData}) => {
 PageHeader.propTypes = {
   currentPage: string.isRequired,
   isAuth: bool,
-  userData: shape({
+  user: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,

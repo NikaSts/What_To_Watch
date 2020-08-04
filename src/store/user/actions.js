@@ -11,9 +11,9 @@ export const ActionCreator = {
   isAuthorizationError: () => ({
     type: ActionType.IS_AUTHORIZATION_ERROR,
   }),
-  loadUserData: (userData) => ({
+  loadUser: (user) => ({
     type: ActionType.LOAD_USER_DATA,
-    payload: {userData},
+    payload: {user},
   })
 };
 
@@ -22,7 +22,7 @@ export const Operation = {
     api.get(EntryPoint.LOGIN)
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.loadUserData(userAdapter(response.data)));
+        dispatch(ActionCreator.loadUser(userAdapter(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -35,7 +35,7 @@ export const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.loadUserData(userAdapter(response.data)));
+        dispatch(ActionCreator.loadUser(userAdapter(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));

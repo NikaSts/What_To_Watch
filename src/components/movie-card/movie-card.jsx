@@ -4,14 +4,14 @@ import {string, shape, number, func} from 'prop-types';
 
 import MovieInfo from '../movie-info/movie-info';
 import PageHeader from '../page-header/page-header';
-import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {promoMovieType} from '../../types';
 import {AuthorizationStatus} from '../../utils/consts';
 
 
 const MovieCard = ({
-  currentPage, promoMovie, authorizationStatus, userData, onIsFavoriteButtonClick
+  currentPage, promoMovie, authorizationStatus, user, onIsFavoriteButtonClick
 }) => {
   const {id, poster, backgroundImage, title, genre, releaseDate, isFavorite} = promoMovie;
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
@@ -24,7 +24,7 @@ const MovieCard = ({
       <PageHeader
         isAuth={isAuth}
         currentPage={currentPage}
-        userData={userData}
+        user={user}
       />
       <div className="movie-card__wrap">
         <div className="movie-card__info">
@@ -50,7 +50,7 @@ MovieCard.propTypes = {
   currentPage: string.isRequired,
   promoMovie: promoMovieType.isRequired,
   authorizationStatus: string.isRequired,
-  userData: shape({
+  user: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,
@@ -61,7 +61,7 @@ MovieCard.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  userData: getUserData(state),
+  user: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

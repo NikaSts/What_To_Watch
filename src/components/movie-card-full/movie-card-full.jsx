@@ -7,7 +7,7 @@ import PageHeader from '../page-header/page-header';
 import Tabs from '../tabs/tabs';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {getReviews} from '../../store/movies/selectors';
-import {getAuthorizationStatus, getUserData} from '../../store/user/selectors';
+import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {movieType} from '../../types';
 import {AuthorizationStatus} from '../../utils/consts';
@@ -16,7 +16,7 @@ import {AuthorizationStatus} from '../../utils/consts';
 const TabsWithActiveItem = withActiveItem(Tabs);
 
 const MovieCardFull = ({
-  currentPage, id, activeMovie, reviews, authorizationStatus, userData, onIsFavoriteButtonClick
+  currentPage, id, activeMovie, reviews, authorizationStatus, user, onIsFavoriteButtonClick
 }) => {
   const {
     title, genre, releaseDate, poster, backgroundImage, backgroundColor, isFavorite
@@ -37,7 +37,7 @@ const MovieCardFull = ({
         <PageHeader
           isAuth={isAuth}
           currentPage={currentPage}
-          userData={userData}
+          user={user}
         />
         <div className="movie-card__wrap">
           <MovieInfo
@@ -84,7 +84,7 @@ MovieCardFull.propTypes = {
       date: string.isRequired,
     })),
   ]),
-  userData: shape({
+  user: shape({
     id: number.isRequired,
     name: string.isRequired,
     email: string.isRequired,
@@ -96,7 +96,7 @@ MovieCardFull.propTypes = {
 const mapStateToProps = (state) => ({
   reviews: getReviews(state),
   authorizationStatus: getAuthorizationStatus(state),
-  userData: getUserData(state),
+  user: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

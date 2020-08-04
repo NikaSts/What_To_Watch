@@ -21,7 +21,7 @@ export const reducer = (state = initialState, action) => {
       });
     case ActionType.LOAD_USER_DATA:
       return extend(state, {
-        userData: action.payload.userData,
+        user: action.payload.user,
       });
     default:
       return state;
