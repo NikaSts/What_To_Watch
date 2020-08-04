@@ -12,7 +12,7 @@ export const ActionCreator = {
     type: ActionType.IS_AUTHORIZATION_ERROR,
   }),
   loadUser: (user) => ({
-    type: ActionType.LOAD_USER_DATA,
+    type: ActionType.LOAD_USER,
     payload: {user},
   })
 };
