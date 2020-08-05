@@ -2,29 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import App from './app';
+import {App} from './app';
 
 const mockStore = configureStore([]);
 
-const activeMovie = {
-  id: 2,
-  title: `Active Movie`,
-  runTime: 1,
-  genre: ``,
-  releaseDate: 1,
-  poster: ``,
-  previewImage: ``,
-  backgroundImage: ``,
-  backgroundColor: ``,
-  ratingScore: 1,
-  ratingLevel: ``,
-  ratingCount: 1,
-  description: ``,
-  director: ``,
-  stars: [``],
-  preview: ``,
-  video: ``
-};
 const promoMovie = {
   id: 1,
   title: `Promo Movie`,
@@ -42,7 +23,8 @@ const promoMovie = {
   director: ``,
   stars: [``],
   preview: ``,
-  video: ``
+  video: ``,
+  isFavorite: false,
 };
 const movies = [
   {
@@ -62,7 +44,8 @@ const movies = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
   {
     id: 4,
@@ -81,7 +64,8 @@ const movies = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
 ];
 const userData = {
@@ -90,16 +74,17 @@ const userData = {
   email: ``,
   avatar: ``,
 };
+const noop = () => {};
 
-it(`App should render Main`, () => {
+it(`App should render MainPage`, () => {
   const store = mockStore({
     MOVIES: {
-      activeMovie: null,
       promoMovie,
       movies,
     },
-    PLAYER: {
-      isVideoPlayer: false,
+    APP_STATE: {
+      isLoading: false,
+      isError: false,
     },
     USER: {
       authorizationStatus: `AUTH`,
@@ -113,7 +98,10 @@ it(`App should render Main`, () => {
     .create(
         <Provider store={store}>
           <App
-            isMain={true}
+            isError={false}
+            isLoading={false}
+            // isFavorite={false}
+            onFormSubmit={noop}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -124,60 +112,3 @@ it(`App should render Main`, () => {
 
   expect(tree).toMatchSnapshot();
 });
-
-
-it(`App should render MoviePage`, () => {
-  const store = mockStore({
-    MOVIES: {
-      activeMovie,
-      promoMovie,
-      movies,
-    },
-    PLAYER: {
-      isVideoPlayer: false,
-    },
-    USER: {
-      authorizationStatus: `AUTH`,
-      isAuthorizing: false,
-      isAuthorizationError: false,
-      userData,
-    }
-  });
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-      .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-/* it(`App should render VideoPlayer`, () => {
-  const store = mockStore({
-    activeMovie: null,
-    promoMovie,
-    isVideoPlayer: true,
-  });
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            onMovieTitleClick={() => { }}
-          />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-      .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
- */

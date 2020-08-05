@@ -2,7 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import MoviePage from './movie-page';
+import {Router} from 'react-router-dom';
+import history from '../../history';
+import {MoviePage} from './movie-page';
+import {AppRoute} from '../../utils/consts';
 
 const mockStore = configureStore([]);
 
@@ -23,7 +26,8 @@ const activeMovie = {
   director: ``,
   stars: [``],
   preview: ``,
-  video: ``
+  video: ``,
+  isFavorite: false,
 };
 const movies = [
   {
@@ -43,7 +47,8 @@ const movies = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
   {
     id: 4,
@@ -62,7 +67,8 @@ const movies = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
 ];
 const moviesToShow = [
@@ -83,7 +89,8 @@ const moviesToShow = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
   {
     id: 4,
@@ -102,15 +109,10 @@ const moviesToShow = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
 ];
-const userData = {
-  id: 1,
-  name: ``,
-  email: ``,
-  avatar: ``,
-};
 
 it(`MoviePage should render correctly`, () => {
   const store = mockStore({
@@ -119,18 +121,25 @@ it(`MoviePage should render correctly`, () => {
       movies,
     },
     USER: {
-      authorizationStatus: `AUTH`,
+      authorizationStatus: `NO_AUTH`,
       isAuthorizing: false,
-      userData,
     }
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MoviePage
-            moviesToShow={moviesToShow}
-          />
+          <Router history={history}>
+            <MoviePage
+              id={1}
+              activeMovie={activeMovie}
+              currentPage={AppRoute.MOVIE_PAGE}
+              moviesToShow={moviesToShow}
+              loadReviews={() => { }}
+              isFavorite={false}
+              authorizationStatus={`NO_AUTH`}
+            />
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};
