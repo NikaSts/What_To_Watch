@@ -7,7 +7,6 @@ import CatalogList from '../catalog-list/catalog-list';
 import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {movieType} from '../../types';
-import {Operation as MovieOperation} from '../../store/movies/actions';
 import {getMovies, getGenres} from '../../store/movies/selectors';
 import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES, Page} from '../../utils/consts';
@@ -17,8 +16,7 @@ const CatalogListWithShowMoreButton = withShowMoreButton(CatalogList);
 
 const Catalog = (props) => {
   const {
-    currentPage, movies, favoriteMovies, genres,
-    onCatalogCardClick, activeItem, onItemClick,
+    currentPage, movies, favoriteMovies, genres, activeItem, onItemClick,
   } = props;
   const isMainPage = currentPage === Page.MAIN;
   const isMoviePage = currentPage === Page.MOVIE_PAGE;
@@ -52,18 +50,15 @@ const Catalog = (props) => {
         />
         <CatalogListWithShowMoreButton
           movies={moviesByGenre}
-          onCatalogCardClick={onCatalogCardClick}
         />
       </React.Fragment> }
 
       {isMoviePage && <CatalogList
         movies={similarMovies}
-        onCatalogCardClick={onCatalogCardClick}
       />}
 
       {(isMyListPage && hasFavoriteMovies) && <CatalogList
         movies={favoriteMovies}
-        onCatalogCardClick={onCatalogCardClick}
       />}
     </section>
   );
@@ -77,7 +72,6 @@ Catalog.propTypes = {
   currentPage: string.isRequired,
   movies: arrayOf(movieType),
   genres: arrayOf(string),
-  onCatalogCardClick: func.isRequired,
   activeItem: string,
   onItemClick: func,
   favoriteMovies: arrayOf(movieType),
@@ -88,11 +82,6 @@ const mapStateToProps = (state) => ({
   genres: getGenres(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onCatalogCardClick(movieId) {
-    dispatch(MovieOperation.loadReviews(movieId));
-  }
-});
 
 export {Catalog};
-export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
+export default connect(mapStateToProps)(Catalog);

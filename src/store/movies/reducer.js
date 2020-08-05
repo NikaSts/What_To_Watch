@@ -4,10 +4,17 @@ import {extend} from '../../utils/funcs';
 const initialState = {
   movies: [],
   favoriteMovies: [],
-  promoMovie: {},
+  promoMovie: {
+    id: 0,
+    title: ``,
+    genre: ``,
+    releaseDate: 0,
+    poster: ``,
+    backgroundImage: ``,
+    backgroundColor: ``,
+    isFavorite: false,
+  },
   reviews: [],
-  isLoading: true,
-  isLoadingError: false,
 };
 
 
@@ -28,14 +35,6 @@ export const reducer = (state = initialState, action) => {
     case ActionType.GET_REVIEWS:
       return extend(state, {
         reviews: action.payload.reviews,
-      });
-    case ActionType.SET_LOADING_STATUS:
-      return extend(state, {
-        isLoading: Boolean(action.payload.isLoading),
-      });
-    case ActionType.SET_LOADING_ERROR_STATUS:
-      return extend(state, {
-        isLoadingError: Boolean(action.payload.isLoadingError),
       });
     default:
       return state;

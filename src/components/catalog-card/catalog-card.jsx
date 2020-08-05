@@ -1,19 +1,16 @@
 import React from 'react';
-import {func, string, element, number} from 'prop-types';
+import {func, string, number, element} from 'prop-types';
 import {Link} from 'react-router-dom';
 import history from '../../history';
 import {AppRoute} from '../../utils/consts';
 
 
 const CatalogCard = ({
-  id, title, onCatalogCardClick, onMouseEnter, onMouseLeave, children
+  id, title, onMouseEnter, onMouseLeave, children
 }) => (
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={() => {
-      onCatalogCardClick(id);
-      history.push(`${AppRoute.MOVIE_PAGE}${id}`);
-    }}
+    onClick={() => history.push(`${AppRoute.MOVIE_PAGE}${id}`)}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
   >
@@ -34,7 +31,6 @@ const CatalogCard = ({
 CatalogCard.propTypes = {
   id: number.isRequired,
   title: string.isRequired,
-  onCatalogCardClick: func.isRequired,
   onMouseEnter: func.isRequired,
   onMouseLeave: func.isRequired,
   children: element.isRequired,

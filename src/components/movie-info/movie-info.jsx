@@ -60,7 +60,7 @@ MovieInfo.propTypes = {
   genre: string.isRequired,
   releaseDate: number.isRequired,
   isFavorite: bool.isRequired,
-  onIsFavoriteButtonClick: func.isFavorite,
+  onIsFavoriteButtonClick: func.isRequired,
 };
 
 export default MovieInfo;
