@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import {number, string, shape, arrayOf, func} from 'prop-types';
 
 import PageHeader from '../page-header/page-header';
@@ -8,7 +7,7 @@ import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 import {getFavoriteMovies} from '../../store/movies/selectors';
 
 import {Operation as MoviesOperation} from '../../store/movies/actions';
-import {AppRoute, AuthorizationStatus, Page} from '../../utils/consts';
+import {AuthorizationStatus, Page} from '../../utils/consts';
 import PageFooter from '../page-footer/page-footer';
 import {Catalog} from '../catalog/catalog';
 import {movieType} from '../../types';
@@ -28,9 +27,6 @@ class MyListPage extends PureComponent {
   render() {
     const {authorizationStatus, user, favoriteMovies} = this.props;
     const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
-    if (!isAuth) {
-      return <Redirect to={AppRoute.LOGIN} />;
-    }
     if (!favoriteMovies) {
       return <ErrorPage />;
     }

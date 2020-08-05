@@ -48,7 +48,7 @@ const MovieInfo = ({
           <span>My list</span>
         </button>
 
-        {!isMainPage && <Link to={`${AppRoute.MOVIE_PAGE}${id}${AppRoute.REVIEW}`}
+        {!isMainPage && <Link to={`${AppRoute.MOVIE_PAGE}/${id}${AppRoute.REVIEW}`}
           className="btn btn--review movie-card__button">
             Add review
         </Link>}

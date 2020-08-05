@@ -33,13 +33,9 @@ const AddReview = ({
   isValid, isSending, page
 }) => {
   const isAuth = authorizationStatus === AuthorizationStatus.AUTH;
-  if (!isAuth) {
-    return <Redirect to={AppRoute.LOGIN} />;
-  }
   if (page === true) {
     return <Redirect to={`${AppRoute.MOVIE_PAGE}/${id}`} />;
   }
-
   const {backgroundColor, backgroundImage, title, poster} = movie;
   const isDisabled = !isValid || isSending;
   return (

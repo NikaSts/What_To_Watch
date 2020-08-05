@@ -19,6 +19,7 @@ import withFormHandlers from '../../hocs/with-form-handlers/with-form-handlers';
 import {getLoadingStatus, getErrorStatus} from '../../store/app-state/selectors';
 import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {AppRoute} from '../../utils/consts';
+import PrivateRoute from '../private-route/private-route';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);
@@ -42,7 +43,7 @@ const App = ({isLoading, isError, onFormSubmit}) => {
           exact path={AppRoute.LOGIN}
           render={() => <SignInPage />}
         />
-        <Route
+        <PrivateRoute
           exact path={AppRoute.MY_LIST}
           render={() => <MyListPage />}
         />
@@ -53,8 +54,8 @@ const App = ({isLoading, isError, onFormSubmit}) => {
             return <MoviePage id={id} />;
           }}
         />
-        <Route
-          path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.REVIEW}`}
+        <PrivateRoute
+          exact path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.REVIEW}`}
           render={({match}) => {
             const id = Number(match.params.id);
             return <AddReviewWithFormHandlers
