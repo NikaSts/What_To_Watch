@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 import {MoviePage} from './movie-page';
-import {AppRoute} from '../../utils/consts';
+import {Page} from '../../utils/consts';
 
 const mockStore = configureStore([]);
 
@@ -133,7 +133,7 @@ it(`MoviePage should render correctly`, () => {
             <MoviePage
               id={1}
               activeMovie={activeMovie}
-              currentPage={AppRoute.MOVIE_PAGE}
+              currentPage={Page.MOVIE_PAGE}
               moviesToShow={moviesToShow}
               loadReviews={() => { }}
               isFavorite={false}

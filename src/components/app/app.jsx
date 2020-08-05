@@ -19,7 +19,7 @@ import withFormHandlers from '../../hocs/with-form-handlers/with-form-handlers';
 import {getLoadingStatus, getErrorStatus} from '../../store/app-state/selectors';
 import {Operation as MoviesOperation} from '../../store/movies/actions';
 import {AppRoute} from '../../utils/consts';
-import PrivateRoute from '../private-route/private-route';
+import PrivateRoute from '../private-route';
 
 
 const PlayerWithFullScreen = withFullScreen(VideoPlayer);

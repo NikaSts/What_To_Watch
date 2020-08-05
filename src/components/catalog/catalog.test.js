@@ -2,30 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {App} from './app';
+import {Router} from 'react-router-dom';
+import history from '../../history';
+import {Catalog} from './catalog';
+import {Page} from '../../utils/consts';
 
 const mockStore = configureStore([]);
 
-const promoMovie = {
-  id: 1,
-  title: `Promo Movie`,
-  runTime: 1,
-  genre: ``,
-  releaseDate: 1,
-  poster: ``,
-  previewImage: ``,
-  backgroundImage: ``,
-  backgroundColor: ``,
-  ratingScore: 1,
-  ratingLevel: ``,
-  ratingCount: 1,
-  description: ``,
-  director: ``,
-  stars: [``],
-  preview: ``,
-  video: ``,
-  isFavorite: false,
-};
 const movies = [
   {
     id: 3,
@@ -68,40 +51,49 @@ const movies = [
     isFavorite: false,
   },
 ];
-const userData = {
+const genres = [`a`, `b`];
+const favoriteMovies = [{
   id: 1,
-  name: ``,
-  email: ``,
-  avatar: ``,
-};
-const noop = () => {};
+  title: `Favorite Movie`,
+  runTime: 1,
+  genre: ``,
+  releaseDate: 1,
+  poster: ``,
+  previewImage: ``,
+  backgroundImage: ``,
+  backgroundColor: ``,
+  ratingScore: 1,
+  ratingLevel: ``,
+  ratingCount: 1,
+  description: ``,
+  director: ``,
+  stars: [``],
+  preview: ``,
+  video: ``,
+  isFavorite: true,
+}];
+const noop = () => { };
 
-it(`App should render MainPage`, () => {
+it(`Catalog should render correctly`, () => {
   const store = mockStore({
     MOVIES: {
-      promoMovie,
       movies,
+      favoriteMovies,
     },
-    APP_STATE: {
-      isLoading: false,
-      isError: false,
-    },
-    USER: {
-      authorizationStatus: `AUTH`,
-      isAuthorizing: false,
-      isAuthorizationError: false,
-      userData,
-    }
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            isError={false}
-            isLoading={false}
-            onFormSubmit={noop}
-          />
+          <Router history={history}>
+            <Catalog
+              currentPage={Page.MAIN}
+              movies={movies}
+              genres={genres}
+              favoriteMovies={favoriteMovies}
+              onItemClick={noop}
+            />
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};

@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {bool, string, func} from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 
-import {getAuthorizationStatus} from '../../store/user/selectors.js';
-import {AuthorizationStatus, AppRoute} from '../../utils/consts.js';
+import {getAuthorizationStatus} from '../store/user/selectors.js';
+import {AuthorizationStatus, AppRoute} from '../utils/consts.js';
 
 
 const PrivateRoute = (props) => {
