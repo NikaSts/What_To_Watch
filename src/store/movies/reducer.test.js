@@ -20,7 +20,6 @@ const promoMovie = {
   preview: ``,
   video: ``
 };
-
 const movies = [
   {
     id: 3,
