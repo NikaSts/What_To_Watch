@@ -1,6 +1,6 @@
 import React, {PureComponent, Fragment} from 'react';
 import ShowMoreButton from '../../components/show-more-button/show-more-button';
-import {arrayOf, func} from 'prop-types';
+import {arrayOf} from 'prop-types';
 import {cardMovieType} from '../../types';
 import {MOVIES_TO_SHOW_COUNT} from '../../utils/consts';
 
@@ -46,12 +46,11 @@ const withShowMoreButton = (Component) => {
 
     render() {
       const {moviesToShow} = this.state;
-      const {movies, onCatalogCardClick} = this.props;
+      const {movies} = this.props;
       return (
         <Fragment>
           <Component
             movies={moviesToShow}
-            onCatalogCardClick={onCatalogCardClick}
           />
           {(moviesToShow.length < movies.length) && <ShowMoreButton
             onShowMoreButtonClick={this._handleShowMoreButtonClick}
@@ -63,7 +62,6 @@ const withShowMoreButton = (Component) => {
   }
   Wrapper.propTypes = {
     movies: arrayOf(cardMovieType.isRequired).isRequired,
-    onCatalogCardClick: func.isRequired,
   };
 
   return Wrapper;

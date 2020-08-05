@@ -6,7 +6,7 @@ import {AppRoute, Page} from '../../utils/consts';
 
 
 const MovieInfo = ({
-  currentPage, id, title, genre, releaseDate, isFavorite, onIsFavoriteButtonClick
+  currentPage, id, title, genre, releaseDate, isFavorite, onIsFavoriteButtonClick, isAuth
 }) => {
   const isMainPage = currentPage === Page.MAIN;
   return (
@@ -20,7 +20,7 @@ const MovieInfo = ({
       <div className="movie-card__buttons">
         <button
           onClick={() => {
-            history.push(`${AppRoute.MOVIE_PAGE}${id}${AppRoute.PLAYER}`);
+            history.push(`${AppRoute.MOVIE_PAGE}/${id}${AppRoute.PLAYER}`);
           }}
           className="btn btn--play movie-card__button"
           type="button">
@@ -31,7 +31,12 @@ const MovieInfo = ({
         </button>
 
         <button
-          onClick={onIsFavoriteButtonClick}
+          onClick={() => {
+            if (isAuth) {
+              return onIsFavoriteButtonClick();
+            }
+            return history.push(AppRoute.LOGIN);
+          }}
           className="btn btn--list movie-card__button" type="button">
           {isFavorite
             ? <svg viewBox="0 0 18 14" width="18" height="14">
@@ -61,6 +66,7 @@ MovieInfo.propTypes = {
   releaseDate: number.isRequired,
   isFavorite: bool.isRequired,
   onIsFavoriteButtonClick: func.isRequired,
+  isAuth: bool.isRequired,
 };
 
 export default MovieInfo;

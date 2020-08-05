@@ -39,6 +39,7 @@ const MovieCard = ({
             releaseDate={releaseDate}
             isFavorite={isFavorite}
             onIsFavoriteButtonClick={onIsFavoriteButtonClick}
+            isAuth={isAuth}
           />
         </div>
       </div>

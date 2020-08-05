@@ -16,7 +16,7 @@ const renderBreadCrumbs = (id, title) => (
   <nav className="breadcrumbs">
     <ul className="breadcrumbs__list">
       <li className="breadcrumbs__item">
-        <Link to={`${AppRoute.MOVIE_PAGE}${id}`} className="breadcrumbs__link">
+        <Link to={`${AppRoute.MOVIE_PAGE}/${id}`} className="breadcrumbs__link">
           {title}
         </Link>
       </li>
@@ -37,7 +37,7 @@ const AddReview = ({
     return <Redirect to={AppRoute.LOGIN} />;
   }
   if (page === true) {
-    return <Redirect to={`${AppRoute.MOVIE_PAGE}${id}`} />;
+    return <Redirect to={`${AppRoute.MOVIE_PAGE}/${id}`} />;
   }
 
   const {backgroundColor, backgroundImage, title, poster} = movie;

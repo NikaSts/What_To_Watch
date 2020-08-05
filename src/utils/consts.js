@@ -43,6 +43,7 @@ export const ActionType = {
   SET_SENDING_STATUS: `setSendingStatus`,
   SET_ERROR_STATUS: `setErrorStatus`,
   CHANGE_CURRENT_PAGE: `changeCurrentPage`,
+  UPDATE_MOVIE: `updateMovie`,
 };
 
 export const AuthorizationStatus = {
@@ -70,7 +71,7 @@ export const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
-  MOVIE_PAGE: `/films/`,
+  MOVIE_PAGE: `/films`,
   PLAYER: `/player`,
   REVIEW: `/review`,
 };

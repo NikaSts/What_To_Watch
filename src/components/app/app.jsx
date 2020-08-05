@@ -47,14 +47,14 @@ const App = ({isLoading, isError, onFormSubmit}) => {
           render={() => <MyListPage />}
         />
         <Route
-          exact path={`${AppRoute.MOVIE_PAGE}:id`}
+          exact path={`${AppRoute.MOVIE_PAGE}/:id`}
           render={({match}) => {
             const id = Number(match.params.id);
             return <MoviePage id={id} />;
           }}
         />
         <Route
-          path={`${AppRoute.MOVIE_PAGE}:id${AppRoute.REVIEW}`}
+          path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.REVIEW}`}
           render={({match}) => {
             const id = Number(match.params.id);
             return <AddReviewWithFormHandlers
@@ -63,7 +63,7 @@ const App = ({isLoading, isError, onFormSubmit}) => {
           }}
         />
         <Route
-          path={`${AppRoute.MOVIE_PAGE}:id${AppRoute.PLAYER}`}
+          path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.PLAYER}`}
           render={({match}) => {
             const id = Number(match.params.id);
             return <PlayerWithFullScreen id={id} />;
