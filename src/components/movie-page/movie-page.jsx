@@ -50,7 +50,7 @@ class MoviePage extends PureComponent {
 
 MoviePage.propTypes = {
   id: number.isRequired,
-  activeMovie: movieType.isRequired,
+  activeMovie: movieType,
   loadReviews: func.isRequired,
 };
 
