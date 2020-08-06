@@ -10,21 +10,27 @@ exports[`CatalogList should render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/1"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        preload="none"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          preload="none"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/1"
+        onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -36,21 +42,27 @@ exports[`CatalogList should render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/2"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        preload="none"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          preload="none"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/2"
+        onClick={[Function]}
       >
         Bohemian Rhapsody
       </a>
@@ -62,21 +74,27 @@ exports[`CatalogList should render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/3"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        preload="none"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          preload="none"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/3"
+        onClick={[Function]}
       >
         Macbeth
       </a>
@@ -88,21 +106,27 @@ exports[`CatalogList should render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/4"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        preload="none"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          preload="none"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/4"
+        onClick={[Function]}
       >
         Aviator
       </a>
@@ -114,21 +138,27 @@ exports[`CatalogList should render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/5"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        preload="none"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          preload="none"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/5"
+        onClick={[Function]}
       >
         We need to talk about Kevin
       </a>
@@ -140,21 +170,27 @@ exports[`CatalogList should render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/6"
+      onClick={[Function]}
     >
-      <video
-        height="175"
-        preload="none"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          preload="none"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/6"
+        onClick={[Function]}
       >
         What We Do in the Shadows
       </a>

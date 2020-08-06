@@ -18,15 +18,15 @@ class SignInPage extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
-    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
-  _handleSubmit(evt) {
-    const {onSubmit} = this.props;
+  _handleFormSubmit(evt) {
+    const {onFormSubmit} = this.props;
 
     evt.preventDefault();
 
-    onSubmit({
+    onFormSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
@@ -57,7 +57,7 @@ class SignInPage extends PureComponent {
           <form
             className="sign-in__form"
             action=""
-            onSubmit={this._handleSubmit}>
+            onSubmit={this._handleFormSubmit}>
             {isAuthorizationError && this._showAuthorizationError()}
             <div className="sign-in__fields">
               <div className="sign-in__field">
@@ -91,7 +91,7 @@ class SignInPage extends PureComponent {
 }
 
 SignInPage.propTypes = {
-  onSubmit: func.isRequired,
+  onFormSubmit: func.isRequired,
   isAuthorizationError: bool.isRequired,
   authorizationStatus: string.isRequired,
 };
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
+  onFormSubmit(authData) {
     dispatch(UserOperation.login(authData));
   },
 });

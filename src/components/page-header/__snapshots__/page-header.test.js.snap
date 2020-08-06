@@ -1,91 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageHeader MainPage, authtorized should render correctly 1`] = `
-<header
-  className="page-header movie-card__head"
->
-  <div
-    className="logo"
-  >
-    <a
-      className="logo__link"
-    >
-      <span
-        className="logo__letter logo__letter--1"
-      >
-        W
-      </span>
-      <span
-        className="logo__letter logo__letter--2"
-      >
-        T
-      </span>
-      <span
-        className="logo__letter logo__letter--3"
-      >
-        W
-      </span>
-    </a>
-  </div>
-  <div
-    className="user-block"
-  >
-    <div
-      className="user-block__avatar"
-    >
-      <img
-        alt="User avatar"
-        height="63"
-        src="https://4.react.pages.academy"
-        width="63"
-      />
-    </div>
-  </div>
-</header>
-`;
-
-exports[`PageHeader MainPage, not authtorized should render correctly 1`] = `
-<header
-  className="page-header movie-card__head"
->
-  <div
-    className="logo"
-  >
-    <a
-      className="logo__link"
-    >
-      <span
-        className="logo__letter logo__letter--1"
-      >
-        W
-      </span>
-      <span
-        className="logo__letter logo__letter--2"
-      >
-        T
-      </span>
-      <span
-        className="logo__letter logo__letter--3"
-      >
-        W
-      </span>
-    </a>
-  </div>
-  <div
-    className="user-block"
-  >
-    <a
-      className="user-block__link"
-      href="sign-in.html"
-      onClick={[Function]}
-    >
-      Sign in
-    </a>
-  </div>
-</header>
-`;
-
-exports[`PageHeader SignInPage should render correctly 1`] = `
+exports[`PageHeader on LoginPage, not authtorized should render correctly 1`] = `
 <header
   className="page-header user-page__head"
 >
@@ -94,7 +9,8 @@ exports[`PageHeader SignInPage should render correctly 1`] = `
   >
     <a
       className="logo__link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -121,7 +37,7 @@ exports[`PageHeader SignInPage should render correctly 1`] = `
 </header>
 `;
 
-exports[`PageHeader not MainPage, not SignInPage, authtorized should render correctly 1`] = `
+exports[`PageHeader on MainPage, authtorized should render correctly 1`] = `
 <header
   className="page-header movie-card__head"
 >
@@ -130,7 +46,8 @@ exports[`PageHeader not MainPage, not SignInPage, authtorized should render corr
   >
     <a
       className="logo__link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -152,21 +69,26 @@ exports[`PageHeader not MainPage, not SignInPage, authtorized should render corr
   <div
     className="user-block"
   >
-    <div
-      className="user-block__avatar"
+    <a
+      href="/mylist"
+      onClick={[Function]}
     >
-      <img
-        alt="User avatar"
-        height="63"
-        src="https://4.react.pages.academy"
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="https://4.react.pages.academy"
+          width="63"
+        />
+      </div>
+    </a>
   </div>
 </header>
 `;
 
-exports[`PageHeader not MainPage, not SignInPage, not authtorized should render correctly 1`] = `
+exports[`PageHeader on MainPage, not authtorized should render correctly 1`] = `
 <header
   className="page-header movie-card__head"
 >
@@ -175,7 +97,8 @@ exports[`PageHeader not MainPage, not SignInPage, not authtorized should render 
   >
     <a
       className="logo__link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -199,10 +122,118 @@ exports[`PageHeader not MainPage, not SignInPage, not authtorized should render 
   >
     <a
       className="user-block__link"
-      href="sign-in.html"
+      href="/login"
       onClick={[Function]}
     >
       Sign in
+    </a>
+  </div>
+</header>
+`;
+
+exports[`PageHeader on MyListPage should render correctly 1`] = `
+<header
+  className="page-header user-page__head"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <h1
+    className="page-title user-page__title"
+  >
+    My list
+  </h1>
+  <div
+    className="user-block"
+  >
+    <a
+      href="/mylist"
+      onClick={[Function]}
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="https://4.react.pages.academy"
+          width="63"
+        />
+      </div>
+    </a>
+  </div>
+</header>
+`;
+
+exports[`PageHeader on ReviewPage should render correctly 1`] = `
+<header
+  className="page-header movie-card__head"
+>
+  <div
+    className="logo"
+  >
+    <a
+      className="logo__link"
+      href="/"
+      onClick={[Function]}
+    >
+      <span
+        className="logo__letter logo__letter--1"
+      >
+        W
+      </span>
+      <span
+        className="logo__letter logo__letter--2"
+      >
+        T
+      </span>
+      <span
+        className="logo__letter logo__letter--3"
+      >
+        W
+      </span>
+    </a>
+  </div>
+  <div />
+  <div
+    className="user-block"
+  >
+    <a
+      href="/mylist"
+      onClick={[Function]}
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="https://4.react.pages.academy"
+          width="63"
+        />
+      </div>
     </a>
   </div>
 </header>

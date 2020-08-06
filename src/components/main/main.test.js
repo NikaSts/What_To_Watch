@@ -2,13 +2,15 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 import Main from './main';
 
 const mockStore = configureStore([]);
 
 const activeGenre = `All genres`;
 const promoMovie = {
-  id: 1,
+  id: 2,
   title: `Promo Movie`,
   runTime: 1,
   genre: ``,
@@ -24,7 +26,8 @@ const promoMovie = {
   director: ``,
   stars: [``],
   preview: ``,
-  video: ``
+  video: ``,
+  isFavorite: false,
 };
 const movies = [
   {
@@ -44,7 +47,8 @@ const movies = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
   {
     id: 4,
@@ -63,7 +67,8 @@ const movies = [
     director: ``,
     stars: [``],
     preview: ``,
-    video: ``
+    video: ``,
+    isFavorite: false,
   },
 ];
 const noop = () => { };
@@ -90,15 +95,18 @@ it(`Main should render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            activeGenre={activeGenre}
-            onGenreClick={noop}
-            onMovieTitleClick={noop}
-            onShowMoreButtonClick={noop}
-            onSignInButtonClick={noop}
-            isMain={true}
-            authorizationStatus={`AUTH`}
-          />
+          <Router history={history}>
+            <Main
+              activeGenre={activeGenre}
+              onGenreClick={noop}
+              onMovieTitleClick={noop}
+              onShowMoreButtonClick={noop}
+              onSignInButtonClick={noop}
+              isMain={true}
+              authorizationStatus={`AUTH`}
+              isFavorite={true}
+            />
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};

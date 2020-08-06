@@ -1,6 +1,6 @@
 import {ActionType, EntryPoint} from '../../utils/consts';
 import {movieAdapter} from '../../adapter/movie-adapter';
-
+import {ActionCreator as AppActionCreator} from '../app-state/actions';
 
 export const ActionCreator = {
   getMovies: (movies) => ({
@@ -19,10 +19,6 @@ export const ActionCreator = {
     type: ActionType.GET_REVIEWS,
     payload: {reviews},
   }),
-  setLoadingStatus: (status) => ({
-    type: ActionType.SET_LOADING_STATUS,
-    payload: {status},
-  }),
 };
 
 export const Operation = {
@@ -32,11 +28,11 @@ export const Operation = {
         dispatch(ActionCreator.getMovies(response.data
           .map((movie) => movieAdapter(movie))
         ));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
       .catch(() => {
-        dispatch(ActionCreator.setLoadingErrorStatus(true));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setErrorStatus(true));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
   ),
   loadFavoriteMovies: () => (dispatch, getState, api) => (
@@ -45,37 +41,38 @@ export const Operation = {
         if (response.data) {
           dispatch(ActionCreator.getFavoriteMovies(response.data
             .map((movie) => movieAdapter(movie))));
-          dispatch(ActionCreator.setLoadingStatus(false));
+          dispatch(AppActionCreator.setLoadingStatus(false));
         }
       })
       .catch(() => {
-        dispatch(ActionCreator.setLoadingErrorStatus(true));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setLoadingStatus(true));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
   ),
   loadPromoMovie: () => (dispatch, getState, api) => (
     api.get(EntryPoint.PROMO)
       .then((response) => {
         dispatch(ActionCreator.getPromoMovie(movieAdapter(response.data)));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
       .catch(() => {
-        dispatch(ActionCreator.setLoadingErrorStatus(true));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setErrorStatus(true));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
   ),
   loadReviews: (movieId) => (dispatch, getState, api) => (
     api.get(`${EntryPoint.REVIEWS}/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.getReviews(response.data));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
       .catch(() => {
-        dispatch(ActionCreator.setLoadingErrorStatus(true));
-        dispatch(ActionCreator.setLoadingStatus(false));
+        dispatch(AppActionCreator.setErrorStatus(true));
+        dispatch(AppActionCreator.setLoadingStatus(false));
       })
   ),
   sendFavoriteMovie: (movieId, isFavorite) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.setSendingStatus(true));
     const status = isFavorite ? 0 : 1;
     return api.post(`${EntryPoint.FAVORITES}/${movieId}/${status}`, {
       [`is_favorite`]: isFavorite,
@@ -83,6 +80,23 @@ export const Operation = {
     .then(() => {
       dispatch(Operation.loadMovies());
       dispatch(Operation.loadPromoMovie());
+    })
+    .catch(() => {
+      dispatch(AppActionCreator.setErrorStatus(true));
+      dispatch(AppActionCreator.setSendingStatus(false));
     });
+  },
+  sendReview: (movieId, {rating, comment}) => (dispatch, getState, api) => {
+    dispatch(AppActionCreator.setSendingStatus(true));
+    return api.post(`${EntryPoint.REVIEWS}/${movieId}`, {rating, comment})
+      .then(() => {
+        dispatch(AppActionCreator.setSendingStatus(false));
+        dispatch(AppActionCreator.changePage(true));
+        dispatch(AppActionCreator.changePage(false));
+      })
+      .catch(() => {
+        dispatch(AppActionCreator.setErrorStatus(true));
+        dispatch(AppActionCreator.setSendingStatus(false));
+      });
   }
 };

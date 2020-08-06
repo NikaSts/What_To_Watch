@@ -56,7 +56,10 @@ const Tabs = ({activeMovie, activeItem, reviews, onItemClick}) => (
               <a
                 href="#"
                 className="movie-nav__link"
-                onClick={() => onItemClick(tabName)}>
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onItemClick(tabName);
+                }}>
                 {tabName}
               </a>
             </li>

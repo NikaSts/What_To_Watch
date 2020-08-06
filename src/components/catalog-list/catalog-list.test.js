@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Router} from 'react-router-dom';
+import history from '../../history';
 import CatalogList from './catalog-list';
 
 const movies = [
@@ -44,11 +46,16 @@ const activeGenre = `All genres`;
 
 it(`CatalogList should render correctly`, () => {
   const tree = renderer
-      .create(<CatalogList
-        movies={movies}
-        activeGenre={activeGenre}
-        onCatalogCardClick={() => {}}
-      />)
+    .create(
+        <Router history={history}>
+          <CatalogList
+            movies={movies}
+            activeGenre={activeGenre}
+            onCatalogCardClick={() => { }}
+            currentPage={`main`}
+          />
+        </Router>
+    )
       .toJSON();
 
   expect(tree).toMatchSnapshot();

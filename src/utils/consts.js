@@ -40,8 +40,10 @@ export const ActionType = {
   IS_AUTHORIZATION_ERROR: `isAuthorizationError`,
   LOAD_USER: `loadUser`,
   SET_LOADING_STATUS: `setLoadingStatus`,
-  SET_LOADING_ERROR_STATUS: `setLoadingErrorStatus`,
-
+  SET_SENDING_STATUS: `setSendingStatus`,
+  SET_ERROR_STATUS: `setErrorStatus`,
+  CHANGE_CURRENT_PAGE: `changeCurrentPage`,
+  UPDATE_MOVIE: `updateMovie`,
 };
 
 export const AuthorizationStatus = {
@@ -69,7 +71,7 @@ export const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
-  MOVIE_PAGE: `/films/`,
+  MOVIE_PAGE: `/films`,
   PLAYER: `/player`,
   REVIEW: `/review`,
 };
@@ -84,4 +86,9 @@ export const Page = {
   PLAYER: `player`,
   REVIEW: `review`,
   ERROR: `error`,
+};
+
+export const ReviewLength = {
+  MIN: 50,
+  MAX: 400,
 };

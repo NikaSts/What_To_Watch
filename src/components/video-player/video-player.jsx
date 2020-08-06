@@ -1,5 +1,5 @@
 import React from 'react';
-import {bool, string, func, node, number} from 'prop-types';
+import {bool, string, func, number, element} from 'prop-types';
 import history from '../../history';
 import {formatTimeWithSeconds} from '../../utils/funcs';
 
@@ -79,7 +79,7 @@ VideoPlayer.propTypes = {
   duration: number.isRequired,
   onPlayButtonToggle: func.isRequired,
   onFullScreenButtonClick: func.isRequired,
-  children: node.isRequired,
+  children: element.isRequired,
 };
 
 export default VideoPlayer;
