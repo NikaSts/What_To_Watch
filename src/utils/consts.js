@@ -92,3 +92,10 @@ export const ReviewLength = {
   MIN: 50,
   MAX: 400,
 };
+
+export const SEGMENTS_COUNT = 13;
+
+export const MACHINE_READABLE_FORMAT = `YYYY-MM-DD`;
+export const HUMAN_READABLE_FORMAT = `LL`;
+
+export const DEFAULT_RATING = 0;

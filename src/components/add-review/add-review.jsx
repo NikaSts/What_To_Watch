@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {number, string, shape, func, bool} from 'prop-types';
 
@@ -11,21 +11,7 @@ import {
   AppRoute, TEXTAREA_COLOR, AuthorizationStatus, Page, ReviewLength
 } from '../../utils/consts';
 import PageHeader from '../page-header/page-header';
-
-const renderBreadCrumbs = (id, title) => (
-  <nav className="breadcrumbs">
-    <ul className="breadcrumbs__list">
-      <li className="breadcrumbs__item">
-        <Link to={`${AppRoute.MOVIE_PAGE}/${id}`} className="breadcrumbs__link">
-          {title}
-        </Link>
-      </li>
-      <li className="breadcrumbs__item">
-        <a className="breadcrumbs__link">Add review</a>
-      </li>
-    </ul>
-  </nav>
-);
+import BreadCrumbs from '../bread-crumbs/bread-crumbs';
 
 
 const AddReview = ({
@@ -52,7 +38,10 @@ const AddReview = ({
           currentPage={Page.REVIEW}
           isAuth={isAuth}
           user={user}>
-          {renderBreadCrumbs(id, title)}
+          <BreadCrumbs
+            id={id}
+            title={title}
+          />
         </PageHeader>
 
         <div className="movie-card__poster movie-card__poster--small">
@@ -118,7 +107,7 @@ const AddReview = ({
 
 AddReview.propTypes = {
   authorizationStatus: string.isRequired,
-  id: number,
+  id: number.isRequired,
   user: shape({
     id: number.isRequired,
     name: string.isRequired,

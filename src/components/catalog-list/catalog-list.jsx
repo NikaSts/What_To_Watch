@@ -3,7 +3,6 @@ import CatalogCard from '../catalog-card/catalog-card';
 import {arrayOf} from 'prop-types';
 import {cardMovieType} from '../../types';
 import withVideo from '../../hocs/with-video/with-video';
-// import {AppRoute} from '../../utils/consts';
 
 
 const CatalogCardWithVideo = withVideo(CatalogCard);

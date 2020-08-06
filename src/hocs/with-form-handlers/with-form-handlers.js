@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {number, func} from 'prop-types';
+import {DEFAULT_RATING} from '../../utils/consts';
 
 const withFormHandlers = (Component) => {
   class Wrapper extends PureComponent {
@@ -7,7 +8,7 @@ const withFormHandlers = (Component) => {
       super(props);
 
       this.state = {
-        rating: 0,
+        rating: DEFAULT_RATING,
         comment: null
       };
 
@@ -46,7 +47,7 @@ const withFormHandlers = (Component) => {
           onFormSubmit={this._handleFormSubmit}
           onRatingChange={this._handleRatingChange}
           onCommentChange={this._handleCommentChange}
-          isValid={Boolean(this.state.comment) && Boolean(this.state.rating > 0)}
+          isValid={Boolean(this.state.comment) && Boolean(this.state.rating > DEFAULT_RATING)}
         />
       );
     }
