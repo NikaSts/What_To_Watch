@@ -64,7 +64,7 @@ const App = ({isLoading, isError, onFormSubmit}) => {
           }}
         />
         <Route
-          path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.PLAYER}`}
+          exact path={`${AppRoute.PLAYER}/:id`}
           render={({match}) => {
             const id = Number(match.params.id);
             return <PlayerWithFullScreen id={id} />;

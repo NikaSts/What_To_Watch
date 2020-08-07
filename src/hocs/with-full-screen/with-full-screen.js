@@ -72,7 +72,7 @@ const withFullScreen = (Component) => {
         return <ErrorPage />;
       }
 
-      const {title, previewImage, src} = movie;
+      const {title, backgroundImage, src} = movie;
 
       return (
         <Component
@@ -85,7 +85,7 @@ const withFullScreen = (Component) => {
         >
           <video
             ref={this._videoRef}
-            poster={previewImage}
+            poster={backgroundImage}
             src={src}
             preload="metadata"
             width="auto"

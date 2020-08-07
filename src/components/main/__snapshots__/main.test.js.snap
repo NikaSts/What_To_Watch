@@ -101,7 +101,7 @@ Array [
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/films/2/player"
+              href="/player/2"
               onClick={[Function]}
               type="button"
             >

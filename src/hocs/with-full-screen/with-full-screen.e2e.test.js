@@ -89,7 +89,7 @@ it(`withFullScreen should start/stop playing video on play button click`, () => 
           onPlayButtonToggle={onPlayButtonToggle}
           onFullScreenButtonClick={onFullScreenButtonClick}
           src={``}
-          previewImage={``}
+          backgroundImage={``}
         />
       </Provider>
   );
