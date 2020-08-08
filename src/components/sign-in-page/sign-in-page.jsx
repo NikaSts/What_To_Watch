@@ -62,7 +62,7 @@ class SignInPage extends PureComponent {
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address"
-                  name="user-email" id="user-email"
+                  name="user-email" id="user-email" required
                   ref={this.loginRef}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">
                 Email address
@@ -70,7 +70,7 @@ class SignInPage extends PureComponent {
               </div>
               <div className="sign-in__field">
                 <input className="sign-in__input" type="password" placeholder="Password"
-                  name="user-password" id="user-password"
+                  name="user-password" id="user-password" required
                   ref={this.passwordRef} />
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">
                 Password

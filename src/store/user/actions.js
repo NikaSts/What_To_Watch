@@ -39,6 +39,7 @@ export const Operation = {
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+        dispatch(ActionCreator.isAuthorizationError());
       })
   )
 };
