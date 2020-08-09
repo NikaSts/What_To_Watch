@@ -88,6 +88,7 @@ const withFullScreen = (Component) => {
     private handleFullScreenButtonClick() {
       const video = this.videoRef.current;
       video.requestFullscreen();
+      video.controls = true;
     }
 
     render() {

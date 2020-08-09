@@ -1,29 +1,17 @@
 import * as React from 'react';
 import {configure, mount} from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 import withShowMoreButton from './with-show-more-button';
 import {MovieType} from '../../types';
 
 configure({
   adapter: new Adapter(),
 });
+const mockStore = configureStore([]);
 
-interface MockListComponentProps {
-  movies: Array<MovieType>;
-}
-
-const MockListComponent = ({movies}: MockListComponentProps) => <div movies={movies} />;
-
-interface MockButtonComponentProps {
-  onShowMoreButtonClick: () => void;
-}
-
-const MockButtonComponent = ({
-  onShowMoreButtonClick
-}: MockButtonComponentProps) => <button onClick={onShowMoreButtonClick} />;
-
-
-const movies: MovieType = [
+const movies: Array<MovieType> = [
   {
     id: 1,
     title: `First Movie`,
@@ -65,21 +53,42 @@ const movies: MovieType = [
     isFavorite: false,
   },
 ];
+
+interface MockListComponentProps {
+  movies: Array<MovieType>;
+}
+
+const MockListComponent = () => <div></div>;
+
+interface MockButtonComponentProps {
+  onShowMoreButtonClick: () => void;
+}
+
+const MockButtonComponent = ({
+  onShowMoreButtonClick
+}: MockButtonComponentProps) => <button onClick={onShowMoreButtonClick} />;
+
 const onShowMoreButtonClick = jest.fn();
 
 const WrappedComponent = withShowMoreButton(MockListComponent);
 
 it(`withShowMoreButton should call onShowMoreButtonClick callback on child button click`, () => {
-
+  const store = mockStore({
+    MOVIES: {
+      movies,
+    },
+  });
   const wrapper = mount(
-      <React.Fragment>
-        <WrappedComponent
-          movies={movies}
-        />
-        <MockButtonComponent
-          onShowMoreButtonClick={onShowMoreButtonClick}
-        />
-      </React.Fragment>
+      <Provider store={store}>
+        <React.Fragment>
+          <WrappedComponent
+            movies={movies}
+          />
+          <MockButtonComponent
+            onShowMoreButtonClick={onShowMoreButtonClick}
+          />
+        </React.Fragment>
+      </Provider>
   );
 
   wrapper.find(`button`).simulate(`click`);
