@@ -5,10 +5,30 @@ import configureStore from 'redux-mock-store';
 import {Router} from 'react-router-dom';
 import history from '../../history';
 import {MyListPage} from './my-list-page';
-import {UserDataType} from '../../types';
+import {MovieType, UserDataType} from '../../types';
 
 const mockStore = configureStore([]);
 
+const favoriteMovies: Array<MovieType> = [{
+  id: 1,
+  title: `Favorite Movie`,
+  runTime: 1,
+  genre: ``,
+  releaseDate: 1,
+  poster: ``,
+  previewImage: ``,
+  backgroundImage: ``,
+  backgroundColor: ``,
+  ratingScore: 1,
+  ratingLevel: ``,
+  ratingCount: 1,
+  description: ``,
+  director: ``,
+  stars: [``],
+  preview: ``,
+  video: ``,
+  isFavorite: true,
+}];
 const user: UserDataType = {
   id: 1,
   name: ``,
@@ -21,6 +41,9 @@ const noop = () => {
 
 it(`MyListPage should render correctly`, () => {
   const store = mockStore({
+    MOVIES: {
+      favoriteMovies,
+    },
     USER: {
       authorizationStatus: `AUTH`,
       user,
@@ -35,6 +58,7 @@ it(`MyListPage should render correctly`, () => {
             <MyListPage
               authorizationStatus={`AUTH`}
               user={user}
+              favoriteMovies={favoriteMovies}
               loadFavoriteMovies={noop}
             />
           </Router>

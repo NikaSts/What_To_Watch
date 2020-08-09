@@ -65,6 +65,42 @@ exports[`MyListPage should render correctly 1`] = `
     >
       Catalog
     </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <article
+        className="small-movie-card catalog__movies-card"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <a
+          href="/films/1"
+          onClick={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              height="175"
+              preload="none"
+              width="280"
+            />
+          </div>
+        </a>
+        <h3
+          className="small-movie-card__title"
+        >
+          <a
+            className="small-movie-card__link"
+            href="/films/1"
+            onClick={[Function]}
+          >
+            Favorite Movie
+          </a>
+        </h3>
+      </article>
+    </div>
   </section>
   <footer
     className="page-footer"

@@ -6,7 +6,7 @@ import CatalogList from '../catalog-list/catalog-list';
 import CatalogFilter from '../catalog-filter/catalog-filter';
 import withShowMoreButton from '../../hocs/with-show-more-button/with-show-more-button';
 import {MovieType} from '../../types';
-import {getMovies, getGenres, getFavoriteMovies} from '../../store/movies/selectors';
+import {getMovies, getGenres} from '../../store/movies/selectors';
 import {filterMovies} from '../../utils/funcs';
 import {DEFAULT_GENRE, MAX_SIMILAR_MOVIES, Page} from '../../utils/consts';
 
@@ -31,7 +31,7 @@ const Catalog: React.FC<CatalogProps> = ({
   const moviesByGenre: Array<MovieType> = isMainPage && filterMovies(movies, activeItem);
   const similarMovies: Array<MovieType> = isMoviePage && filterMovies(movies, activeItem)
     .splice(0, MAX_SIMILAR_MOVIES);
-  const hasFavoriteMovies: boolean = isMoviePage && favoriteMovies.length > 0;
+  const hasFavoriteMovies: boolean = isMyListPage && favoriteMovies.length > 0;
 
   const catalogClass = cn({
     'catalog': true,
@@ -77,7 +77,6 @@ Catalog.defaultProps = {
 const mapStateToProps = (state) => ({
   movies: getMovies(state),
   genres: getGenres(state),
-  favoriteMovies: getFavoriteMovies(state),
 });
 
 
