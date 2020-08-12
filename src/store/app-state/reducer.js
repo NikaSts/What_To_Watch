@@ -5,7 +5,6 @@ const initialState = {
   isLoading: true,
   isSending: false,
   isErrorStatus: false,
-  page: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -21,10 +20,6 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SET_ERROR_STATUS:
       return extend(state, {
         isErrorStatus: action.payload.isErrorStatus,
-      });
-    case ActionType.CHANGE_CURRENT_PAGE:
-      return extend(state, {
-        page: action.payload.page,
       });
     default:
       return state;

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {getMovie} from '../../store/movies/selectors';
-import {getSendingStatus, getPage} from '../../store/app-state/selectors';
+import {getSendingStatus} from '../../store/app-state/selectors';
 import {getAuthorizationStatus, getUser} from '../../store/user/selectors';
 import {MovieType, UserDataType} from '../../types';
 import {
-  AppRoute, TEXTAREA_COLOR, AuthorizationStatus, Page, ReviewLength
+  TEXTAREA_COLOR, AuthorizationStatus, Page, ReviewLength
 } from '../../utils/consts';
 import PageHeader from '../page-header/page-header';
 import BreadCrumbs from '../bread-crumbs/bread-crumbs';
@@ -22,18 +21,14 @@ interface AddReviewProps {
   onRatingChange: () => void;
   isValid: boolean;
   isSending: boolean;
-  page: boolean;
 }
 
 
 const AddReview: React.FC<AddReviewProps> = ({
   authorizationStatus, id, movie, user, onFormSubmit, onCommentChange, onRatingChange,
-  isValid, isSending, page
+  isValid, isSending
 }: AddReviewProps) => {
   const isAuth: boolean = authorizationStatus === AuthorizationStatus.AUTH;
-  if (page === true) {
-    return <Redirect to={`${AppRoute.MOVIE_PAGE}/${id}`} />;
-  }
   const {backgroundColor, backgroundImage, title, poster} = movie;
   const isDisabled: boolean = !isValid || isSending;
   return (
@@ -121,7 +116,6 @@ const mapStateToProps = (state, props) => ({
   authorizationStatus: getAuthorizationStatus(state),
   user: getUser(state),
   isSending: getSendingStatus(state),
-  page: getPage(state),
 });
 
 export {AddReview};

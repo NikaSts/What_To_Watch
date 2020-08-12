@@ -1,6 +1,7 @@
 import {ActionType, EntryPoint} from '../../utils/consts';
 import {movieAdapter} from '../../adapter/movie-adapter';
 import {ActionCreator as AppActionCreator} from '../app-state/actions';
+import history from '../../history';
 
 export const ActionCreator = {
   getMovies: (movies) => ({
@@ -91,8 +92,7 @@ export const Operation = {
     return api.post(`${EntryPoint.REVIEWS}/${movieId}`, {rating, comment})
       .then(() => {
         dispatch(AppActionCreator.setSendingStatus(false));
-        dispatch(AppActionCreator.changePage(true));
-        dispatch(AppActionCreator.changePage(false));
+        history.goBack();
       })
       .catch(() => {
         dispatch(AppActionCreator.setErrorStatus(true));

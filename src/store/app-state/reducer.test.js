@@ -4,7 +4,6 @@ import {ActionType} from '../../utils/consts';
 const isLoading = false;
 const isSending = true;
 const isErrorStatus = true;
-const page = true;
 
 it(`AppState Reducer should update isLoading`, () => {
   expect(reducer({
@@ -39,17 +38,5 @@ it(`AppState Reducer should update isErrorStatus`, () => {
   }))
     .toEqual({
       isErrorStatus,
-    });
-});
-
-it(`AppState Reducer should update page changing status`, () => {
-  expect(reducer({
-    page: false,
-  }, {
-    type: ActionType.CHANGE_CURRENT_PAGE,
-    payload: {page}
-  }))
-    .toEqual({
-      page,
     });
 });

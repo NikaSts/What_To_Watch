@@ -13,8 +13,4 @@ export const ActionCreator = {
     type: ActionType.SET_ERROR_STATUS,
     payload: {isErrorStatus},
   }),
-  changePage: (page) => ({
-    type: ActionType.CHANGE_CURRENT_PAGE,
-    payload: {page},
-  }),
 };

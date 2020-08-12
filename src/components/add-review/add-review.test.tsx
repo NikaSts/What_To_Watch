@@ -48,7 +48,6 @@ it(`AddReview page should render with submit button active`, () => {
     USER: {
       authorizationStatus: `AUTH`,
       user: userData,
-      page: false,
     }
   });
 
@@ -66,7 +65,6 @@ it(`AddReview page should render with submit button active`, () => {
               onRatingChange={noop}
               isValid={true}
               isSending={false}
-              page={false}
             />
           </Router>
         </Provider>, {
@@ -87,7 +85,6 @@ it(`AddReview page should render with submit button disabled`, () => {
     USER: {
       authorizationStatus: `AUTH`,
       user: userData,
-      page: false,
     }
   });
 
@@ -105,7 +102,6 @@ it(`AddReview page should render with submit button disabled`, () => {
               onRatingChange={noop}
               isValid={false}
               isSending={false}
-              page={false}
             />
           </Router>
         </Provider>, {
