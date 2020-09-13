@@ -14,7 +14,7 @@ script:
 deploy:
   provider: pages
   skip_cleanup: true
-  github-token: $GITHUB_TOKEN
+  github-token: $WTW_TOKEN
   local_dir: public
   on:
     branch: master
