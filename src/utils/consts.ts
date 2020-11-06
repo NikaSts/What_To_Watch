@@ -65,7 +65,7 @@ export enum Error {
   UNAUTHORIZED = 401,
 }
 
-export const URL = `https://4.react.pages.academy`;
+export const URL = `https://5.react.pages.academy`;
 
 export enum AppRoute {
   ROOT = `/`,
